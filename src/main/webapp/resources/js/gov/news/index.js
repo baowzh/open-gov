@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
 	dg111 = $('#dg').datagrid({
-		title:'新闻列表',
-		url : '',
+		title : '新闻列表',
+		url : 'paging.jhtml',
 		toolbar : "#tb",
 		loadMsg : '数据加载中...',
 		sortOrder : 'asc',
@@ -12,7 +12,7 @@ $(document).ready(function() {
 		height : grid_height(),
 		showFooter : true,
 		openAnimation : 'slide',
-		columns : [  [
+		columns : [ [
 
 		{
 			title : 'id',
@@ -111,7 +111,11 @@ $(document).ready(function() {
 			halign : 'center',
 			width : '120',
 			rowspan : 1,
-			colspan : 1
+			colspan : 1,
+			formatter : function(value, row, index) {
+				return '<a>修改</a>&nbsp;|&nbsp;<a>删除</a>';
+			}
+
 		}
 
 		]
@@ -124,16 +128,21 @@ $(document).ready(function() {
 		pageSize : 10,
 		pageList : [ 10, 30, 50, 70, 100 ],
 		remoteFilter : false,
-		
+		loadFilter : function(data) {
+			return {
+				'rows' : data.models,
+				'total' : data.totalrowcount
+			};
+		},
 		onLoadError : function(data) {
 			//BDialog.alert(data.responseText)
 		}
-		
+
 	});
 
 });
 
-var doSearch=function(value, name) {
+var doSearch = function(value, name) {
 	$('#dg').datagrid('load', {
 		name : name,
 		value : value
@@ -141,7 +150,7 @@ var doSearch=function(value, name) {
 
 }
 
-var grid_height=function(){
-    var realHeight=$( window ).height()-28;
-    return realHeight;
- }
+var grid_height = function() {
+	var realHeight = $(window).height() - 28;
+	return realHeight;
+}

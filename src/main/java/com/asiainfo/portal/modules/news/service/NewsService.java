@@ -1,0 +1,21 @@
+package com.asiainfo.portal.modules.news.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.asiainfo.eframe.sqlsession.model.DBPageValue;
+import com.asiainfo.portal.form.NewsPagingForm;
+import com.asiainfo.portal.modules.news.model.News;
+
+public interface NewsService {
+	public List<News> list(Map<String, Object> params);
+
+	public DBPageValue<News> paging(NewsPagingForm pagingForm);
+
+	public void save(News news) throws Exception;
+
+	public void del(Integer id);
+
+	public News get(Integer id);
+
+}

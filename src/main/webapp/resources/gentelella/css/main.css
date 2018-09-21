@@ -357,7 +357,7 @@ body .container.body .right_col {
 	/*border: 1px solid #d9dee4;*/
 }
 .page-title{
-	color:#f86809;
+	color:#d10707;
 	padding:0;
 	font-weight:bold;
 	height:46px;
@@ -370,13 +370,13 @@ body .container.body .right_col {
 	background:none;
 }
 .menu-ico{
-	color: #f86809;
+	color: #d10707;
     font-size: 22px;
 	padding:8px 4px;
 }
 .l-btn-left{
 	padding-right:14px;
-	color:#f86809;
+	color:#d10707;
 }
 .datagrid-toolbar span:focus, .datagrid-toolbar span:hover, .menu-ico:focus, .menu-ico:hover,.datagrid-toolbar a:focus, .datagrid-toolbar a:hover{
 	color:#5bc0de;	

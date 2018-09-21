@@ -42,7 +42,8 @@ var asiainfoText = $.widget("ui.asiainfoEditor",jQuery.ui.formComponent,{
 						},
 						readonly : false,
 						tooltipmess : '',
-						messcontainer : '.errormessage'
+						messcontainer : '.errormessage',
+						height:400
 					},
 					/**
 					 * 构造方法

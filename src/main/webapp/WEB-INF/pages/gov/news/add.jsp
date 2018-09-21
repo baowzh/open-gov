@@ -17,19 +17,31 @@
 	href="${pageContext.request.contextPath}/resources/easyUI/themes/icon.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/easyUI/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/gov/news/edit.js"></script>
+
 </head>
 <body>
 	<div style="margin: 20px 0;"></div>
 
-	<form id="addMenu" action="saveInfo.jhtml" method="post">
+	<form id="editNew" action="saveInfo.jhtml" method="post">
 		<table align="left" style="width: 95%;">
 			<tr height=30>
 				<td align="right" width="120px">
 				 <lable>栏目：</lable>
 				</td>
 				<td width="400px">
-				  <input
-					type="text" style="width:100%;" />
+				  <select id="catId" name="catId">
+				  </select>
+				  <script type="text/javascript">
+					$(document).ready(function() {
+						$('#catId').asiainfoSelect({
+							id : '#catId',
+							url : '${pageContext.request.contextPath}/ui/categorys.jhtml',
+							listeners:[{selector:"#typeId",type:"select"}]
+						});
+					});
+				</script>
 				</td>
 				
 				<td width="20%"></td>
@@ -41,8 +53,17 @@
 				 <lable>分类：</lable>
 				</td>
 				<td width="400px">
-				  <input
-					type="text" style="width:100%;" />
+				   <select id="typeId" name="typeId">
+				  </select>
+				  <script type="text/javascript">
+					$(document).ready(function() {
+						$('#typeId').asiainfoSelect({
+							id : '#typeId',
+							url : '${pageContext.request.contextPath}/ui/subcategorys.jhtml',
+							filterfields:[{filedname:'#catId',sqlfieldname:'catId'}]
+						});
+					});
+				</script>
 				</td>
 				
 				<td width="20%"></td>
@@ -68,7 +89,7 @@
 				</td>
 				<td width="400px">
 				  <input
-					type="text" id="title" name="title" style="width:100%;" />
+					type="text" id="keywords" name="keywords" style="width:100%;" />
 				</td>
 				
 				<td width="20%"></td>
@@ -81,7 +102,7 @@
 				</td>
 				<td width="400px">
 				  <textarea
-					 id="title" name="title" style="width:100%;" rows=10 cols=300 >
+					 id="description" name="description" style="width:100%;" rows=10 cols=300 >
 					</textarea>
 				</td>
 				
@@ -105,6 +126,7 @@
 						$('#content').asiainfoEditor({
 							id : '#content',
 							readonly : false,
+							height:600
 							
 							
 						});
@@ -122,7 +144,7 @@
 			<a href="javascript:void(0)" onclick="submitForm()"
 				class="easyui-linkbutton" iconCls="icon-save">保存</a> <a href="#"
 				class="easyui-linkbutton" iconCls="icon-cancel"
-				onclick="javascript:window.close()">取消</a>
+				onclick="#">取消</a>
 		</div>
 
 

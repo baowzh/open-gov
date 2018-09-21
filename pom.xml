@@ -367,10 +367,6 @@
 					<artifactId>eframe-data</artifactId>
 					<groupId>com.asiainfo</groupId>
 				</exclusion>
-				<exclusion>
-					<artifactId>ewebframe-ui</artifactId>
-					<groupId>com.asiainfo</groupId>
-				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
