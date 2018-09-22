@@ -42,7 +42,7 @@
 									<label for="keyword"
 										class="control-label  col-md-1 col-sm-4 col-xs-12">摘要：</label>
 									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="keyword" name="keyword"
+										<input id="description" name="description"
 											class="form-control col-md-12 col-sm-12 col-xs-12" />
 
 									</div>
@@ -52,14 +52,14 @@
 									<label for="title"
 										class="control-label  col-md-1 col-sm-4 col-xs-12">时间(开始)</label>
 									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="title" name="title"
+										<input id="startDate" name="startDate"
 											class="form-control col-md-12 col-sm-12 col-xs-12" />
 
 									</div>
 									<label for="keyword"
 										class="control-label  col-md-1 col-sm-4 col-xs-12">时间(结束)</label>
 									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="keyword" name="keyword"
+										<input id="endDate" name="endDate"
 											class="form-control col-md-12 col-sm-12 col-xs-12" />
 
 									</div>

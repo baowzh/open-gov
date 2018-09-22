@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
 	dg111 = $('#dg').datagrid({
-		title:'项目列表',
-		url : '',
+		url : 'paging.jhtml',
 		toolbar : "#tb",
 		loadMsg : '数据加载中...',
 		sortOrder : 'asc',
@@ -12,21 +11,29 @@ $(document).ready(function() {
 		height : grid_height(),
 		showFooter : true,
 		openAnimation : 'slide',
-		columns : [  [
+		columns : [ [
 
 		{
 			title : '填报时间',
-			field : 'id',
+			field : 'inputDate',
 			align : 'left',
 			halign : 'center',
 			width : '120',
 			rowspan : 1,
 			colspan : 1
+			,
+			formatter : function(value,
+					row, index) {
+				var date = new Date(
+						value);
+				return date
+						.format('yyyy-MM-dd');
+			}
 		},
 
 		{
 			title : '填报部门',
-			field : 'title',
+			field : 'orgName',
 			align : 'left',
 			halign : 'center',
 			width : '120',
@@ -36,7 +43,7 @@ $(document).ready(function() {
 
 		{
 			title : '项目名称',
-			field : 'GPD201705',
+			field : 'name',
 			align : 'left',
 			halign : 'center',
 			width : '120',
@@ -46,7 +53,7 @@ $(document).ready(function() {
 
 		{
 			title : '项目级别',
-			field : 'GPD201704',
+			field : 'level',
 			align : 'left',
 			halign : 'center',
 			width : '120',
@@ -56,7 +63,7 @@ $(document).ready(function() {
 
 		{
 			title : '项目金额',
-			field : 'GPD201703',
+			field : 'amount',
 			align : 'left',
 			halign : 'center',
 			width : '120',
@@ -66,17 +73,25 @@ $(document).ready(function() {
 
 		{
 			title : '发放时间',
-			field : 'GPD201702',
+			field : 'releaseTime',
 			align : 'left',
 			halign : 'center',
 			width : '120',
 			rowspan : 1,
 			colspan : 1
+			,
+			formatter : function(value,
+					row, index) {
+				var date = new Date(
+						value);
+				return date
+						.format('yyyy-MM-dd');
+			}
 		},
 
 		{
 			title : '备注',
-			field : 'GPD201701',
+			field : 'comm',
 			align : 'left',
 			halign : 'center',
 			width : '120',
@@ -94,24 +109,29 @@ $(document).ready(function() {
 		pageSize : 10,
 		pageList : [ 10, 30, 50, 70, 100 ],
 		remoteFilter : false,
-		
+		loadFilter : function(data) {
+			return {
+				'rows' : data.models,
+				'total' : data.totalrowcount
+			};
+		},
 		onLoadError : function(data) {
 			//BDialog.alert(data.responseText)
 		}
-		
+
 	});
 
 });
 
-var doSearch=function(value, name) {
+var doSearch = function() {
 	$('#dg').datagrid('load', {
-		name : name,
-		value : value
+		name : $('#name').val(),
+		comm : $('#comm').val()
 	});
 
 }
 
-var grid_height=function(){
-    var realHeight=$( window ).height()-28;
-    return realHeight;
- }
+var grid_height = function() {
+	var realHeight = $(window).height() - 28;
+	return realHeight;
+}

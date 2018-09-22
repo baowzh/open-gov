@@ -8,9 +8,10 @@
 <title>新闻管理</title>
 <asiainfo:resource needFallBack="false"
 	type="Bootstrap,easyui,jquery,dynamicform,validate"></asiainfo:resource>
-
+<script src="${ctx}/resources/js/formatter/decimalFormat.js"></script>
+<script src="${ctx}/resources/js/dateFormatter.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/gov/news/index.js"></script>
+	src="${ctx}/resources/js/gov/project/index.js"></script>
 </head>
 <body class="container body" style="background: #F7F7F7;">
 	<div class="main_container">
@@ -23,49 +24,23 @@
 							<form id="form1" class="form-horizontal form-label-left">
 								<div class="form-group">
 									<label for="title"
-										class="control-label  col-md-1 col-sm-4 col-xs-12">标题：</label>
+										class="control-label  col-md-1 col-sm-4 col-xs-12">项目名称：</label>
 									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="title" name="title"
+										<input id="name" name="name"
 											class="form-control col-md-12 col-sm-12 col-xs-12" />
 
 									</div>
-									<label for="keyword"
-										class="control-label  col-md-1 col-sm-4 col-xs-12">关键字：</label>
-									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="keyword" name="keyword"
-											class="form-control col-md-12 col-sm-12 col-xs-12" />
-
-									</div>
-
-									<label for="keyword"
-										class="control-label  col-md-1 col-sm-4 col-xs-12">摘要：</label>
-									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="keyword" name="keyword"
-											class="form-control col-md-12 col-sm-12 col-xs-12" />
-
-									</div>
-
-
-
-								</div>
-								<div class="form-group">
+									
 									<label for="title"
-										class="control-label  col-md-1 col-sm-4 col-xs-12">时间(开始)</label>
+										class="control-label  col-md-1 col-sm-4 col-xs-12">备注：</label>
 									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="title" name="title"
+										<input id="comm" name="comm"
 											class="form-control col-md-12 col-sm-12 col-xs-12" />
 
 									</div>
-									<label for="keyword"
-										class="control-label  col-md-1 col-sm-4 col-xs-12">时间(结束)</label>
-									<div class=" col-md-3 col-sm-8 col-xs-12 ">
-										<input id="keyword" name="keyword"
-											class="form-control col-md-12 col-sm-12 col-xs-12" />
 
-									</div>
 									<input type="button" class="btn btn-success select-btn-r"
-										onclick="trigerRefresh(this);return false;" value="执行查询"></input>
-
+										onclick="doSearch();return false;" value="执行查询"></input>
 
 
 								</div>
@@ -77,12 +52,12 @@
 				</div>
 			</div>
 			<div class="row">
-			  <div class="col-md-12 col-sm-12 col-xs-12">
-			   <a class="btn btn-success select-btn-r" style="float:right;width:60px;height:30px;"
-										href="add.jhtml" >
-										新增</a>
-			   
-			  </div>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<a class="btn btn-success select-btn-r"
+						style="float: right; width: 60px; height: 30px;" href="add.jhtml">
+						新增</a>
+
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">

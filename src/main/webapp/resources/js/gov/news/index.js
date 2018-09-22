@@ -159,8 +159,11 @@ $(document)
 
 var doSearch = function(value, name) {
 	$('#dg').datagrid('load', {
-		name : name,
-		value : value
+		title : $('#title').val(),
+		keyword : $('#keyword').val(),
+		description:$('#description').val(),
+	    startDate:$('#startDate').val(),
+	    endDate:$('#endDate').val()
 	});
 
 }
