@@ -3,6 +3,8 @@ package com.asiainfo.portal.view.modules.news;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.asiainfo.eframe.sqlsession.model.DBPageValue;
+import com.asiainfo.eframe.util.StringUtil;
 import com.asiainfo.portal.form.NewsPagingForm;
 import com.asiainfo.portal.modules.news.model.News;
 import com.asiainfo.portal.modules.news.service.NewsService;
+import com.asiainfo.portal.view.modules.FileUploadControler;
 
 @Controller
 @RequestMapping(value = "news")
-public class NewsController {
+public class NewsController extends FileUploadControler {
 	@Autowired
 	private NewsService newsService;
 	private static Logger logger = LoggerFactory.getLogger(NewsController.class);
@@ -58,19 +62,36 @@ public class NewsController {
 	}
 
 	@RequestMapping("save")
-	@ResponseBody
-	public Map<String, Object> save(News news) {
+	public ModelAndView save(HttpServletRequest request, ModelMap modelMap) {
 		Map<String, Object> returnInfo = new HashMap<String, Object>();
 		try {
+			News news = new News();
+			String catId = request.getParameter("catId");
+			news.setCatId(Integer.valueOf(catId));
+			String typeId = request.getParameter("typeId");
+			if(!StringUtil.isEmpty(typeId)){
+				news.setTypeId(Integer.valueOf(typeId));
+			}
+			String title = request.getParameter("title");
+			news.setTitle(title);
+			String keywords = request.getParameter("keywords");
+			news.setKeywords(keywords);
+			String description = request.getParameter("description");
+			news.setDescription(description);
+			String content = request.getParameter("content");
+			news.setContent(content);
+			String imgURl = this.wiredFile(request);
+			news.setThumb(imgURl);
 			newsService.save(news);
 			returnInfo.put("success", true);
+			modelMap.put("mess", "保存成功。");
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("保存新闻数据出现异常:{}", e);
-			returnInfo.put("success", false);
-			returnInfo.put("mess", e.getMessage());
+			modelMap.put("success", false);
+			modelMap.put("mess", e.getMessage());
 		}
-		return returnInfo;
+		return new ModelAndView("gov/news/index", modelMap);
 	}
 
 }

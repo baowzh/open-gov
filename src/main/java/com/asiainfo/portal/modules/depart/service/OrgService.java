@@ -13,5 +13,5 @@ public interface OrgService {
 
 	public Depart getDepart(String departId);
 	
-	public void del(String departId);
+	public void del(String departId) throws Exception;
 }

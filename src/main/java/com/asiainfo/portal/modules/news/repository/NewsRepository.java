@@ -29,4 +29,7 @@ public interface NewsRepository {
 
 	@Operation(operationType = OperationType.SELECT, namespaceClass = News.class)
 	public News get(Integer id);
+
+	@Operation(operationType = OperationType.SELECT, namespaceClass = News.class)
+	public Integer getDepartNewsCount(String departId);
 }

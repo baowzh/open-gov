@@ -1,47 +1,30 @@
 package com.asiainfo.portal.view.modules.org;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.asiainfo.ewebframe.config.WebSysConfig;
 import com.asiainfo.ewebframe.ui.form.model.SelectResult;
 import com.asiainfo.portal.modules.depart.model.Depart;
 import com.asiainfo.portal.modules.depart.service.OrgService;
+import com.asiainfo.portal.view.modules.FileUploadControler;
 import com.asiainfo.portal.view.modules.system.bean.BasicTree;
 
 @Controller
 @RequestMapping(value = "org")
-public class OrgController {
+public class OrgController extends FileUploadControler {
 	@Autowired
 	private OrgService orgService;
-	@Autowired
-	private WebSysConfig config;
-	@Value("${file.maxSize}")
-	private Integer maxSize;
-
 	@RequestMapping("index")
 	public ModelAndView index(ModelMap modelMap) {
 		return new ModelAndView("gov/org/index", modelMap);
@@ -73,7 +56,7 @@ public class OrgController {
 	public ModelAndView add(ModelMap modelMap, String id) {
 		Depart depart = this.orgService.getDepart(id);
 		List<SelectResult> results = new ArrayList<SelectResult>();
-		if (depart.getType() == 3) {
+		if (depart != null && depart.getType() == 3) {
 			List<Depart> departs = orgService.getDeparts(2);
 			for (int i = 0; i < departs.size(); i++) {
 				Depart departi = departs.get(i);
@@ -84,7 +67,7 @@ public class OrgController {
 			}
 
 		}
-		if (depart.getParentId() != null) {
+		if (depart != null && depart.getParentId() != null) {
 			Depart parent = this.orgService.getDepart(depart.getParentId());
 			modelMap.put("parent", parent);
 		}
@@ -103,94 +86,25 @@ public class OrgController {
 			String code = request.getParameter("code");
 			String id = request.getParameter("id");
 			String parentId = request.getParameter("parentId");
+			String type = request.getParameter("type");
 			Depart depart = new Depart();
 			depart.setCode(code);
 			depart.setName(name);
+			depart.setType(Integer.parseInt(type));
 			depart.setParentId(parentId);
 			if (parentId == null) {
 				depart.setLevel(0);
 			}
 			depart.setId(id);
-			if (!ServletFileUpload.isMultipartContent(request)) {
-				modelMap.put("success", false);
-				modelMap.put("mess", "上传文件大小超过限制。");
-				return new ModelAndView("gov/org/edit", modelMap);
-
-			}
-			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-			Iterator<String> filenames = multipartRequest.getFileNames();
-			MultipartFile file = null;
-			while (filenames.hasNext()) {
-				String filename = filenames.next();
-				List<MultipartFile> fileList = multipartRequest.getFiles(filename);
-				file = fileList.get(0);
-			}
-
-			if (file.getSize() > maxSize) {
-
-				modelMap.put("success", false);
-				modelMap.put("mess", "上传文件大小超过限制。");
-				return new ModelAndView("gov/org/edit", modelMap);
-
-			}
-			String separator = File.separator;
-			String savePath = request.getSession().getServletContext().getRealPath(separator);
-			if (!savePath.endsWith(separator)) {
-				savePath = savePath + separator;
-			}
-			savePath = savePath + "attached" + separator;
-			// 定义允许上传的文件扩展名
-			Map<String, String> extMap = new HashMap<String, String>();
-			extMap.put("image", config.getFileimage());
-			extMap.put("flash", config.getFileflash());
-			extMap.put("media", config.getFilemedia());
-			extMap.put("file", config.getFilefile());
-			String saveUrl = "/" + "attached" + "/";
-			File saveDirFile = new File(savePath);
-			if (!saveDirFile.exists()) {
-				saveDirFile.mkdirs();
-			}
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			String ymd = sdf.format(new Date());
-			savePath += ymd + separator;
-			saveUrl += ymd + "/";
-			File dirFile = new File(savePath);
-			if (!dirFile.exists()) {
-				dirFile.mkdirs();
-			}
-			//
-			// 附件要上传到的目录
-			extMap.put("attached", config.getFileattached());
-
-			String fileName = file.getOriginalFilename();
-			String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-			if (!Arrays.<String> asList(extMap.get("image").split(",")).contains(fileExt)) {
-				// return getError("上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName)
-				// + "格式。");
-				modelMap.put("success", false);
-				modelMap.put("mess", "上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get("image") + "格式。");
-				return new ModelAndView("gov/org/edit", modelMap);
-
-			}
-			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-			String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
-			try {
-				File uploadedFile = new File(savePath, newFileName);
-				OutputStream stram = new FileOutputStream(uploadedFile);
-				stram.write(file.getBytes());
-				stram.close();
-				saveUrl = saveUrl + "/" + newFileName;
-
-			} catch (Exception e) {
-				modelMap.put("success", false);
-				modelMap.put("mess", "上传文件失败。");
-				return new ModelAndView("gov/org/edit", modelMap);
-
-			}
+			String saveUrl = this.wiredFile(request);
 			depart.setImg(saveUrl);
 			this.orgService.save(depart);
+			modelMap.put("mess", "保存数据成功。");
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			modelMap.put("success", false);
+			modelMap.put("mess", ex.getMessage());
+			return new ModelAndView("gov/org/index", modelMap);
 		}
 		return new ModelAndView("gov/org/index", modelMap);
 	}

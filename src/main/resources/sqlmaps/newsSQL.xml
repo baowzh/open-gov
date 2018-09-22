@@ -78,6 +78,10 @@
 	    <if test="updatetime!=null ">
 	    ,updatetime=#{updatetime}
 	   </if>
+	    <if test="thumb!=null and thumb!=''">
+	    ,thumb=#{thumb}
+	   </if>
+	   
 	  where id=#{id}
 	</update>
 	<delete id="del"  parameterType="java.lang.Integer">
@@ -105,10 +109,14 @@
 	    <if test="endDate!=null">
 	     and  <![CDATA[ a.inputtime <=#{endDate }  ]]>
 	   </if>
+	   order by a.inputtime desc
 	  
 	</select>
 	<select id="get" parameterType="java.lang.Integer" resultMap="newsMap">
 	  select * from td_f_news where id=#{id}
+	</select>
+	<select id="getDepartNewsCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+	  select count(1) from td_f_news where depart_id=#{_parameter}
 	</select>
 
 </mapper>

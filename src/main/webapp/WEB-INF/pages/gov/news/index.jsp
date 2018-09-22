@@ -106,5 +106,12 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+ var mess='${mess}';
+ if(mess!=''&&mess!='null'){
+   alert(mess);
+ }
+</script>
+
 
 </html>

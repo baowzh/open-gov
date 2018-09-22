@@ -24,7 +24,7 @@
 <body>
 	<div style="margin: 20px 0;"></div>
 
-	<form id="editNew" action="saveInfo.jhtml" method="post">
+	<form id="editNews" action="save.jhtml" method="post" enctype="multipart/form-data">
 		<table align="left" style="width: 95%;">
 			<tr height=30>
 				<td align="right" width="120px">
@@ -95,6 +95,19 @@
 				<td width="400px">
 				  <input
 					type="text" id="keywords" name="keywords" value="${news.keywords}" style="width:100%;" />
+				</td>
+				
+				<td width="20%"></td>
+
+			</tr>
+			
+			<tr height=30>
+				<td align="right" width="120px">
+				 <lable>封面图：</lable>
+				</td>
+				<td width="400px">
+				  <input
+					type="file" id="thumb" name="thumb"  style="width:100%;" />
 				</td>
 				
 				<td width="20%"></td>

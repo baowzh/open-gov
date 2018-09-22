@@ -26,5 +26,7 @@ public interface DepartRepository {
 
 	@Operation(operationType = OperationType.SELECT, namespaceClass = Depart.class)
 	public List<Depart> getDeparts(Integer type);
+	@Operation(operationType = OperationType.SELECT, namespaceClass = Depart.class)
+	public Integer childCount(String parentId);
 
 }

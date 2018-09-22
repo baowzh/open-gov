@@ -35,7 +35,7 @@
 
 	</insert>
 	<update id="update" parameterType="com.asiainfo.portal.modules.depart.model.Depart">
-	 updae td_m_depart 
+	 update td_m_depart 
 	 set depart_id=#{id}
 	   <if test="code!=null and code!=''">
 	    ,depart_code=#{code}
@@ -65,12 +65,15 @@
 	  
 	</select>
 	
-	<select id="getDeparts"  parameterType="java.lang.String" resultMap="depart">
+	<select id="getDeparts"  parameterType="java.lang.Integer" resultMap="depart">
 	  select * from td_m_depart where visible=1  and type=#{_parameter}
 	</select>
 	
 	<select id="get"  parameterType="java.lang.String" resultMap="depart">
 	  select * from td_m_depart where depart_id=#{_parameter}
+	</select>
+	<select id="childCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+	  select count(1) from  td_m_depart where parent_depart_id=#{_parameter}
 	</select>
 	
 	

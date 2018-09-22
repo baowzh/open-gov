@@ -2,7 +2,9 @@ var submitForm=function() {
 	if(valid()){
 		
 	}
-	var data=$('#editNew').serialize();
+	$('#editNews').submit();
+	//var data=$('#editNews').serialize();
+	/*
 	$.ajax({
 		type : "POST",
 		url : 'save.jhtml',
@@ -19,7 +21,7 @@ var submitForm=function() {
 		error : function(info) {
 			console.log("连接异常，请检查！")
 		}
-	});
+	});*/
 	
 	
 };

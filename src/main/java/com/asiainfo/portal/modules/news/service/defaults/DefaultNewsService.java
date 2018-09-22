@@ -70,8 +70,10 @@ public class DefaultNewsService implements NewsService {
 	@Override
 	public News get(Integer id) {
 		News news = this.newsRepository.get(id);
-		NewsData data = this.newsDataRepository.get(id);
-		news.setData(data);
+		if(news!=null){
+			NewsData data = this.newsDataRepository.get(id);
+			news.setData(data);
+		}
 		return news;
 	}
 
