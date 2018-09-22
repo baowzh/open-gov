@@ -29,11 +29,29 @@ public class NewsController {
 		return new ModelAndView("gov/news/index", modelMap);
 	}
 
-	@RequestMapping("add")
-	public ModelAndView add(ModelMap modelMap) {
-		return new ModelAndView("gov/news/add", modelMap);
+	@RequestMapping("edit")
+	public ModelAndView add(ModelMap modelMap, Integer id) {
+		News news = this.newsService.get(id);
+		modelMap.put("news", news);
+		return new ModelAndView("gov/news/edit", modelMap);
 	}
-	@RequestMapping(value="paging")
+
+	@ResponseBody
+	@RequestMapping("del")
+	public Map<String, Object> del(Integer id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			this.newsService.del(id);
+			map.put("success", true);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			map.put("success", false);
+			map.put("mess", ex.getMessage());
+		}
+		return map;
+	}
+
+	@RequestMapping(value = "paging")
 	@ResponseBody
 	public DBPageValue<News> paging(NewsPagingForm pagingForm) {
 		return this.newsService.paging(pagingForm);

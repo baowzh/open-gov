@@ -18,6 +18,10 @@ public class News {
 	private String departId;
 	private String content;
 	private NewsData data;
+	private String subcat;
+	private String departName;
+	private String catName;
+	private String staffName;
 
 	public Integer getId() {
 		return id;
@@ -137,6 +141,38 @@ public class News {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getSubcat() {
+		return subcat;
+	}
+
+	public void setSubcat(String subcat) {
+		this.subcat = subcat;
+	}
+
+	public String getDepartName() {
+		return departName;
+	}
+
+	public void setDepartName(String departName) {
+		this.departName = departName;
+	}
+
+	public String getCatName() {
+		return catName;
+	}
+
+	public void setCatName(String catName) {
+		this.catName = catName;
+	}
+
+	public String getStaffName() {
+		return staffName;
+	}
+
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
 	}
 
 }

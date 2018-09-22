@@ -38,7 +38,8 @@
 						$('#catId').asiainfoSelect({
 							id : '#catId',
 							url : '${pageContext.request.contextPath}/ui/categorys.jhtml',
-							listeners:[{selector:"#typeId",type:"select"}]
+							listeners:[{selector:"#typeId",type:"select"}],
+							defaultvalue:'${news.catId}'
 						});
 					});
 				</script>
@@ -61,6 +62,8 @@
 							id : '#typeId',
 							url : '${pageContext.request.contextPath}/ui/subcategorys.jhtml',
 							filterfields:[{filedname:'#catId',sqlfieldname:'catId'}]
+							,
+							defaultvalue:'${news.typeId}'
 						});
 					});
 				</script>
@@ -76,7 +79,9 @@
 				</td>
 				<td width="400px">
 				  <input
-					type="text" id="title" name="title" style="width:100%;" />
+					type="text" id="title" name="title" value="${news.title}" style="width:100%;" />
+					<input
+					type="hidden" id="id" name="id" value="${news.id}"  />
 				</td>
 				
 				<td width="20%"></td>
@@ -89,7 +94,7 @@
 				</td>
 				<td width="400px">
 				  <input
-					type="text" id="keywords" name="keywords" style="width:100%;" />
+					type="text" id="keywords" name="keywords" value="${news.keywords}" style="width:100%;" />
 				</td>
 				
 				<td width="20%"></td>
@@ -103,6 +108,7 @@
 				<td width="400px">
 				  <textarea
 					 id="description" name="description" style="width:100%;" rows=10 cols=300 >
+					 ${news.description}
 					</textarea>
 				</td>
 				
@@ -117,6 +123,7 @@
 				<td width="400px">
 				  <textarea
 					 id="content" name="content" style="width:100%;height:300px;" rows=100 cols=300 >
+					 ${news.data.content}
 					</textarea>
 				</td>
 				
@@ -126,9 +133,7 @@
 						$('#content').asiainfoEditor({
 							id : '#content',
 							readonly : false,
-							height:600
-							
-							
+							height:600					
 						});
 					});
 				</script>

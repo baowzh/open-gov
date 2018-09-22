@@ -3,7 +3,6 @@ package com.asiainfo.portal.modules.news.repository;
 import com.asiainfo.eframe.sqlsession.proxy.annotations.DaoBean;
 import com.asiainfo.eframe.sqlsession.proxy.annotations.Operation;
 import com.asiainfo.eframe.sqlsession.proxy.annotations.OperationType;
-import com.asiainfo.portal.modules.news.model.News;
 import com.asiainfo.portal.modules.news.model.NewsData;
 
 @DaoBean
@@ -19,5 +18,5 @@ public interface NewsDataRepository {
 	public void del(Integer id);
 
 	@Operation(operationType = OperationType.SELECT, namespaceClass = NewsData.class)
-	public News get(Integer id);
+	public NewsData get(Integer id);
 }

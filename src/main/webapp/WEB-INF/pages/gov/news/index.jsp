@@ -8,6 +8,8 @@
 <title>新闻管理</title>
 <asiainfo:resource needFallBack="false"
 	type="Bootstrap,easyui,jquery,dynamicform,validate"></asiainfo:resource>
+<script src="${ctx}/resources/js/formatter/decimalFormat.js"></script>
+<script src="${ctx}/resources/js/dateFormatter.js"></script>
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/gov/news/index.js"></script>
@@ -64,7 +66,7 @@
 
 									</div>
 									<input type="button" class="btn btn-success select-btn-r"
-										onclick="trigerRefresh(this);return false;" value="执行查询"></input>
+										onclick="doSearch();return false;" value="执行查询"></input>
 
 
 
@@ -79,7 +81,7 @@
 			<div class="row">
 			  <div class="col-md-12 col-sm-12 col-xs-12">
 			   <a class="btn btn-success select-btn-r" style="float:right;width:60px;height:30px;"
-										href="add.jhtml" >
+										href="edit.jhtml" >
 										新增</a>
 			   
 			  </div>

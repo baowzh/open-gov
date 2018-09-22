@@ -1,5 +1,6 @@
 package com.asiainfo.portal.modules.news.service.defaults;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.asiainfo.eframe.component.UserSessionHolderService;
+import com.asiainfo.eframe.security.model.UserInfo;
 import com.asiainfo.eframe.sqlsession.model.DBPageValue;
 import com.asiainfo.portal.form.NewsPagingForm;
 import com.asiainfo.portal.modules.news.model.News;
@@ -22,6 +25,8 @@ public class DefaultNewsService implements NewsService {
 	private NewsRepository newsRepository;
 	@Autowired
 	private NewsDataRepository newsDataRepository;
+	@Autowired
+	private UserSessionHolderService userSessionHolderService;
 	private static Logger logger = LoggerFactory.getLogger(DefaultNewsService.class);
 
 	@Override
@@ -32,7 +37,7 @@ public class DefaultNewsService implements NewsService {
 
 	@Override
 	public DBPageValue<News> paging(NewsPagingForm pagingForm) {
-
+		pagingForm.setDepartId(userSessionHolderService.getSessionUserInfo().getDepartid());
 		return newsRepository.paging(pagingForm);
 	}
 
@@ -42,11 +47,16 @@ public class DefaultNewsService implements NewsService {
 		NewsData newsData = new NewsData();
 		newsData.setContent(news.getContent());
 		newsData.setId(news.getId());
+		UserInfo userInfo = userSessionHolderService.getSessionUserInfo();
 		if (news.getId() == null) {
+			news.setInputtime(new Date());
+			news.setDepartId(userInfo.getDepartid());
+			news.setUsername(userInfo.getStaffid());
 			this.newsRepository.insert(news);
 			newsData.setId(news.getId());
 			this.newsDataRepository.insert(newsData);
 		} else {
+			news.setUpdatetime(new Date());
 			this.newsRepository.update(news);
 			this.newsDataRepository.update(newsData);
 		}
@@ -59,8 +69,10 @@ public class DefaultNewsService implements NewsService {
 
 	@Override
 	public News get(Integer id) {
-
-		return this.newsRepository.get(id);
+		News news = this.newsRepository.get(id);
+		NewsData data = this.newsDataRepository.get(id);
+		news.setData(data);
+		return news;
 	}
 
 }

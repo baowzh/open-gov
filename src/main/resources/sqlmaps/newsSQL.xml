@@ -14,7 +14,12 @@
 		<result column="inputtime" property="inputtime"  />
 		<result column="updatetime" property="updatetime"  />
 		<result column="depart_id" property="departId"  />
-
+		<result column="depart_name" property="departName"  />
+        <result column="subcat" property="subcat"  />
+        <result column="catName" property="catName"  />
+        <result column="staffName" property="staffName"  />
+        
+        
 	</resultMap>
 
 	<insert id="insert"
@@ -52,13 +57,13 @@
 
 	</insert>
 	<update id="update" parameterType="com.asiainfo.portal.modules.news.model.News">
-	 updae td_f_news 
+	 update td_f_news 
 	 set id=#{id}
-	   <if test="catid!=null">
-	    ,catid=#{catid}
+	   <if test="catId!=null">
+	    ,catid=#{catId}
 	   </if>
-	   <if test="typeid!=null">
-	    ,typeid=#{typeid}
+	   <if test="typeId!=null">
+	    ,typeid=#{typeId}
 	   </if>
 	   <if test="title!=null and title!=''">
 	    ,title=#{title}
@@ -79,18 +84,31 @@
 	 delete from td_f_news where id=#{id}
 	</delete>
 	<select id="paging" parameterType="com.asiainfo.portal.form.NewsPagingForm" resultMap="newsMap">
-	  select * from td_f_news 
-	  <where>
+	   select a.*,(select name from  td_category d where d.id=a.typeid ) as subcat,
+	  
+	  (select staff_name from td_m_staff where staff_id=a.username) as staffName
+	  ,b.name as catName,c.depart_name from td_f_news a,td_category b,td_m_depart c
+	  where a.catId=b.id and a.depart_id=c.depart_id  and a.depart_id=#{departId}
+	 
 	   <if test="title!=null and title!=''">
-	    title=#{title}
+	    and a.title like  CONCAT('%',#{title},'%') 
 	   </if>
 	   <if test="keyword!=null and keyword!=''">
-	    keyword=#{keyword}
+	    and a.keyword like  CONCAT('%', #{keyword},'%')  
 	   </if>
 	   <if test="description!=null and description!=''">
-	    description=#{description}
+	    and  a.description like CONCAT('%', #{description},'%')    
 	   </if>
-	  </where>
+	   <if test="startDate!=null">
+	     and  <![CDATA[ a.inputtime >=#{startDate }  ]]>
+	   </if>
+	    <if test="endDate!=null">
+	     and  <![CDATA[ a.inputtime <=#{endDate }  ]]>
+	   </if>
+	  
+	</select>
+	<select id="get" parameterType="java.lang.Integer" resultMap="newsMap">
+	  select * from td_f_news where id=#{id}
 	</select>
 
 </mapper>

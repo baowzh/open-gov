@@ -1,146 +1,161 @@
-$(document).ready(function() {
+$(document)
+		.ready(
+				function() {
 
-	dg111 = $('#dg').datagrid({
-		title : '新闻列表',
-		url : 'paging.jhtml',
-		toolbar : "#tb",
-		loadMsg : '数据加载中...',
-		sortOrder : 'asc',
-		singleSelect : true,
-		fit : false,
-		width : '100%',
-		height : grid_height(),
-		showFooter : true,
-		openAnimation : 'slide',
-		columns : [ [
+					dg111 = $('#dg')
+							.datagrid(
+									{
+										url : 'paging.jhtml',
+										toolbar : "#tb",
+										loadMsg : '数据加载中...',
+										sortOrder : 'asc',
+										singleSelect : true,
+										fit : false,
+										width : '100%',
+										height : grid_height(),
+										showFooter : true,
+										openAnimation : 'slide',
+										columns : [ [
 
-		{
-			title : 'id',
-			field : 'id',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : 'id',
+													field : 'id',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '标题',
-			field : 'title',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '标题',
+													field : 'title',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '栏目',
-			field : 'GPD201705',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '栏目',
+													field : 'catName',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '分类',
-			field : 'GPD201704',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '分类',
+													field : 'subcat',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '关键字',
-			field : 'GPD201703',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '关键字',
+													field : 'keywords',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '摘要',
-			field : 'GPD201702',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '摘要',
+													field : 'description',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '发布时间',
-			field : 'GPD201701',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '发布时间',
+													field : 'inputtime',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1,
+													formatter : function(value,
+															row, index) {
+														var date = new Date(
+																value);
+														return date
+																.format('yyyy-MM-dd');
+													}
+												},
 
-		{
-			title : '发布部门',
-			field : 'GPD201612',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '发布部门',
+													field : 'departName',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '发布人',
-			field : 'GPD201611',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
+												{
+													title : '发布人',
+													field : 'staffName',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1
+												},
 
-		{
-			title : '【操作】',
-			field : 'GPD201610',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1,
-			formatter : function(value, row, index) {
-				return '<a>修改</a>&nbsp;|&nbsp;<a>删除</a>';
-			}
+												{
+													title : '【操作】',
+													field : 'GPD201610',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1,
+													formatter : function(value,
+															row, index) {
+														return '<a href="javascript:upd(\''
+																+ row.id
+																+ '\');">修改</a>&nbsp;|&nbsp;<a href="javascript:del(\''
+																+ row.id
+																+ '\');">删除</a>';
+													}
 
-		}
+												}
 
-		]
+										]
 
-		],
-		autoRowHeight : true,
-		striped : true,
-		rownumbers : true,
-		pagination : true,
-		pageSize : 10,
-		pageList : [ 10, 30, 50, 70, 100 ],
-		remoteFilter : false,
-		loadFilter : function(data) {
-			return {
-				'rows' : data.models,
-				'total' : data.totalrowcount
-			};
-		},
-		onLoadError : function(data) {
-			//BDialog.alert(data.responseText)
-		}
+										],
+										autoRowHeight : true,
+										striped : true,
+										rownumbers : true,
+										pagination : true,
+										pageSize : 10,
+										pageList : [ 10, 30, 50, 70, 100 ],
+										remoteFilter : false,
+										loadFilter : function(data) {
+											return {
+												'rows' : data.models,
+												'total' : data.totalrowcount
+											};
+										},
+										onLoadError : function(data) {
+											//BDialog.alert(data.responseText)
+										}
 
-	});
+									});
 
-});
+				});
 
 var doSearch = function(value, name) {
 	$('#dg').datagrid('load', {
@@ -153,4 +168,34 @@ var doSearch = function(value, name) {
 var grid_height = function() {
 	var realHeight = $(window).height() - 28;
 	return realHeight;
-}
+};
+var upd = function(id) {
+	window.location.href = 'edit.jhtml?id=' + id;
+
+};
+
+var del = function(id) {
+	// 调用服务u直接删除	
+	BDialog.confirm('确定要删除吗？', function() {
+		$.ajax({
+			type : "POST",
+			url : 'del.jhtml',
+			data : {
+				id : id
+			},
+			dataType : "json",
+			success : function(data) {
+				if (data.success) {
+					alert('删除成功。');
+					doSearch();
+				} else {
+					alert(data.mess);
+				}
+			},
+			error : function(info) {
+				console.log("连接异常，请检查！")
+			}
+		});
+	});
+
+};
