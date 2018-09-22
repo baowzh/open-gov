@@ -63,8 +63,8 @@
 		A.EPARCHY_CODE EPARCHYCODE
 		FROM TD_M_STAFF A
 		
-		 right outer join   TF_M_STAFFPASSWD B  on A.STAFF_ID = B.STAFF_ID
-		 right outer join TD_M_DEPART C on
+		 left join    TF_M_STAFFPASSWD B  on A.STAFF_ID = B.STAFF_ID
+		 left join TD_M_DEPART C on
 		A.DEPART_ID = C.DEPART_ID
 		<if test="username != null and username !=''">
 			AND A.STAFF_ID = #{username}

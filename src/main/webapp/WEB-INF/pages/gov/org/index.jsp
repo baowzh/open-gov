@@ -6,19 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>菜单管理</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/easyUI/themes/bootstrap/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/easyUI/themes/icon.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/easyUI/jquery.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/easyUI/jquery.easyui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/easyUI/locale/easyui-lang-zh_CN.js"></script>
-
+<asiainfo:resource needFallBack="false"
+	type="Bootstrap,easyui,jquery,dynamicform,validate"></asiainfo:resource>
 <script type="text/javascript">
 	var index = 0;
 	function removeTab(title) {
@@ -66,59 +55,14 @@
 		$('#tree').tree("reload");
 	}
 
-	function removeMenu() {
-		$('#removeMenu').form({
-			onSubmit : function() {
-			},
-			success : function(data) {
-				var data = eval('(' + data + ')'); // change the JSON string to javascript object
-				alert(data.message)
-				if (data.success) {
-					reloadMenuTree();
-				}
-			}
+	function edit(id) {
+		var url = 'edit.jhtml?id=' + id
+		$('#pp').panel('open').panel('refresh', url);
+		// 绑定插件
+		$('#parentId').asiainfoSelect({
+			id : '#parentId',
+			url : '${ctx}/ui/getTowns.jhtml'
 		});
-
-		$('#removeMenu').form('submit');
-	}
-
-	function addSubMenu() {
-
-		var index = $('#tree').tree('getSelected');
-		var top = 0;
-		var left = 0
-
-		if (screen.width > 900) {
-			left = (screen.width - 900) / 2
-		}
-		if (screen.height > 450) {
-			top = (screen.height - 450) / 2
-		}
-
-		//var row = $('#dg').datagrid('getSelected');
-		var child = window.open("addInfo.jhtml?parentMenuId=" + index.id,
-				"修改菜单信息",
-				"height=450,width=900,status=yes,toolbar=no,menubar=no,location=no,top="
-						+ top + ",left=" + left);
-
-	}
-
-	function addMenu() {
-
-		var top = 0;
-		var left = 0
-
-		if (screen.width > 900) {
-			left = (screen.width - 900) / 2
-		}
-		if (screen.height > 450) {
-			top = (screen.height - 450) / 2
-		}
-
-		//var row = $('#dg').datagrid('getSelected');
-		var child = window.open("addInfo.jhtml", "修改菜单信息",
-				"height=450,width=900,status=yes,toolbar=no,menubar=no,location=no,top="
-						+ top + ",left=" + left);
 
 	}
 
@@ -142,29 +86,83 @@
 						+ top + ",left=" + left);
 
 	}
+	var submitForm = function() {
+		$('#editOrg').submit();
+
+	}
+	var loadTowns = function() {
+
+		$.ajax({
+			type : "POST",
+			url : '${ctx}/ui/getTowns.jhtml',
+			dataType : "json",
+			success : function(data) {
+				$('#parentId').empty();
+				var defaultOption = $('<option>').attr({
+					value : ''
+				}).text('请选择');
+				$('#parentId').append(defaultOption);
+				for (var i = 0; i < data.length; i++) {
+					var option = $('<option>').attr({
+						value : data[i].id
+					}).text(data[i].text);
+					$('#parentId').append(option);
+				}
+			},
+			error : function(info) {
+				console.log("连接异常，请检查！")
+			}
+		});
+
+	}
+	
+ var del=function(id){
+ 
+  $.ajax({
+			type : "POST",
+			url : '${ctx}/org/del.jhtml',
+			data:{
+			id:id
+			},
+			dataType : "json",
+			success : function(data) {
+				 if(data.success){
+				   alert('删除成功。');		
+				   window.location.href='${ctx}/org/index.jhtml';		   
+				 }else{
+				  alert(data.mess);
+				 }
+			},
+			error : function(info) {
+				console.log("连接异常，请检查！")
+			}
+		});
+ 
+ 
+ }
+	
+ 
 </script>
 
 </head>
-<body>
+<body style="background: #F7F7F7;" >
 	<div style="margin: 20px 0;"></div>
 	<div class="easyui-layout" style="width: 100%; height: 95%">
-		<div region="west" split="true" title="组织机构"
-			style="width: 20%; height: 100%;">
+		<div region="west" split="true" style="width: 20%; height: 100%;">
 			<div class="easyui-layout" style="width: 100%; height: 100%">
 				<div data-options="region:'north'"
-					style="padding: 4px; background: #fafafa; width: 100px; height: 40px;border: 1px solid #ccc">
+					style="padding: 4px; background: #fafafa; width: 100px; height: 40px; border: 1px solid #ccc">
 					<a href="javascript:void(0)" target="_blank"
-						class="easyui-linkbutton" onclick="addMenu()" iconCls="icon-add">新增组织机构</a>
-					<a href="javascript:void(0)" class="easyui-linkbutton"
+						class="btn btn-success" onclick="edit()">添加</a> <a
+						href="javascript:void(0)" class="btn btn-success"
 						iconCls="icon-reload" onclick="reloadMenuTree()">刷新</a>
 				</div>
-				<div data-options="region:'center',split:true"
-					style="height: 100%;">
+				<div data-options="region:'center',split:true" style="height: 100%;">
 					<ul id="tree" class="easyui-tree"
 						data-options="url:'treeInfo.jhtml',
 				onSelect: function( node){
 					var title = node.text;
-					var url = 'info.jhtml?menuId=' + node.id;
+					var url = 'info.jhtml?id=' + node.id;
 					$('#pp').panel('open').panel('refresh', url);
 				}"></ul>
 				</div>
@@ -174,9 +172,7 @@
 		</div>
 
 		<div id="pp" class="easyui-panel" region="center"
-			style="width: 100%; height: 100%;">
-			
-		</div>
+			style="width: 100%; height: 100%;"></div>
 	</div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>组织机构信息</title>
+<title>组织机构</title>
 <asiainfo:resource needFallBack="false"
 	type="Bootstrap,easyui,jquery,dynamicform"></asiainfo:resource>
 <script src="${ctx}/resources/js/jquery-ui-1.12.0/jquery-ui.js"></script>
@@ -27,35 +27,41 @@
 						<table align="left" style="width: 95%; font-size: 12px;">
 							<tr height=30>
 								<td align="right" width="120px"><lable>组织类型：</lable></td>
-								<td width="400px"><c:choose>
-										<c:when test="${depart.type==1}">
-                                                                                                                部门
-										</c:when>
-										<c:when test="${depart.type==2}">
-                                                                                                                       苏木/乡镇
-										</c:when>
-										<c:when test="${depart.type==3}">
-                                                                                                                   嘎查村                                                                             
-										</c:when>
-										<c:otherwise>
-                                                                                                              其他
-										</c:otherwise>
-									</c:choose></td>
+								<td width="400px"><select id="type" name="type"
+									onchange="loadTowns();">
+										<option value="1" <c:if test="${depart.type==1}"> selected="selected"</c:if>>
+										部门
+										</option>
+										<option value="2" <c:if test="${depart.type==2}"> selected="selected"</c:if> >苏木/乡镇</option>
+										<option value="3" <c:if test="${depart.type==3}"> selected="selected"</c:if> >嘎查村</option>
+								</select></td>
+
+								<td width="20%"></td>
+
+							</tr>
+							<tr height=30>
+								<td align="right" width="120px"><lable>上级组织：</lable></td>
+								<td width="400px"><select id="parentId" name="parentId">
+										<option value="">请选择</option>
+										<c:forEach items="${parents}" var="parent">
+											<option value="${parent.id}">${parent.text}</option>
+										</c:forEach>
+										<c:if test="${parent!=null}">
+											<option value="${parent.id}" selected="selected">${parent.name}</option>
+										</c:if>
+
+								</select></td>
 
 								<td width="20%"></td>
 
 							</tr>
 
+
 							<tr height=30>
 								<td align="right" width="120px"><lable>组织名称：</lable></td>
-								<td width="400px">
-									<!-- 
-								<input type="text" id="name" name="name"
+								<td width="400px"><input type="text" id="name" name="name"
 									maxlength="100" value="${depart.name}" style="width: 100%;" />
-									<input type="hidden" id="id" name="id" value="${depart.id}" />
-									 --> ${depart.name}
-									 <input type="hidden" id="id" name="id" value="${depart.id}" />
-								</td>
+									<input type="hidden" id="id" name="id" value="${depart.id}" /></td>
 
 								<td width="20%"></td>
 
@@ -63,20 +69,20 @@
 
 							<tr height=30>
 								<td align="right" width="120px"><lable>主页背景图：</lable></td>
-								<td width="400px"><img src="${ctx}/${depart.img}"
-									style="margin-bottom: 10px;" /></td>
+								<td width="400px"><input type="file" id="imgFile"
+									name="imgFile" /></td>
 								<td width="20%"></td>
 							</tr>
 						</table>
-
+						<input type="hidden" id="parentMenuId"
+							name="systemGuiMenu.parentMenuId"
+							value="${systemMenuBean.systemGuiMenu.parentMenuId}">
 
 						<div align="center"
-							style="padding: 4px; background: #fafafa; width: 99%; border: 0px solid #ccc; margin-top: 20px;">
-							<a href="javascript:edit('${depart.id}');" class="btn btn-success">修改</a>
-							<a href="javascript:del('${depart.id}');" class="btn btn-success">删除</a>
-
+							style="padding: 4px; background: #fafafa; width: 99%; border: 0px solid #ccc; margin-top: 10px;">
+							<a href="javascript:submitForm();" class="btn btn-success">保存</a>
+							<a href="#" class="btn btn-success" onclick="#">取消</a>
 						</div>
-
 
 					</form>
 				</div>

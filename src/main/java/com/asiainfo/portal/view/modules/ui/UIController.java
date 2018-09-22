@@ -1,5 +1,6 @@
 package com.asiainfo.portal.view.modules.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asiainfo.ewebframe.ui.form.model.SelectResult;
+import com.asiainfo.portal.modules.depart.model.Depart;
+import com.asiainfo.portal.modules.depart.service.OrgService;
 import com.asiainfo.portal.modules.ui.Select;
 
 @Controller
@@ -15,6 +18,8 @@ import com.asiainfo.portal.modules.ui.Select;
 public class UIController {
 	@Autowired
 	private Select select;
+	@Autowired
+	private OrgService orgService;
 
 	@ResponseBody
 	@RequestMapping("categorys")
@@ -28,12 +33,34 @@ public class UIController {
 		return select.getSubCategorys(catId);
 	}
 
+	@ResponseBody
+	@RequestMapping("getTowns")
 	public List<SelectResult> getTowns() {
-		return null;
+
+		List<Depart> departs = orgService.getDeparts(2);
+		List<SelectResult> results = new ArrayList<SelectResult>();
+		for (int i = 0; i < departs.size(); i++) {
+			Depart departi = departs.get(i);
+			SelectResult result = new SelectResult();
+			result.setId(departi.getId());
+			result.setText(departi.getName());
+			results.add(result);
+		}
+		return results;
+
 	}
 
 	public List<SelectResult> gethamlets(String townId) {
-		return null;
+		List<Depart> departs = orgService.getDeparts(townId);
+		List<SelectResult> results = new ArrayList<SelectResult>();
+		for (int i = 0; i < departs.size(); i++) {
+			Depart departi = departs.get(i);
+			SelectResult result = new SelectResult();
+			result.setId(departi.getId());
+			result.setText(departi.getName());
+			results.add(result);
+		}
+		return results;
 	}
 
 	public List<SelectResult> getDeparts() {
