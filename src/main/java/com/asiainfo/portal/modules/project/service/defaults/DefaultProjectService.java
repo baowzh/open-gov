@@ -1,8 +1,11 @@
 package com.asiainfo.portal.modules.project.service.defaults;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +53,17 @@ public class DefaultProjectService implements ProjectService {
 	public News get(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void upload(byte[] excelContent) throws Exception {
+		ByteArrayInputStream stream = new ByteArrayInputStream(excelContent);
+		HSSFWorkbook book = new HSSFWorkbook(stream);
+		HSSFSheet sheet = book.getSheetAt(0);
+		int lastRowNum=sheet.getLastRowNum();
+		//sheet.getRow(rowIndex);
+		// 构件project 并调用 save 方法保存
+
 	}
 
 }

@@ -18,4 +18,6 @@ public interface ProjectService {
 	public void del(Integer id);
 
 	public News get(Integer id);
+
+	public void upload(byte[] excelContent) throws Exception;
 }

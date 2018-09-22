@@ -54,8 +54,11 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<a class="btn btn-success select-btn-r"
-						style="float: right; width: 60px; height: 30px;" href="add.jhtml">
-						新增</a>
+						style="float: right; width: 80px; height: 30px;" href="del.jhtml">
+						删除数据</a>
+					<a class="btn btn-success select-btn-r"
+						style="float: right; width: 80px; height: 30px;" href="import.jhtml">
+						导入数据</a>
 
 				</div>
 			</div>

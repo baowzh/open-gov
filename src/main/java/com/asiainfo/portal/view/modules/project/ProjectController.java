@@ -1,5 +1,7 @@
 package com.asiainfo.portal.view.modules.project;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,10 +13,11 @@ import com.asiainfo.eframe.sqlsession.model.DBPageValue;
 import com.asiainfo.portal.form.ProjectPagingForm;
 import com.asiainfo.portal.modules.project.model.Project;
 import com.asiainfo.portal.modules.project.service.ProjectService;
+import com.asiainfo.portal.view.modules.FileUploadControler;
 
 @Controller
 @RequestMapping(value = "project")
-public class ProjectController {
+public class ProjectController extends FileUploadControler {
 	@Autowired
 	private ProjectService projectService;
 
@@ -30,6 +33,18 @@ public class ProjectController {
 
 	@RequestMapping("import")
 	public ModelAndView importExcel(ModelMap modelMap) {
+		return new ModelAndView("gov/project/import", modelMap);
+	}
+
+	@RequestMapping("upload")
+	public ModelAndView upload(HttpServletRequest request, ModelMap modelMap) {
+		try {
+			byte[] excelContent = this.getFileContent(request);
+			projectService.upload(excelContent);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new ModelAndView("gov/project/import", modelMap);
 	}
 

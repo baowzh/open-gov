@@ -92,7 +92,7 @@ public class FileUploadControler {
 			OutputStream stram = new FileOutputStream(uploadedFile);
 			stram.write(file.getBytes());
 			stram.close();
-			saveUrl = saveUrl  + newFileName;
+			saveUrl = saveUrl + newFileName;
 
 		} catch (Exception e) {
 			throw new Exception("上传文件失败，" + e.getMessage());
@@ -100,6 +100,23 @@ public class FileUploadControler {
 		}
 		//
 		return saveUrl;
+	}
+
+	protected byte[] getFileContent(HttpServletRequest request) throws Exception {
+		if (!ServletFileUpload.isMultipartContent(request)) {
+			return null;
+
+		}
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		Iterator<String> filenames = multipartRequest.getFileNames();
+		MultipartFile file = null;
+		while (filenames.hasNext()) {
+			String filename = filenames.next();
+			List<MultipartFile> fileList = multipartRequest.getFiles(filename);
+			file = fileList.get(0);
+			return file.getBytes();
+		}
+		return null;
 	}
 
 }

@@ -8,11 +8,6 @@
 <title>组织机构</title>
 <asiainfo:resource needFallBack="false"
 	type="Bootstrap,easyui,jquery,dynamicform"></asiainfo:resource>
-<script src="${ctx}/resources/js/jquery-ui-1.12.0/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="${ctx}/resources/js/uploadify/css/uploadify.css" type="text/css">
-<script type="text/javascript"
-	src="${ctx}/resources/js/uploadify/jquery.uploadify.min.js"></script>
 <script src="${ctx}/resources/js/gov/org/edit.js"></script>
 
 </head>
