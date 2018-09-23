@@ -28,11 +28,13 @@
 
 					<tr height=30>
 						<td align="right" width="120px"><lable>项目数据导入模板文件：</lable></td>
-						<td width="400px"><a href="${ctx}/attached/project/depart.xlsx" download="部门模板.xlsx">请点击下载</a></td>
+						<td width="400px"><a href="${ctx}/attached/funds/town.xlsx" download="乡镇导入模板.xlsx">请点击下载</a></td>
 
 						<td width="20%"></td>
 
 					</tr>
+
+
 
 					<tr height=30>
 						<td align="right" width="120px"><lable>导入说明：</lable></td>
@@ -53,10 +55,7 @@
 					</tr>
 
 				</table>
-				<input type="hidden" id="parentMenuId"
-					name="systemGuiMenu.parentMenuId"
-					value="${systemMenuBean.systemGuiMenu.parentMenuId}">
-
+				
 				<div align="center"
 					style="padding: 4px; background: #fafafa; width: 99%; border: 0px solid #ccc; margin-top: 10px;">
 					<a href="javascript:$('#import').submit();" class="btn btn-success">提交</a> <a
@@ -67,17 +66,12 @@
 			</form>
 		</div>
 	</div>
-
-
-
 </body>
-
-
 <script type="text/javascript">
  var success='${success}';
  if(success=='true'){
    alert('${mess}');
-   window.location.href='${ctx}/project/depart/index.jhtml';
+   window.location.href='${ctx}/funds/town/index.jhtml';
  }else if(success=='false'){
   alert('${mess}');
  }

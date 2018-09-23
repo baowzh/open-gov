@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-package com.asiainfo.portal.modules.founds;
+package com.asiainfo.portal.modules.funds;

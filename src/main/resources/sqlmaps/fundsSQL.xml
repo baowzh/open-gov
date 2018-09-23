@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.asiainfo.portal.modules.founds.mdoel.Founds">
+<mapper namespace="com.asiainfo.portal.modules.funds.mdoel.Funds">
 
-
-	<insert id="insert" parameterType="com.asiainfo.portal.modules.founds.mdoel.Founds">
+	<resultMap id="fundMap" type="com.asiainfo.portal.modules.funds.mdoel.Funds">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="depart_id" property="departId" />
+		<result column="orgName" property="orgName" />
+		<result column="areaName" property="areaName" />
+		<result column="amount" property="amount" />
+		<result column="input_time" property="InputDate" />
+		<result column="release_time" property="releaseTime" />
+		<result column="comm" property="comm" />
+		<result column="year" property="year" />
+		<result column="batch" property="batch" />
+	</resultMap>
+	<insert id="insert" parameterType="com.asiainfo.portal.modules.funds.mdoel.Funds">
 
 		Insert into
-		td_f_projectfounds
+		td_f_funds
 		(
 		name,
-		departId,
-		level,
+		depart_id,
+		orgName,
+		areaName,
 		amount,
-		inputDate,
-		releaseTime,
-		orgId,
-		townId,
-		hamletId
+		release_time,
+		input_time,
+		comm,
+		year,
+		batch
+
+
 		)
 		values (
 		#{name,jdbcType=VARCHAR},
 		#{departId,jdbcType=VARCHAR},
-		#{level,jdbcType=INTEGER}
-		#{amount,jdbcType=DOUBLE}
-		#{inputDate,jdbcType=DATE}
-		#{releaseTime,jdbcType=DATE}
-		#{orgId,jdbcType=VARCHAR}
-		#{townId,jdbcType=VARCHAR}
-		#{hamletId,jdbcType=VARCHAR}
+		#{orgName,jdbcType=VARCHAR},
+		#{areaName,jdbcType=VARCHAR},
+		#{amount,jdbcType=DOUBLE},
+		#{releaseTime,jdbcType=DATE},
+		#{inputDate,jdbcType=DATE},
+		#{comm,jdbcType=VARCHAR},
+		#{year,jdbcType=VARCHAR},
+		#{batch,jdbcType=VARCHAR}
 
 		)
 
 	</insert>
-	<update id="update" parameterType="com.asiainfo.portal.modules.founds.mdoel.Founds">
-		updae td_f_projectfounds
+	<update id="update" parameterType="com.asiainfo.portal.modules.funds.mdoel.Funds">
+		updae td_f_funds
 		set id=#{id}
 		<if test="catid!=null">
 			,name=#{name}
@@ -41,8 +57,8 @@
 		<if test="departId!=null">
 			,departId=#{departId}
 		</if>
-		<if test="level!=null">
-			,level=#{level}
+		<if test="orgName!=null">
+			,orgName=#{orgName}
 		</if>
 		<if test="amount!=null">
 			,amount=#{amount}
@@ -53,25 +69,27 @@
 		<if test="releaseTime!=null">
 			,releaseTime=#{releaseTime}
 		</if>
-		<if test="orgId!=null">
-			,orgId=#{orgId}
-		</if>
-		<if test="townId!=null">
-			,townId=#{townId}
-		</if>
-		<if test="hamletId!=null">
-			,hamletId=#{hamletId}
+		<if test="comm!=null and comm!=''">
+			,comm=#{comm}
 		</if>
 		where id=#{id}
 	</update>
 	<delete id="del" parameterType="java.util.Map">
-		delete from td_f_projectfounds
-		where departId=#{departId}
-		<if test="id!=null">
-			id=#{id}
-		</if>
+		delete from td_f_funds
+		where
+		depart_Id=#{departId} and batch=#{batch}
 
 	</delete>
+
+	<select id="paging" parameterType="com.asiainfo.portal.form.FoundsPagingForm"
+		resultMap="fundMap">
+		select * from td_f_funds where depart_id=#{departId}
+	</select>
+	<select id="getBatchIds" parameterType="java.util.Map"
+		resultType="java.lang.String">
+		select distinct batch from td_f_funds where depart_id=#{departId} and
+		year=#{year}
+	</select>
 
 
 </mapper>
