@@ -9,6 +9,7 @@ public class Depart {
 	private byte[] imgFile;
 	private String code;
 	private Integer type;
+	private String alias;
 	public String getId() {
 		return id;
 	}
@@ -71,6 +72,14 @@ public class Depart {
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
 	}
 
 	

@@ -9,6 +9,8 @@
 		<result column="depart_level" property="level"  />
 		<result column="img" property="img"  />
 		<result column="type" property="type"  />
+		<result column="alias" property="alias"  />
+		
 	</resultMap>
 
 	<insert id="insert"
@@ -22,7 +24,8 @@
 		  parent_depart_id,
 		  depart_level,
 		  img,
-		  type
+		  type,
+		  alias
 		)
 		values (
 		  #{id,jdbcType=CHAR},
@@ -30,7 +33,9 @@
           #{parentId,jdbcType=CHAR} ,
           #{level ,jdbcType=INTEGER},
           #{img,jdbcType=VARCHAR} ,
-	  	  #{type ,jdbcType=INTEGER}
+	  	  #{type ,jdbcType=INTEGER},
+	  	  #{alias,jdbcType=VARCHAR} ,
+	  	  
 		)
 
 	</insert>
@@ -52,6 +57,10 @@
 	   <if test="img!=null and img!=''">
 	    ,img=#{img}
 	   </if>
+	    <if test="alias!=null and alias!=''">
+	    ,alias=#{alias}
+	   </if>
+	   
 	  where depart_id=#{id}
 	</update>
 	<delete id="del"  parameterType="java.lang.String">

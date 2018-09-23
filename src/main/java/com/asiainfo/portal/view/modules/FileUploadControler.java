@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.asiainfo.ewebframe.config.WebSysConfig;
+import com.asiainfo.portal.basic.model.FileContent;
 
 public class FileUploadControler {
 
@@ -102,7 +103,7 @@ public class FileUploadControler {
 		return saveUrl;
 	}
 
-	protected byte[] getFileContent(HttpServletRequest request) throws Exception {
+	protected FileContent getFileContent(HttpServletRequest request) throws Exception {
 		if (!ServletFileUpload.isMultipartContent(request)) {
 			return null;
 
@@ -110,11 +111,15 @@ public class FileUploadControler {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> filenames = multipartRequest.getFileNames();
 		MultipartFile file = null;
+		FileContent content = new FileContent();
 		while (filenames.hasNext()) {
 			String filename = filenames.next();
 			List<MultipartFile> fileList = multipartRequest.getFiles(filename);
 			file = fileList.get(0);
-			return file.getBytes();
+			content.setContnet(file.getBytes());
+			String fileExt = file.getName().substring(file.getName().lastIndexOf(".") + 1).toLowerCase();
+			content.setExtendName(fileExt);
+			return content;
 		}
 		return null;
 	}

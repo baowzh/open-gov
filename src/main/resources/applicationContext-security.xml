@@ -36,6 +36,12 @@
 			access="isFullyAuthenticated()" />
 		<security:intercept-url pattern="/system/**"
 			access="isFullyAuthenticated()" />
+		<security:intercept-url pattern="/news/**"
+			access="isFullyAuthenticated()" />
+		<security:intercept-url pattern="/org/**"
+			access="isFullyAuthenticated()" />
+		<security:intercept-url pattern="/project/**"
+			access="isFullyAuthenticated()" />
 	</security:http>
 
 	<bean id="encryptAndDecrypt" class="com.asiainfo.ewebframe.security.DESEncryptAndDecrypt">

@@ -48,17 +48,24 @@
 
 							<tr height=30>
 								<td align="right" width="120px"><lable>组织名称：</lable></td>
-								<td width="400px">
-									<!-- 
-								<input type="text" id="name" name="name"
-									maxlength="100" value="${depart.name}" style="width: 100%;" />
-									<input type="hidden" id="id" name="id" value="${depart.id}" />
-									 --> ${depart.name}
-									 <input type="hidden" id="id" name="id" value="${depart.id}" />
+								<td width="400px">${depart.name} <input type="hidden"
+									id="id" name="id" value="${depart.id}" />
 								</td>
-
 								<td width="20%"></td>
+							</tr>
 
+							<tr height=30>
+								<td align="right" width="120px"><lable>组织名称：</lable></td>
+								<td width="400px">${depart.name} <input type="hidden"
+									id="id" name="id" value="${depart.id}" />
+								</td>
+								<td width="20%"></td>
+							</tr>
+
+							<tr height=30>
+								<td align="right" width="120px"><lable>组织名称-别名：</lable></td>
+								<td width="400px">${depart.alias}</td>
+								<td width="20%"></td>
 							</tr>
 
 							<tr height=30>
@@ -72,8 +79,9 @@
 
 						<div align="center"
 							style="padding: 4px; background: #fafafa; width: 99%; border: 0px solid #ccc; margin-top: 20px;">
-							<a href="javascript:edit('${depart.id}');" class="btn btn-success">修改</a>
-							<a href="javascript:del('${depart.id}');" class="btn btn-success">删除</a>
+							<a href="javascript:edit('${depart.id}');"
+								class="btn btn-success">修改</a> <a
+								href="javascript:del('${depart.id}');" class="btn btn-success">删除</a>
 
 						</div>
 

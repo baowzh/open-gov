@@ -97,6 +97,16 @@ $(document).ready(function() {
 			width : '120',
 			rowspan : 1,
 			colspan : 1
+		},
+
+		{
+			title : '批次',
+			field : 'batch',
+			align : 'left',
+			halign : 'center',
+			width : '120',
+			rowspan : 1,
+			colspan : 1
 		}
 
 		]

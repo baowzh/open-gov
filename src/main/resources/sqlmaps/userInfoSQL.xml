@@ -61,11 +61,9 @@
 		C.DEPART_NAME DEPARTNAME,
 
 		A.EPARCHY_CODE EPARCHYCODE
-		FROM TD_M_STAFF A
+		FROM TD_M_STAFF A , TF_M_STAFFPASSWD B,TD_M_DEPART C
+		where A.STAFF_ID = B.STAFF_ID and  A.DEPART_ID = C.DEPART_ID
 		
-		 left join    TF_M_STAFFPASSWD B  on A.STAFF_ID = B.STAFF_ID
-		 left join TD_M_DEPART C on
-		A.DEPART_ID = C.DEPART_ID
 		<if test="username != null and username !=''">
 			AND A.STAFF_ID = #{username}
 		</if>

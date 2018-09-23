@@ -7,17 +7,16 @@ public class Project {
 	private String name;
 	private String departId;
 	private String departName;
-	private Integer level;
+	private String level;
 	private Double amount;
 	private Date inputDate;
 	private Date releaseTime;
-	private String orgId;
 	private String orgName;
-	private String townId;
 	private String townName;
-	private String hamletId;
 	private String hamletName;
 	private String comm;
+	private String year;
+	private String batch;
 
 	public Integer getId() {
 		return id;
@@ -43,11 +42,19 @@ public class Project {
 		this.departId = departId;
 	}
 
-	public Integer getLevel() {
+	public String getDepartName() {
+		return departName;
+	}
+
+	public void setDepartName(String departName) {
+		this.departName = departName;
+	}
+
+	public String getLevel() {
 		return level;
 	}
 
-	public void setLevel(Integer level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -73,38 +80,6 @@ public class Project {
 
 	public void setReleaseTime(Date releaseTime) {
 		this.releaseTime = releaseTime;
-	}
-
-	public String getOrgId() {
-		return orgId;
-	}
-
-	public void setOrgId(String orgId) {
-		this.orgId = orgId;
-	}
-
-	public String getTownId() {
-		return townId;
-	}
-
-	public void setTownId(String townId) {
-		this.townId = townId;
-	}
-
-	public String getHamletId() {
-		return hamletId;
-	}
-
-	public void setHamletId(String hamletId) {
-		this.hamletId = hamletId;
-	}
-
-	public String getDepartName() {
-		return departName;
-	}
-
-	public void setDepartName(String departName) {
-		this.departName = departName;
 	}
 
 	public String getOrgName() {
@@ -138,5 +113,23 @@ public class Project {
 	public void setComm(String comm) {
 		this.comm = comm;
 	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getBatch() {
+		return batch;
+	}
+
+	public void setBatch(String batch) {
+		this.batch = batch;
+	}
+
+	
 
 }

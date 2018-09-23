@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.asiainfo</groupId>
 	<artifactId>open-gov</artifactId>
@@ -145,13 +146,13 @@
 			<artifactId>asm</artifactId>
 			<version>3.3.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -314,11 +315,11 @@
 			<artifactId>dbunit</artifactId>
 			<version>2.4.8</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.13</version>
+			<version>3.14</version>
 		</dependency>
 
 		<dependency>
@@ -343,7 +344,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.27</version>
 		</dependency>
-	
+
 		<!-- end templating -->
 
 		<!--分页插件 -->
@@ -357,7 +358,7 @@
 			<artifactId>filters</artifactId>
 			<version>2.0.235-1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.asiainfo</groupId>
 			<artifactId>ewebframe</artifactId>
@@ -395,6 +396,18 @@
 			<artifactId>cas-client-core</artifactId>
 			<version>3.4.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.14</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>

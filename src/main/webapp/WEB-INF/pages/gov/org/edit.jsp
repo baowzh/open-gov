@@ -24,11 +24,13 @@
 								<td align="right" width="120px"><lable>组织类型：</lable></td>
 								<td width="400px"><select id="type" name="type"
 									onchange="loadTowns();">
-										<option value="1" <c:if test="${depart.type==1}"> selected="selected"</c:if>>
-										部门
-										</option>
-										<option value="2" <c:if test="${depart.type==2}"> selected="selected"</c:if> >苏木/乡镇</option>
-										<option value="3" <c:if test="${depart.type==3}"> selected="selected"</c:if> >嘎查村</option>
+										<option value="1"
+											<c:if test="${depart.type==1}"> selected="selected"</c:if>>
+											部门</option>
+										<option value="2"
+											<c:if test="${depart.type==2}"> selected="selected"</c:if>>苏木/乡镇</option>
+										<option value="3"
+											<c:if test="${depart.type==3}"> selected="selected"</c:if>>嘎查村</option>
 								</select></td>
 
 								<td width="20%"></td>
@@ -58,6 +60,15 @@
 									maxlength="100" value="${depart.name}" style="width: 100%;" />
 									<input type="hidden" id="id" name="id" value="${depart.id}" /></td>
 
+								<td width="20%"></td>
+
+							</tr>
+
+							<tr height=30>
+								<td align="right" width="120px"><lable>组织名称-别名：</lable></td>
+								<td width="400px"><input type="text" id="alias"
+									name="alias" maxlength="100" value="${depart.alias}"
+									style="width: 100%;" /></td>
 								<td width="20%"></td>
 
 							</tr>

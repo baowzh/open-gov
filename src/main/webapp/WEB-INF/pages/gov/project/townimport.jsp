@@ -15,7 +15,7 @@
 	<div class="main_container">
 		<div class="right_col" role="main" style="margin-left: 0px">
 
-			<form id="import" action="saveInfo.jhtml" method="post">
+			<form id="import" action="upload.jhtml" method="post" enctype="multipart/form-data">
 				<table align="left" style="width: 95%;">
 					<tr height=30>
 						<td align="right" width="120px"><lable>excel文件：</lable></td>
@@ -28,7 +28,7 @@
 
 					<tr height=30>
 						<td align="right" width="120px"><lable>项目数据导入模板文件：</lable></td>
-						<td width="400px"><a href="javascript:alert(1);">请点击下载</a></td>
+						<td width="400px"><a href="${ctx}/attached/town.xlsx" download="乡镇导入模板.xlsx">请点击下载</a></td>
 
 						<td width="20%"></td>
 

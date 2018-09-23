@@ -18,7 +18,8 @@
         <result column="subcat" property="subcat"  />
         <result column="catName" property="catName"  />
         <result column="hamletName" property="hamletName"  />
-        
+        <result column="year" property="year"  />
+        <result column="batch" property="batch"  />
         
 	</resultMap>
 
@@ -27,26 +28,33 @@
 		Insert into
 		td_f_project
 		(
-		name,
-		departId,
-		level,
-		amount,
-		inputDate,
-		releaseTime,
-		orgId,
-		townId,
-		hamletId
+         name,
+         depart_id,
+         level,
+         amount,
+         release_time,
+         inputDate,
+         orgName,
+         townName,
+         comm,
+         hamletName,
+         year,
+         batch
+		  
 		)
 		values (
 		#{name,jdbcType=VARCHAR},
 		#{departId,jdbcType=VARCHAR},
-		#{level,jdbcType=INTEGER}
-		#{amount,jdbcType=DOUBLE}
-		#{inputDate,jdbcType=DATE}
-		#{releaseTime,jdbcType=DATE}
-		#{orgId,jdbcType=VARCHAR}
-		#{townId,jdbcType=VARCHAR}
-		#{hamletId,jdbcType=VARCHAR}
+		#{level,jdbcType=VARCHAR},
+		#{amount,jdbcType=DOUBLE},
+		#{releaseTime,jdbcType=DATE},
+		#{inputDate,jdbcType=DATE},
+		#{orgName,jdbcType=VARCHAR},
+		#{townName,jdbcType=VARCHAR},
+		#{comm,jdbcType=VARCHAR},
+		#{hamletName,jdbcType=VARCHAR},
+		#{year,jdbcType=VARCHAR},
+		#{batch,jdbcType=VARCHAR}
 
 		)
 
@@ -57,10 +65,10 @@
 		<if test="catid!=null">
 			,name=#{name}
 		</if>
-		<if test="departId!=null">
+		<if test="departId!=null and departId!=''">
 			,departId=#{departId}
 		</if>
-		<if test="level!=null">
+		<if test="level!=null and level!=''">
 			,level=#{level}
 		</if>
 		<if test="amount!=null">
@@ -72,26 +80,26 @@
 		<if test="releaseTime!=null">
 			,releaseTime=#{releaseTime}
 		</if>
-		<if test="orgId!=null">
-			,orgId=#{orgId}
+		<if test="orgName!=null and orgName!=''">
+			,orgName=#{orgName}
 		</if>
-		<if test="townId!=null">
-			,townId=#{townId}
+		<if test="townName!=null and townName!=''">
+			,townName=#{townName}
 		</if>
-		<if test="hamletId!=null">
-			,hamletId=#{hamletId}
+		<if test="hamletName!=null">
+			,hamletName=#{hamletName}
 		</if>
 		where id=#{id}
 	</update>
 	<delete id="del" parameterType="java.util.Map">
 		delete from td_f_project
-		where departId=#{departId}
-		<if test="id!=null">
-			id=#{id}
-		</if>
+		where depart_Id=#{departId} and  batch=#{batch}
 	</delete>
 	<select id="paging" parameterType="com.asiainfo.portal.form.ProjectPagingForm" resultMap="projectMap">
 	  select * from td_f_project where depart_id=#{departId}
+	</select>
+	<select id="getBatchIds" parameterType="java.util.Map" resultType="java.lang.String">
+	  select distinct batch from td_f_project where depart_id=#{departId} and year=#{year}
 	</select>
 
 
