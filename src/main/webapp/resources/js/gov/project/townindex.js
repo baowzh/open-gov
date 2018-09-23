@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 		{
 			title : '嘎查村名称',
-			field : 'orgName',
+			field : 'hamletName',
 			align : 'left',
 			halign : 'center',
 			width : '120',
