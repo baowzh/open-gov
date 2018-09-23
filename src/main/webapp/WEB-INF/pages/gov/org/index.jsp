@@ -12,9 +12,7 @@
 	var index = 0;
 	
 	function reloadOrgTree() {
-
 		$('#tree').tree('reload');
-
 	}
 
 

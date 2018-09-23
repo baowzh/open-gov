@@ -195,7 +195,9 @@ public class DefaultProjectService implements ProjectService {
 				throw new Exception("第" + (i + 1) + "行数据，嘎查村名字不正确。");
 			}
 			// 拷贝一份放到 村一级数据里面
+			project.setInputDate(new Date());
 			Project hamletproject = new Project();
+			project.setDepartId(userInfo.getDepartid());
 			BeanUtils.copyProperties(hamletproject, project);
 			hamletproject.setDepartId(depart.getId());
 			hamletprojects.add(hamletproject);

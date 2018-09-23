@@ -32,7 +32,7 @@ $(document).ready(function() {
 		},
 
 		{
-			title : '填报部门',
+			title : '部门名称',
 			field : 'orgName',
 			align : 'left',
 			halign : 'center',

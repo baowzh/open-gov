@@ -34,7 +34,7 @@
           #{level ,jdbcType=INTEGER},
           #{img,jdbcType=VARCHAR} ,
 	  	  #{type ,jdbcType=INTEGER},
-	  	  #{alias,jdbcType=VARCHAR} ,
+	  	  #{alias,jdbcType=VARCHAR} 
 	  	  
 		)
 

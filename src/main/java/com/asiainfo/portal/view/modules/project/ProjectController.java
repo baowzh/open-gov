@@ -48,6 +48,7 @@ public class ProjectController extends FileUploadControler {
 		modelMap.put("departType", departType);
 		return new ModelAndView("gov/project/del", modelMap);
 	}
+
 	@ResponseBody
 	@RequestMapping("delData")
 	public Map<String, Object> delData(String bathId) {
@@ -94,8 +95,12 @@ public class ProjectController extends FileUploadControler {
 		try {
 			FileContent excelContent = this.getFileContent(request);
 			projectService.townUpload(excelContent);
+			modelMap.put("mess", "导入成功。");
+			modelMap.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();
+			modelMap.put("mess", e.getMessage());
+			modelMap.put("success", false);
 
 		}
 		return new ModelAndView("gov/project/townimport", modelMap);
@@ -104,6 +109,12 @@ public class ProjectController extends FileUploadControler {
 	@RequestMapping(value = "depart/paging")
 	@ResponseBody
 	public DBPageValue<Project> departPaging(ProjectPagingForm pagingForm) {
+		return this.projectService.paging(pagingForm);
+	}
+
+	@RequestMapping(value = "town/paging")
+	@ResponseBody
+	public DBPageValue<Project> townPaging(ProjectPagingForm pagingForm) {
 		return this.projectService.paging(pagingForm);
 	}
 

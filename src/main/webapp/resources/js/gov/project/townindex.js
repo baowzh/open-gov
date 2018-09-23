@@ -32,14 +32,26 @@ $(document).ready(function() {
 		},
 
 		{
-			title : '填报部门',
+			title : '部门名称',
 			field : 'orgName',
 			align : 'left',
 			halign : 'center',
 			width : '120',
 			rowspan : 1,
 			colspan : 1
-		},
+		}
+		,
+
+		{
+			title : '嘎查村名称',
+			field : 'orgName',
+			align : 'left',
+			halign : 'center',
+			width : '120',
+			rowspan : 1,
+			colspan : 1
+		}
+		,
 
 		{
 			title : '项目名称',
@@ -62,7 +74,7 @@ $(document).ready(function() {
 		},
 
 		{
-			title : '项目金额',
+			title : '项目金额(万元)',
 			field : 'amount',
 			align : 'left',
 			halign : 'center',

@@ -55,13 +55,10 @@
 					</tr>
 
 				</table>
-				<input type="hidden" id="parentMenuId"
-					name="systemGuiMenu.parentMenuId"
-					value="${systemMenuBean.systemGuiMenu.parentMenuId}">
-
+				
 				<div align="center"
 					style="padding: 4px; background: #fafafa; width: 99%; border: 0px solid #ccc; margin-top: 10px;">
-					<a href="javascript:submitForm();" class="btn btn-success">提交</a> <a
+					<a href="javascript:$('#import').submit();" class="btn btn-success">提交</a> <a
 						href="#" class="btn btn-success" onclick="#">返回</a>
 				</div>
 
@@ -69,8 +66,14 @@
 			</form>
 		</div>
 	</div>
-
-
-
 </body>
+<script type="text/javascript">
+ var success='${success}';
+ if(success=='true'){
+   alert('${mess}');
+   window.location.href='${ctx}/project/town/index.jhtml';
+ }else if(success=='false'){
+  alert('${mess}');
+ }
+</script>
 </html>
