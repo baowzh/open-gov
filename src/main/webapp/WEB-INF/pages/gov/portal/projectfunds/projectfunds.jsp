@@ -42,7 +42,7 @@ body {
 		<div class="row"
 			style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
 			<p>
-				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·民生项目</span>
+				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·项目资金</span>
 			</p>
 		</div>
 

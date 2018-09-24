@@ -103,7 +103,7 @@ body {
 							</span>亿元
 						</b>
 					</a></li>
-					<li><a href="fundsList.jhtml"> <i><img
+					<li><a href="fundsGroup.jhtml"> <i><img
 								src="${ctx}/resources/portal/images/02iccc.png" /></i><b>到户资金：共<span
 								style="color: red;"> <fmt:formatNumber
 										value="${fundsSum}" type="CURRENCY">

@@ -33,7 +33,7 @@ body {
 </head>
 
 <body>
-	<%@include file="../head/head-town.jsp"%>
+	<%@include file="../head/head.jsp"%>
 	<div class="new_tb" style="width: 1180px;">
 		<a href="${ctx}/portal/index.jhtml"> 首页 </a> > > <a href="#"> 项目列表
 		</a>
@@ -42,12 +42,17 @@ body {
 		<div class="row"
 			style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
 			<p>
-				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·民生资金</span>
+				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·到户资金</span>
 			</p>
 		</div>
 
 		<div class="row">
-
+			<ul id="myTab" class="nav-tabs" style="padding-left: 20px;">
+				<li class="active"><a href="#anbumen" data-toggle="tab"
+					style="font-size: 20px; font-weight: bolder;"> 按部门统计</a></li>
+				<li><a href="#qizhi" data-toggle="tab"
+					style="font-size: 20px; font-weight: bolder;"> 按苏木镇场统计</a></li>
+			</ul>
 
 			<div id="myTabContent" class="tab-content"
 				style="padding-left: 20px;">
@@ -56,15 +61,27 @@ body {
 						<div
 							style="width: 320px; height: 32px; font-weight: bolder; font-size: 15px; line-height: 32px; margin: 10px; float: left;">
 							${item.name} :<span
-								style="color: red; text-decoration: underline;">${ item.sum}</span>&nbsp;万元
+								style="color: red; text-decoration: underline;">${item.sum} </span>&nbsp;万元
 							&nbsp;<a
-								href="${ctx}/portal/projectFundsGroup.jhtml?departId=${item.id}"
+								href="${ctx}/portal/fundsGroup.jhtml?departId=${item.id}"
 								class="btn btn-success"
 								style="background-color: #2780E3; float: right;">查看详情</a>
 						</div>
 					</c:forEach>
 				</div>
-
+				<div class="tab-pane" id="qizhi">
+					<c:forEach items="${projectsByTown}" var="item">
+						<div
+							style="width: 320px; height: 32px; font-weight: bolder; font-size: 15px; line-height: 32px; margin: 10px; float: left;">
+							${item.name} :<span
+								style="color: red; text-decoration: underline;">${ item.sum}</span>&nbsp;万元
+							&nbsp;<a
+								href="${ctx}/portal/fundsGroup.jhtml?departId=${item.id}"
+								class="btn btn-success"
+								style="background-color: #2780E3; float: right;">查看详情</a>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 			<script>
 				$(function() {

@@ -67,7 +67,7 @@
 	<!-- 按照乡镇分组计到户资金 -->
 	<select id="getFundByTown" resultType="java.util.Map">
 		select sum(a.amount)
-		count,b.depart_name name,b.depart_id id from td_f_funds a,td_m_depart
+		sum,b.depart_name name,b.depart_id id from td_f_funds a,td_m_depart
 		b where
 		a.depart_id=b.depart_id and b.type=2 group by b.depart_name
 		,b.depart_id
@@ -149,6 +149,20 @@
 	<select id="getProjectCountByTowmId" resultType="java.util.Map"
 		parameterType="java.lang.String">
 		select count(1) count,b.depart_id id,b.depart_name name from td_f_project a,td_m_depart b
+		where
+		a.depart_id=b.depart_id and 
+		b.parent_depart_id=#{_parameter}
+		group by b.depart_id,b.depart_name
+	</select>
+	
+	<select id="getdepartFundDetail"  resultType="java.util.Map" parameterType="java.lang.String">
+	  select * from td_f_funds where depart_id=#{_parameter}
+	</select>
+	
+	<!-- 获取某个部门项目总金额 -->
+	<select id="getFundsSumByTowmId" resultType="java.util.Map"
+		parameterType="java.lang.String">
+		select sum(a.amount) sum,b.depart_id id,b.depart_name name from td_f_funds a,td_m_depart b
 		where
 		a.depart_id=b.depart_id and 
 		b.parent_depart_id=#{_parameter}

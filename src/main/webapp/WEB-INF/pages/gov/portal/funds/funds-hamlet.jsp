@@ -33,7 +33,7 @@ body {
 </head>
 
 <body>
-	<%@include file="../head/head-depart.jsp"%>
+	<%@include file="../head/head-hamlet.jsp"%>
 	<div class="new_tb" style="width: 1180px;">
 		<a href="${ctx}/portal/index.jhtml"> 首页 </a> > > <a href="#"> 项目列表
 		</a>
@@ -42,7 +42,7 @@ body {
 		<div class="row"
 			style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
 			<p>
-				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·项目资金</span>
+				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·到户资金</span>
 			</p>
 		</div>
 
@@ -56,8 +56,7 @@ body {
 						<td style="width: 60px">序号</td>
 						<td>填报时间</td>
 						<td>部门名称</td>
-						<td>项目名称</td>
-						<td>项目级别</td>
+						<td>项目名称</td>					
 						<td>项目金额(万元)</td>
 						<td>发放时间</td>
 						<td>备注</td>
@@ -65,10 +64,10 @@ body {
 					<c:forEach items="${departProhectDetail}" var="item" varStatus="st">
 						<tr>
 							<td style="text-align: center;">${st.index+1}</td>
-							<td><fmt:formatDate value="${item.inputDate}" pattern="yyyy-MM-dd" /></td>
+							<td><fmt:formatDate value="${item.input_time}" pattern="yyyy-MM-dd" /></td>
 							<td>${item.orgName}</td>
 							<td>${item.name}</td>
-							<td>${item.level}</td>
+							
 							<td><fmt:formatNumber
 										value="${item.amount}" type="CURRENCY">
 									</fmt:formatNumber></td>

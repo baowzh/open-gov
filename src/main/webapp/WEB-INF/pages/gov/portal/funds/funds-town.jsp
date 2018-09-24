@@ -33,7 +33,7 @@ body {
 </head>
 
 <body>
-	<%@include file="../head/head-depart.jsp"%>
+	<%@include file="../head/head-town.jsp"%>
 	<div class="new_tb" style="width: 1180px;">
 		<a href="${ctx}/portal/index.jhtml"> 首页 </a> > > <a href="#"> 项目列表
 		</a>
@@ -42,45 +42,42 @@ body {
 		<div class="row"
 			style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
 			<p>
-				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·项目资金</span>
+				<span style="font-size: 20px; font-weight: bolder;">${depart.name}·到户资金</span>
 			</p>
 		</div>
 
 		<div class="row">
-			<!--  -->
-			<table class="table table-bordered table-hover "
-				style="width: 94%; margin-left: 20px;">
-				<tbody>
-					<tr
-						style="background-color: #337ab7; font-size: 18px; font-weight: bolder;">
-						<td style="width: 60px">序号</td>
-						<td>填报时间</td>
-						<td>部门名称</td>
-						<td>项目名称</td>
-						<td>项目级别</td>
-						<td>项目金额(万元)</td>
-						<td>发放时间</td>
-						<td>备注</td>
-					</tr>
-					<c:forEach items="${departProhectDetail}" var="item" varStatus="st">
-						<tr>
-							<td style="text-align: center;">${st.index+1}</td>
-							<td><fmt:formatDate value="${item.inputDate}" pattern="yyyy-MM-dd" /></td>
-							<td>${item.orgName}</td>
-							<td>${item.name}</td>
-							<td>${item.level}</td>
-							<td><fmt:formatNumber
-										value="${item.amount}" type="CURRENCY">
-									</fmt:formatNumber></td>
-							<td><fmt:formatDate value="${item.release_time}" pattern="yyyy-MM-dd" /></td>
-							<td>${item.comm}</td>
-						</tr>
+
+
+			<div id="myTabContent" class="tab-content"
+				style="padding-left: 20px;">
+				<div class="tab-pane fade in active" id="anbumen">
+					<c:forEach items="${projectsByDepart}" var="item">
+						<div
+							style="width: 320px; height: 32px; font-weight: bolder; font-size: 15px; line-height: 32px; margin: 10px; float: left;">
+							${item.name} :<span
+								style="color: red; text-decoration: underline;">${ item.sum}</span>&nbsp;万元
+							&nbsp;<a
+								href="${ctx}/portal/fundsGroup.jhtml?departId=${item.id}"
+								class="btn btn-success"
+								style="background-color: #2780E3; float: right;">查看详情</a>
+						</div>
 					</c:forEach>
+				</div>
 
-
-				</tbody>
-			</table>
-			<!--  -->
+			</div>
+			<script>
+				$(function() {
+					$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+						// 获取已激活的标签页的名称
+						var activeTab = $(e.target).text();
+						// 获取前一个激活的标签页的名称
+						var previousTab = $(e.relatedTarget).text();
+						$(".active-tab span").html(activeTab);
+						$(".previous-tab span").html(previousTab);
+					});
+				});
+			</script>
 		</div>
 	</div>
 	<!-- 底部版权信息 -->
