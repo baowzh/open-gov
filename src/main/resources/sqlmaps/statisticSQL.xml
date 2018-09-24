@@ -131,7 +131,29 @@
 		and (a.catid=c.id or a.typeid=c.id) and c.varName='cwgk' and b.type in (1,2,3)
 		group by b.depart_id,b.depart_name ) d order by d.num desc limit 10
 	</select>
+	
+	<select id="getdepartProhectDetail"  resultType="java.util.Map" parameterType="java.lang.String">
+	  select * from td_f_project where depart_id=#{_parameter}
+	</select>
+	<!-- 获取某个部门项目总金额 -->
+	<select id="getProjectSumByTowmId" resultType="java.util.Map"
+		parameterType="java.lang.String">
+		select sum(a.amount) sum,b.depart_id id,b.depart_name name from td_f_project a,td_m_depart b
+		where
+		a.depart_id=b.depart_id and 
+		b.parent_depart_id=#{_parameter}
+		group by b.depart_id,b.depart_name
+	</select>
 
+<!-- 获取某个部门项目总金额 -->
+	<select id="getProjectCountByTowmId" resultType="java.util.Map"
+		parameterType="java.lang.String">
+		select count(1) count,b.depart_id id,b.depart_name name from td_f_project a,td_m_depart b
+		where
+		a.depart_id=b.depart_id and 
+		b.parent_depart_id=#{_parameter}
+		group by b.depart_id,b.depart_name
+	</select>
 
 
 </mapper>
