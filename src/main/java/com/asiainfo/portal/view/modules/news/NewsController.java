@@ -55,6 +55,21 @@ public class NewsController extends FileUploadControler {
 		return map;
 	}
 
+	@ResponseBody
+	@RequestMapping("toTop")
+	public Map<String, Object> toTop(Integer id, Integer top) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			this.newsService.updateTop(id, top);
+			map.put("success", true);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			map.put("success", false);
+			map.put("mess", ex.getMessage());
+		}
+		return map;
+	}
+
 	@RequestMapping(value = "paging")
 	@ResponseBody
 	public DBPageValue<News> paging(NewsPagingForm pagingForm) {
@@ -69,7 +84,7 @@ public class NewsController extends FileUploadControler {
 			String catId = request.getParameter("catId");
 			news.setCatId(Integer.valueOf(catId));
 			String typeId = request.getParameter("typeId");
-			if(!StringUtil.isEmpty(typeId)){
+			if (!StringUtil.isEmpty(typeId)) {
 				news.setTypeId(Integer.valueOf(typeId));
 			}
 			String title = request.getParameter("title");

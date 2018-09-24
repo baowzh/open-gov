@@ -19,4 +19,8 @@ public interface NewsDataRepository {
 
 	@Operation(operationType = OperationType.SELECT, namespaceClass = NewsData.class)
 	public NewsData get(Integer id);
+
+
+	
+
 }

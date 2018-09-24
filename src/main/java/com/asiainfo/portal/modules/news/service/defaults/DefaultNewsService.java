@@ -15,7 +15,9 @@ import com.asiainfo.eframe.sqlsession.model.DBPageValue;
 import com.asiainfo.portal.form.NewsPagingForm;
 import com.asiainfo.portal.modules.news.model.News;
 import com.asiainfo.portal.modules.news.model.NewsData;
+import com.asiainfo.portal.modules.news.model.NewsPost;
 import com.asiainfo.portal.modules.news.repository.NewsDataRepository;
+import com.asiainfo.portal.modules.news.repository.NewsPostRepository;
 import com.asiainfo.portal.modules.news.repository.NewsRepository;
 import com.asiainfo.portal.modules.news.service.NewsService;
 
@@ -27,6 +29,8 @@ public class DefaultNewsService implements NewsService {
 	private NewsDataRepository newsDataRepository;
 	@Autowired
 	private UserSessionHolderService userSessionHolderService;
+	@Autowired
+	private NewsPostRepository newsPostRepository;
 	private static Logger logger = LoggerFactory.getLogger(DefaultNewsService.class);
 
 	@Override
@@ -70,11 +74,37 @@ public class DefaultNewsService implements NewsService {
 	@Override
 	public News get(Integer id) {
 		News news = this.newsRepository.get(id);
-		if(news!=null){
+		if (news != null) {
 			NewsData data = this.newsDataRepository.get(id);
 			news.setData(data);
 		}
 		return news;
+	}
+
+	@Override
+	public List<News> topNewsByChannel(String departId, Integer cannelId, Integer count) {
+
+		return this.newsRepository.topNewsByChannel(departId, cannelId, count);
+	}
+
+	@Override
+	public List<News> hotNewsByChannel(String departId, Integer count) {
+		return newsPostRepository.getPostedNews(departId, count);
+
+	}
+
+	@Override
+	public void updateTop(Integer id, Integer top) throws Exception {
+		NewsPost newsPost = new NewsPost();
+		newsPost.setDepartId(userSessionHolderService.getSessionUserInfo().getDepartid());
+		newsPost.setId(id);
+		newsPost.setPostTime(new Date());
+		if (top.intValue() == 1) {
+			this.newsPostRepository.insert(newsPost);
+		} else {
+			this.newsPostRepository.del(newsPost.getDepartId(), id);
+		}
+		this.newsRepository.updateTop(top, id);
 	}
 
 }

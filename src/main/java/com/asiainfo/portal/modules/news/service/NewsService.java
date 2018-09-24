@@ -8,6 +8,15 @@ import com.asiainfo.portal.form.NewsPagingForm;
 import com.asiainfo.portal.modules.news.model.News;
 
 public interface NewsService {
+	/**
+	 * 
+	 * @param cannelId
+	 * @return
+	 */
+	public List<News> topNewsByChannel(String departId, Integer cannelId, Integer count);
+
+	public List<News> hotNewsByChannel(String departId, Integer count);
+
 	public List<News> list(Map<String, Object> params);
 
 	public DBPageValue<News> paging(NewsPagingForm pagingForm);
@@ -17,5 +26,7 @@ public interface NewsService {
 	public void del(Integer id);
 
 	public News get(Integer id);
+
+	public void updateTop(Integer id, Integer top) throws Exception;
 
 }

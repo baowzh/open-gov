@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.asiainfo.eframe.sqlsession.model.DBPageValue;
 import com.asiainfo.eframe.sqlsession.proxy.annotations.DaoBean;
+import com.asiainfo.eframe.sqlsession.proxy.annotations.OperParam;
 import com.asiainfo.eframe.sqlsession.proxy.annotations.Operation;
 import com.asiainfo.eframe.sqlsession.proxy.annotations.OperationType;
 import com.asiainfo.portal.form.NewsPagingForm;
@@ -32,4 +33,21 @@ public interface NewsRepository {
 
 	@Operation(operationType = OperationType.SELECT, namespaceClass = News.class)
 	public Integer getDepartNewsCount(String departId);
+
+	/**
+	 * 
+	 * @param cannelId
+	 * @param count
+	 * @return
+	 */
+	@Operation(operationType = OperationType.SELECT, namespaceClass = News.class)
+	public List<News> topNewsByChannel(@OperParam(name = "departId") String departId,
+			@OperParam(name = "cannelId") Integer cannelId, @OperParam(name = "count") Integer count);
+
+	@Operation(operationType = OperationType.SELECT, namespaceClass = News.class)
+	public List<News> hotNewsByChannel(@OperParam(name = "departId") String departId,
+			@OperParam(name = "count") Integer count);
+	@Operation(operationType = OperationType.UPDATE, namespaceClass = News.class)
+	public void updateTop(@OperParam(name = "top") Integer top,@OperParam(name = "id") Integer id);
+
 }

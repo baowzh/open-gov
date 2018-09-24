@@ -4,6 +4,9 @@ public class Category {
 	private Integer id;
 	private String name;
 	private Integer parentId;
+	private Integer clasz;
+	private String varName;
+	
 
 	public Integer getId() {
 		return id;
@@ -28,5 +31,22 @@ public class Category {
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
+
+	public Integer getClasz() {
+		return clasz;
+	}
+
+	public void setClasz(Integer clasz) {
+		this.clasz = clasz;
+	}
+
+	public String getVarName() {
+		return varName;
+	}
+
+	public void setVarName(String varName) {
+		this.varName = varName;
+	}
+
 
 }

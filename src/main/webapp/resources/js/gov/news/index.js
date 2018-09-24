@@ -112,6 +112,27 @@ $(document)
 													width : '120',
 													rowspan : 1,
 													colspan : 1
+												}
+
+												,
+
+												{
+													title : '热门新闻',
+													field : 'isTop',
+													align : 'left',
+													halign : 'center',
+													width : '120',
+													rowspan : 1,
+													colspan : 1,
+													formatter : function(value,
+															row, index) {
+														if (value == 1) {
+															return '是';
+														} else {
+															return '否';
+														}
+													}
+
 												},
 
 												{
@@ -161,9 +182,7 @@ var doSearch = function(value, name) {
 	$('#dg').datagrid('load', {
 		title : $('#title').val(),
 		keyword : $('#keyword').val(),
-		description:$('#description').val(),
-	    startDate:$('#startDate').val(),
-	    endDate:$('#endDate').val()
+		description : $('#description').val()
 	});
 
 }
@@ -174,6 +193,53 @@ var grid_height = function() {
 };
 var upd = function(id) {
 	window.location.href = 'edit.jhtml?id=' + id;
+
+};
+
+var toTop=function(){
+	var row = $('#dg').datagrid('getSelected');
+	if (row == null) {
+		alert('请选择待推送新闻。');
+		return;
+	}
+	doTop(1);
+};
+var cancelTop=function(){
+	var row = $('#dg').datagrid('getSelected');
+	if (row == null) {
+		alert('请选择待取消推送新闻。');
+		return;
+	}
+	doTop(0);
+};
+
+var doTop = function(top) {
+	var row = $('#dg').datagrid('getSelected');
+	$.ajax({
+		type : "POST",
+		url : 'toTop.jhtml',
+		data : {
+			id : row.id,
+			top : top
+		},
+		dataType : "json",
+		success : function(data) {
+			if (data.success) {
+				if(top==1){
+					alert('推送成功。');
+				}else{
+					alert('取消推送成功。');
+				}
+				
+				doSearch();
+			} else {
+				alert(data.mess);
+			}
+		},
+		error : function(info) {
+			console.log("连接异常，请检查！")
+		}
+	});
 
 };
 

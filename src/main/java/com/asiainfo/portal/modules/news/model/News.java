@@ -22,6 +22,7 @@ public class News {
 	private String departName;
 	private String catName;
 	private String staffName;
+	private Integer isTop;
 
 	public Integer getId() {
 		return id;
@@ -173,6 +174,14 @@ public class News {
 
 	public void setStaffName(String staffName) {
 		this.staffName = staffName;
+	}
+
+	public Integer getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(Integer isTop) {
+		this.isTop = isTop;
 	}
 
 }

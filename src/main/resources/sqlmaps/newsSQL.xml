@@ -18,8 +18,7 @@
         <result column="subcat" property="subcat"  />
         <result column="catName" property="catName"  />
         <result column="staffName" property="staffName"  />
-        
-        
+        <result column="is_top" property="isTop"  />
 	</resultMap>
 
 	<insert id="insert"
@@ -118,5 +117,11 @@
 	<select id="getDepartNewsCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 	  select count(1) from td_f_news where depart_id=#{_parameter}
 	</select>
+	<select id="topNewsByChannel" parameterType="java.util.Map" resultMap="newsMap">
+	  select * from td_f_news where depart_id=#{departId} and (catid=#{cannelId} or typeid=#{cannelId}) order by inputtime desc limit #{count}
+	</select>
+	<update id="updateTop"  parameterType="java.util.Map">
+	  update td_f_news set is_top=#{top} where id=#{id}
+	</update>
 
 </mapper>

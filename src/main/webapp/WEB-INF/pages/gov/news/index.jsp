@@ -78,9 +78,17 @@
 			</div>
 			<div class="row">
 			  <div class="col-md-12 col-sm-12 col-xs-12">
+			  <a class="btn btn-success select-btn-r" style="float:right;width:100px;height:30px;"
+										href="javascript:cancelTop();" >
+										取消推送</a>
+			   <a class="btn btn-success select-btn-r" style="float:right;width:60px;height:30px;"
+										href="javascript:toTop();" >
+										推送</a>
+				
 			   <a class="btn btn-success select-btn-r" style="float:right;width:60px;height:30px;"
 										href="edit.jhtml" >
 										新增</a>
+			  
 			   
 			  </div>
 			</div>

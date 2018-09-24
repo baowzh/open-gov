@@ -1,0 +1,368 @@
+package com.asiainfo.portal.view.modules.portal;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.asiainfo.eframe.sqlsession.DBSqlSession;
+import com.asiainfo.portal.modules.category.CategoryRepository;
+import com.asiainfo.portal.modules.category.PageCategoryRepository;
+import com.asiainfo.portal.modules.category.model.Category;
+import com.asiainfo.portal.modules.category.model.PageCateroty;
+import com.asiainfo.portal.modules.depart.model.Depart;
+import com.asiainfo.portal.modules.depart.service.OrgService;
+import com.asiainfo.portal.modules.news.model.News;
+import com.asiainfo.portal.modules.news.service.NewsService;
+import com.asiainfo.portal.util.PortalStaticConstant;
+
+@Controller
+@RequestMapping(value = "portal")
+public class Portal {
+	@Autowired
+	private OrgService orgService;
+	@Autowired
+	private CategoryRepository categoryRepository;
+	@Autowired
+	private NewsService newsService;
+	@Autowired
+	private DBSqlSession sqlSession;
+	@Autowired
+	private PageCategoryRepository pageCategoryRepository;
+
+	/**
+	 * 网站首页
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("index")
+	public ModelAndView index(ModelMap modelMap) {
+		List<Depart> departs = orgService.getDeparts(1);
+		List<Depart> towns = orgService.getDeparts(2);
+		modelMap.put("departs", departs);
+		modelMap.put("towns", towns);
+		return new ModelAndView("gov/portal/index", modelMap);
+	}
+
+	@RequestMapping("mszj")
+	public ModelAndView mszj(ModelMap modelMap) {
+		List<Depart> departs = orgService.getDeparts(1);
+		List<Depart> towns = orgService.getDeparts(2);
+		modelMap.put("departs", departs);
+		modelMap.put("towns", towns);
+		return new ModelAndView("gov/portal/index", modelMap);
+	}
+
+	/**
+	 * 各站点主页
+	 * 
+	 * @param modelMap
+	 * @param departId
+	 * @return
+	 */
+	@RequestMapping("main")
+	public ModelAndView main(ModelMap modelMap, String departId) {
+		Depart depart = getDepart(departId);
+		String group = this.getTemplateGroup(depart);
+		String pageName = "main" + group;
+		List<PageCateroty> pageCaterotys = pageCategoryRepository.getPageCategorys(pageName);
+		// 获取各栏目下主页更新数据
+		for (int i = 0; i < pageCaterotys.size(); i++) {
+			PageCateroty pageCateroty = pageCaterotys.get(i);
+			Category category = this.categoryRepository.get(pageCateroty.getCatId());
+			List<News> news = newsService.topNewsByChannel(depart.getId(), category.getId(),
+					PortalStaticConstant.MAIN_PAGE_CAT_NEWS_COUNT);
+			CateGoryData cateGoryData = new CateGoryData();
+			cateGoryData.setCategory(category);
+			cateGoryData.setNews(news);
+			modelMap.put(category.getVarName(), cateGoryData);
+		}
+		modelMap.put("depart", depart);
+
+		// 获取民生项目 // 民生资金 // 到户资金 汇总数
+
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+
+			List<Map<String, Object>> dwgkStatistic = this.sqlSession.getData("statistic.dwgkStatistic",
+					new HashMap<String, Object>());
+			List<Map<String, Object>> zwgkStatistic = this.sqlSession.getData("statistic.zwgkStatistic",
+					new HashMap<String, Object>());
+			List<Map<String, Object>> cwgkStatistic = this.sqlSession.getData("statistic.cwgkStatistic",
+					new HashMap<String, Object>());
+			modelMap.put("dwgkStatistic", dwgkStatistic);
+			modelMap.put("zwgkStatistic", zwgkStatistic);
+			// 获取 党务排名、//政务排名 村务排名 财务排名
+			modelMap.put("cwgkStatistic", cwgkStatistic);
+			// 获取 党务排名、//政务排名 村务排名 财务排名
+			// 获取 党务排名、//政务排名 村务排名 财务排名
+
+			Long projectCount = sqlSession.getDataSingle("statistic.getProjectCountTop", new HashMap<String, Object>());
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", new HashMap<String, Object>());
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", new HashMap<String, Object>());
+			modelMap.put("fundsSum", fundsSum);
+
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("departId", depart.getId());
+			params.put("type", depart.getType());
+			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", params);
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", params);
+			modelMap.put("fundsSum", fundsSum);
+
+		}
+
+		else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+
+			// 获取嘎查村列表
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("departId", depart.getId());
+			params.put("type", depart.getType());
+			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", params);
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", params);
+			modelMap.put("fundsSum", fundsSum);
+			List<Depart> departs = this.orgService.getDeparts(depart.getId());
+			modelMap.put("departs", departs);
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_HAMLET) {
+			// 获取嘎查村列表
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("departId", depart.getId());
+			params.put("type", depart.getType());
+			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", params);
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", params);
+			modelMap.put("fundsSum", fundsSum);
+		}
+		// 获取推送消息
+		List<News> hotNews = this.newsService.hotNewsByChannel(depart.getId(), 5);
+		modelMap.put("hotNews", hotNews);
+		String typeName = this.getTemplateGroup(depart);
+		String templateName = "main" + typeName;
+		return new ModelAndView("gov/portal/main/" + templateName, modelMap);
+	}
+
+	private String getTemplateGroup(Depart depart) {
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+			return "";
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			return "-depart";
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+			return "-town";
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_HAMLET) {
+			return "-hamlet";
+		} else {
+			return "";
+		}
+	}
+
+	/**
+	 * 新闻列表
+	 * 
+	 * @param modelMap
+	 * @param departId
+	 * @param catId
+	 * @return
+	 */
+	@RequestMapping("news/list")
+	public ModelAndView newsList(ModelMap modelMap, String departId, String catId) {
+		Depart depart = getDepart(departId);
+		List<News> news = this.newsService.topNewsByChannel(depart.getId(), Integer.parseInt(catId),
+				PortalStaticConstant.LIST_PAGE_CAT_NEWS_COUNT);
+		modelMap.put("news", news);
+		List<Category> childs = this.categoryRepository.getSubCategorys(Integer.parseInt(catId), depart.getType());
+		modelMap.put("childs", childs);
+		// 如果是空则获取热门文章
+		if (childs.isEmpty()) {
+			modelMap.put("hotNews",
+					this.newsService.hotNewsByChannel(depart.getId(), PortalStaticConstant.LIST_PAGE_CAT_NEWS_COUNT));
+		}
+		return new ModelAndView("portal/index", modelMap);
+	}
+
+	/**
+	 * 通过标签获取上一篇和下一篇
+	 * 
+	 * @param modelMap
+	 * @param newId
+	 * @return
+	 */
+	@RequestMapping("news/detail")
+	public ModelAndView newsdetail(ModelMap modelMap, Integer newId) {
+		News news = this.newsService.get(newId);
+		modelMap.put("news", news);
+		return new ModelAndView("portal/index", modelMap);
+	}
+
+	/**
+	 * 项目列表-分组显示
+	 * 
+	 * @param modelMap
+	 * @param departId
+	 * @return
+	 */
+	@RequestMapping("projectGroup")
+	public ModelAndView projectGroup(ModelMap modelMap, String departId) {
+		Depart depart = this.getDepart(departId);
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+			// 按照部门和 苏木乡镇 分组获取
+			List<Map<String, Object>> projects = sqlSession.getDataSingle("statistic.getProjectCountByDepart",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByDepart", projects);
+			List<Map<String, Object>> townProjects = this.sqlSession.getData("statistic.getProjectCountByTown",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByTown", townProjects);
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			// 获取部门明细
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+			// 按照嘎查村分组
+			// 按照部门和 苏木乡镇 分组获取
+			List<Map<String, Object>> projects = sqlSession.getDataSingle("statistic.getProjectCountByDepart",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByDepart", projects);
+			List<Map<String, Object>> townProjects = this.sqlSession.getData("statistic.getProjectCountByTown",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByTown", townProjects);
+
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_HAMLET) {
+			// 直接显示明细
+
+		}
+
+		return new ModelAndView("portal/index", modelMap);
+	}
+
+	/**
+	 * 项目列表
+	 * 
+	 * @param modelMap
+	 * @param departId
+	 * @return
+	 */
+	@RequestMapping("projectList")
+	public ModelAndView projectList(ModelMap modelMap, String departId) {
+		Depart depart = this.getDepart(departId);
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+			// 按照部门和 苏木乡镇 分组获取
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			// 获取部门明细
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+			// 按照嘎查村分组
+		}
+
+		return new ModelAndView("portal/index", modelMap);
+	}
+
+	/**
+	 * 项目列表-分组显示
+	 * 
+	 * @param modelMap
+	 * @param departId
+	 * @return
+	 */
+	@RequestMapping("projectFundsGroup")
+	public ModelAndView projectFundsGroup(ModelMap modelMap, String departId) {
+		Depart depart = this.getDepart(departId);
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+			// 按照部门和 苏木乡镇 分组获取
+			List<Map<String, Object>> projects = sqlSession.getDataSingle("statistic.getProjectCountByDepart",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByDepart", projects);
+			List<Map<String, Object>> townProjects = this.sqlSession.getData("statistic.getProjectCountByTown",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByTown", townProjects);
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			// 获取部门明细
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+			// 按照嘎查村分组
+			// 按照部门和 苏木乡镇 分组获取
+			List<Map<String, Object>> projects = sqlSession.getDataSingle("statistic.getProjectCountByDepart",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByDepart", projects);
+			List<Map<String, Object>> townProjects = this.sqlSession.getData("statistic.getProjectCountByTown",
+					new HashMap<String, Object>());
+			modelMap.put("projectsByTown", townProjects);
+
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_HAMLET) {
+			// 直接显示明细
+
+		}
+
+		return new ModelAndView("portal/index", modelMap);
+	}
+
+	/**
+	 * 项目列表
+	 * 
+	 * @param modelMap
+	 * @param departId
+	 * @return
+	 */
+	@RequestMapping("projectFundsList")
+	public ModelAndView projectFundsList(ModelMap modelMap, String departId) {
+		Depart depart = this.getDepart(departId);
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+			// 按照部门和 苏木乡镇 分组获取
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			// 获取部门明细
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+			// 按照嘎查村分组
+		}
+
+		return new ModelAndView("portal/index", modelMap);
+	}
+
+	/**
+	 * 项目列表
+	 * 
+	 * @param modelMap
+	 * @param departId
+	 * @return
+	 */
+	@RequestMapping("fundsList")
+	public ModelAndView fundsList(ModelMap modelMap, String departId) {
+		Depart depart = this.getDepart(departId);
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+			// 按照部门和 苏木乡镇 分组获取
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			// 获取部门明细
+		}
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+			// 按照嘎查村分组
+		}
+
+		return new ModelAndView("portal/index", modelMap);
+	}
+
+	private Depart getDepart(String departId) {
+		departId = departId == null ? PortalStaticConstant.DEFAULT_SUPER_DEPARTID : departId;
+		Depart depart = orgService.getDepart(departId);
+		return depart;
+	}
+
+}

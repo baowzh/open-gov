@@ -6,26 +6,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.asiainfo.eframe.component.UserSessionHolderService;
 import com.asiainfo.ewebframe.ui.form.model.SelectResult;
 import com.asiainfo.portal.modules.category.CategoryRepository;
 import com.asiainfo.portal.modules.category.model.Category;
+import com.asiainfo.portal.modules.depart.model.Depart;
+import com.asiainfo.portal.modules.depart.service.OrgService;
 import com.asiainfo.portal.modules.ui.Select;
 
 @Service("select")
 public class DefaultSelect implements Select {
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private UserSessionHolderService userSessionHolderService;
+	@Autowired
+	private OrgService orgService;
 
 	@Override
 	public List<SelectResult> getCategorys() {
-
-		List<Category> categorys = categoryRepository.getCategorys();
+		String departId=userSessionHolderService.getSessionUserInfo().getDepartid();
+		Depart depart=orgService.getDepart(departId);
+		List<Category> categorys = categoryRepository.getCategorys(depart.getType());
 		return this.convertoEnums(categorys);
 	}
 
 	@Override
 	public List<SelectResult> getSubCategorys(Integer categoryId) {
-		List<Category> enumvalues = this.categoryRepository.getSubCategorys(categoryId);
+		String departId=userSessionHolderService.getSessionUserInfo().getDepartid();
+		Depart depart=orgService.getDepart(departId);
+		List<Category> enumvalues = this.categoryRepository.getSubCategorys(categoryId,depart.getType());
 		return this.convertoEnums(enumvalues);
 	}
 
