@@ -44,15 +44,30 @@ body {
 
 		<div id="slider-wrap">
 			<ul id="slider">
-				<c:forEach items="${hotNews}" var="newsItem">
+				<c:if test="${empty hotNews}">
+
 					<li data-color="#1abc9c">
 						<div>
-							<span><a href="news/detail.jhtml?id=${newsItem.id}">${newsItem.title}</a></span>
-						</div> <i class="fa fa-image"> <img src="${ctx}/${newsItem.thumb}"
-							width="100%" height="100%">
+							<span><a href="#"></a></span>
+						</div> <i class="fa fa-image"> <img
+							src="${ctx}/resources/portal/images/swgkhy.jpg" width="100%"
+							height="100%">
 					</i>
 					</li>
-				</c:forEach>
+
+
+				</c:if>
+				<c:if test="${not empty hotNews}">
+					<c:forEach items="${hotNews}" var="newsItem">
+						<li data-color="#1abc9c">
+							<div>
+								<span><a href="news/detail.jhtml?id=${newsItem.id}">${newsItem.title}</a></span>
+							</div> <i class="fa fa-image"> <img src="${ctx}/${newsItem.thumb}"
+								width="100%" height="100%">
+						</i>
+						</li>
+					</c:forEach>
+				</c:if>
 			</ul>
 
 			<div class="btns" id="next">

@@ -93,6 +93,26 @@ a:hover {
 	background-size: 100% auto;
 }
 
+.departzy {
+	background: url(../images/logo_dy.jpg) no-repeat top;
+	background-size: 100% auto;
+}
+
+.top .top-dy {
+	width: 1180px;
+	height: 154px;
+	margin: 0 auto;
+}
+
+.top .top-dy .logo {
+	width: 1100px;
+	height: 84px;
+	float: left;
+	margin-top: 30px;
+	margin-left: 15px;
+	
+}
+
 .top .top1 {
 	width: 1180px;
 	height: 154px;
@@ -120,6 +140,14 @@ a:hover {
 	font-size: 40px;
 	font-weight: bold;
 	color: #10568a;
+}
+
+.top .top-dy .logo a .depart {
+	font-size: 36px;
+	font-weight: bold;
+	color: #10568a;
+	margin-left: 120px;
+    margin-top: 20;
 }
 
 .lt-p-header {
