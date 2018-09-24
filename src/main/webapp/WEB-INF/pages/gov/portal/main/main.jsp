@@ -27,17 +27,9 @@ body {
 </style>
 </head>
 <body>
-	<div class="top topzy">
-		<div class="top1">
-			<div class="logo">
-				<a href="#"> <span class="hide">科尓沁左翼后旗政务公开</span>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="lt-p-header">
+	
 		<%@include file="../head/head.jsp"%>
-	</div>
+	
 	<!-- 图片轮播效果 -->
 	<div id="wrapper">
 		<!-- 左边 -->
@@ -61,7 +53,7 @@ body {
 					<c:forEach items="${hotNews}" var="newsItem">
 						<li data-color="#1abc9c">
 							<div>
-								<span><a href="news/detail.jhtml?id=${newsItem.id}">${newsItem.title}</a></span>
+								<span><a href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
 							</div> <i class="fa fa-image"> <img src="${ctx}/${newsItem.thumb}"
 								width="100%" height="100%">
 						</i>
@@ -126,7 +118,7 @@ body {
 		</div>
 		<!-- 图片轮播效果结束 -->
 	</div>
-	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript"
 		src="${ctx}/resources/portal/js/slide.js"></script>
 	<!-- 内容栏目 -->

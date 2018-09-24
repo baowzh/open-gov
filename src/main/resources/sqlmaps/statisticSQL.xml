@@ -114,21 +114,21 @@
 	<select id="dwgkStatistic" resultType="java.util.Map">
 		select * from (select count(1) num, b.depart_id id ,b.depart_name name from
 		td_f_news a,td_m_depart b ,td_category c where a.depart_id=b.depart_id
-		and (a.catid=c.id or a.typeid=c.id) and c.varName='dwgk'
+		and (a.catid=c.id or a.typeid=c.id) and c.varName='dwgk' and b.type in (1,2,3)
 		group by b.depart_id,b.depart_name ) d order by d.num desc limit 10
 	</select>
 
 	<select id="zwgkStatistic" resultType="java.util.Map">
 		select * from (select count(1) num, b.depart_id id ,b.depart_name name from
 		td_f_news a,td_m_depart b ,td_category c where a.depart_id=b.depart_id
-		and (a.catid=c.id or a.typeid=c.id) and c.varName='zwgk'
+		and (a.catid=c.id or a.typeid=c.id) and c.varName='zwgk' and b.type in (1,2,3)
 		group by b.depart_id,b.depart_name ) d order by d.num desc limit 10
 	</select>
 
 	<select id="cwgkStatistic" resultType="java.util.Map">
 		select * from (select count(1) num, b.depart_id id ,b.depart_name name from
 		td_f_news a,td_m_depart b ,td_category c where a.depart_id=b.depart_id
-		and (a.catid=c.id or a.typeid=c.id) and c.varName='cwgk'
+		and (a.catid=c.id or a.typeid=c.id) and c.varName='cwgk' and b.type in (1,2,3)
 		group by b.depart_id,b.depart_name ) d order by d.num desc limit 10
 	</select>
 

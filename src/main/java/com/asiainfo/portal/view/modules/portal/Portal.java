@@ -1,5 +1,6 @@
 package com.asiainfo.portal.view.modules.portal;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.asiainfo.eframe.sqlsession.DBSqlSession;
+import com.asiainfo.eframe.util.StringUtil;
 import com.asiainfo.portal.modules.category.CategoryRepository;
 import com.asiainfo.portal.modules.category.PageCategoryRepository;
 import com.asiainfo.portal.modules.category.model.Category;
@@ -181,17 +183,30 @@ public class Portal {
 	@RequestMapping("news/list")
 	public ModelAndView newsList(ModelMap modelMap, String departId, String catId) {
 		Depart depart = getDepart(departId);
-		List<News> news = this.newsService.topNewsByChannel(depart.getId(), Integer.parseInt(catId),
+		Category category = this.categoryRepository.get(Integer.parseInt(catId));
+		List<Category> childs = new ArrayList<Category>();
+		if (category.getParentId() == null) { // 没有上级则
+			childs = this.categoryRepository.getSubCategorys(Integer.parseInt(catId), depart.getType());
+			modelMap.put("childs", childs);
+		} else {
+			childs = this.categoryRepository.getSubCategorys(category.getParentId(), depart.getType());
+			modelMap.put("childs", childs);
+		}
+		Category currentCategory = this.getCurrentCateGory(category, depart);
+		List<News> news = this.newsService.topNewsByChannel(depart.getId(), currentCategory.getId(),
 				PortalStaticConstant.LIST_PAGE_CAT_NEWS_COUNT);
 		modelMap.put("news", news);
-		List<Category> childs = this.categoryRepository.getSubCategorys(Integer.parseInt(catId), depart.getType());
-		modelMap.put("childs", childs);
+		modelMap.put("depart", depart);
+		modelMap.put("parentCateGory", this.getParentCateGory(category, depart));
+		modelMap.put("currentCategory", currentCategory);
 		// 如果是空则获取热门文章
 		if (childs.isEmpty()) {
 			modelMap.put("hotNews",
 					this.newsService.hotNewsByChannel(depart.getId(), PortalStaticConstant.LIST_PAGE_CAT_NEWS_COUNT));
 		}
-		return new ModelAndView("portal/index", modelMap);
+		String group = this.getTemplateGroup(depart);
+		String templatename = "newslist" + group;
+		return new ModelAndView("gov/portal/newslist/" + templatename, modelMap);
 	}
 
 	/**
@@ -202,10 +217,54 @@ public class Portal {
 	 * @return
 	 */
 	@RequestMapping("news/detail")
-	public ModelAndView newsdetail(ModelMap modelMap, Integer newId) {
-		News news = this.newsService.get(newId);
+	public ModelAndView newsdetail(ModelMap modelMap, String departId, Integer id) {
+		Depart depart = getDepart(departId);
+		modelMap.put("depart", depart);
+		News news = this.newsService.get(id);
+		Integer cateId=news.getTypeId()==null?news.getCatId():news.getTypeId();
+		Category category = this.categoryRepository.get(cateId);
+		Category currentCategory = this.getCurrentCateGory(category, depart);
+		modelMap.put("parentCateGory", this.getParentCateGory(currentCategory, depart));
+		modelMap.put("currentCategory", currentCategory);
 		modelMap.put("news", news);
-		return new ModelAndView("portal/index", modelMap);
+		String group = this.getTemplateGroup(depart);
+		String templatename = "detail" + group;
+		return new ModelAndView("gov/portal/detail/" + templatename, modelMap);
+	}
+
+	/**
+	 * 
+	 * @param category
+	 * @param depart
+	 * @return
+	 */
+	private Category getParentCateGory(Category category, Depart depart) {
+		if (category.getParentId() == null) {
+			return category;
+		} else {
+
+			return this.categoryRepository.get(category.getParentId());
+
+		}
+	}
+
+	private Category getCurrentCateGory(Category category, Depart depart) {
+
+		Category currentCategory = new Category();
+		List<Category> childs = new ArrayList<Category>();
+		if (category.getParentId() == null) { // 没有上级则
+			childs = this.categoryRepository.getSubCategorys(category.getId(), depart.getType());
+			if (childs.isEmpty()) {
+				currentCategory = category;
+			} else {
+				currentCategory = childs.get(0);
+			}
+
+		} else {
+			currentCategory = category;
+		}
+		return currentCategory;
+
 	}
 
 	/**
@@ -360,7 +419,9 @@ public class Portal {
 	}
 
 	private Depart getDepart(String departId) {
-		departId = departId == null ? PortalStaticConstant.DEFAULT_SUPER_DEPARTID : departId;
+		if (StringUtil.isEmpty(departId)) {
+			departId = PortalStaticConstant.DEFAULT_SUPER_DEPARTID;
+		}
 		Depart depart = orgService.getDepart(departId);
 		return depart;
 	}

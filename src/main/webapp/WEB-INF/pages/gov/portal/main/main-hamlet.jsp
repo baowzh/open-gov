@@ -27,18 +27,9 @@ body {
 </style>
 </head>
 <body>
-	<div class="top departzy">
-		<div class="top-dy">
-			<div class="logo">
-				<a href="#">
-					<div class="depart">${depart.name}</div>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="lt-p-header">
-		<%@include file="../head/head-hamlet.jsp"%>
-	</div>
+
+	<%@include file="../head/head-hamlet.jsp"%>
+
 	<!-- 图片轮播效果 -->
 	<div id="wrapper">
 		<!-- 左边 -->
@@ -62,7 +53,7 @@ body {
 					<c:forEach items="${hotNews}" var="newsItem">
 						<li data-color="#1abc9c">
 							<div>
-								<span><a href="news/detail.jhtml?id=${newsItem.id}">${newsItem.title}</a></span>
+								<span><a href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
 							</div> <i class="fa fa-image"> <img src="${ctx}/${newsItem.thumb}"
 								width="100%" height="100%">
 						</i>
@@ -99,12 +90,12 @@ body {
 						<img style="width: 100%; height: 130px"
 							src="${ctx}/resources/portal/images/peit.jpg" />
 					</div>
-					<li><a href="projectGroup.jhtml"> <i><img
+					<li><a href="projectGroup.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02ico.png" /></i><b>民生项目：共<span
 								style="color: red;">${projectCount}</span>项
 						</b>
 					</a></li>
-					<li><a href="projectFundsGroup.jhtml"> <i><img
+					<li><a href="projectFundsGroup.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02iddd.png" /></i><b>民生资金：共<span
 								style="color: red;"> <fmt:formatNumber
 										value="${projectSum}" type="CURRENCY">
@@ -112,7 +103,7 @@ body {
 							</span>亿元
 						</b>
 					</a></li>
-					<li><a href="fundsList.jhtml"> <i><img
+					<li><a href="fundsList.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02iccc.png" /></i><b>到户资金：共<span
 								style="color: red;"> <fmt:formatNumber
 										value="${fundsSum}" type="CURRENCY">
@@ -127,18 +118,18 @@ body {
 		</div>
 		<!-- 图片轮播效果结束 -->
 	</div>
-	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript"
 		src="${ctx}/resources/portal/js/slide.js"></script>
 	<!-- 内容栏目 -->
 	<div class="center">
 		<div class="newslist">
 			<h2>
-				<a href="news/list.jhtml?catId=${dwgk.category.id}&">${dwgk.category.name}</a>
+				<a href="news/list.jhtml?catId=${dwgk.category.id}&departId=${depart.id}">${dwgk.category.name}</a>
 			</h2>
 			<ul>
 				<c:forEach items="${dwgk.news}" var="newItem">
-					<li><a href="news/detail.jhtml?id=${newItem.id}">${newItem.title}</a><span>
+					<li><a href="news/detail.jhtml?id=${newItem.id}&departId=${depart.id}">${newItem.title}</a><span>
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
@@ -147,11 +138,11 @@ body {
 		</div>
 		<div class="newslist">
 			<h2>
-				<a href="news/list.jhtml?catId=${cunwgk.category.id}&">${cunwgk.category.name}</a>
+				<a href="news/list.jhtml?catId=${cunwgk.category.id}&departId=${depart.id}">${cunwgk.category.name}</a>
 			</h2>
 			<ul>
 				<c:forEach items="${cunwgk.news}" var="newItem">
-					<li><a href="news/detail.jhtml?id=${newItem.id}">${newItem.title}</a><span>
+					<li><a href="news/detail.jhtml?id=${newItem.id}&departId=${depart.id}">${newItem.title}</a><span>
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
@@ -160,11 +151,11 @@ body {
 		</div>
 		<div class="newslist">
 			<h2>
-				<a href="news/list.jhtml?catId=${caiwgk.category.id}&">${caiwgk.category.name}</a>
+				<a href="news/list.jhtml?catId=${caiwgk.category.id}&departId=${depart.id}">${caiwgk.category.name}</a>
 			</h2>
 			<ul>
 				<c:forEach items="${caiwgk.news}" var="newItem">
-					<li><a href="news/detail.jhtml?id=${newItem.id}">${newItem.title}</a><span>
+					<li><a href="news/detail.jhtml?id=${newItem.id}&departId=${depart.id}">${newItem.title}</a><span>
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
