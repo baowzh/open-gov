@@ -168,6 +168,9 @@
 		b.parent_depart_id=#{_parameter}
 		group by b.depart_id,b.depart_name
 	</select>
+	<select id="checkuserId"  resultType="java.lang.Integer" parameterType="java.lang.String">
+	  select count(1) from td_m_staff where staff_id=#{_parameter}
+	</select>
 
 
 </mapper>
