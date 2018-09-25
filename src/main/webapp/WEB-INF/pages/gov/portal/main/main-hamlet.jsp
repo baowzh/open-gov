@@ -54,7 +54,7 @@ body {
 						<li data-color="#1abc9c">
 							<div>
 								<span><a href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image"> <img src="${ctx}/${newsItem.thumb}"
+							</div> <i class="fa fa-image"> <img src="${newsItem.thumb}"
 								width="100%" height="100%">
 						</i>
 						</li>

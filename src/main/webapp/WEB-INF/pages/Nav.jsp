@@ -188,7 +188,7 @@
 		if (!window.confirm('确定要退出吗?')) {
 			return false;
 		}
-		window.location.href=sysConfig.logOutUrl;
+		window.location.href='${ctx}/login.jsp';
 		window.sessionStorage.clear();
 	}
 
