@@ -13,7 +13,7 @@
 	<div class="headnav">
 		<div class="lx-nav">
 			<div class="nav1-p t1" style="background-position: 0px 0px;">
-				<a href="${ctx}/portal/index.jhtml">网站首页</a>
+				<a href="${ctx}/portal/main.jhtml?departId=${depart.id}">网站首页</a>
 			</div>
 		</div>
 		<div class="lx-nav">

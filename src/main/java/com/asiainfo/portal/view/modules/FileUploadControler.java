@@ -44,6 +44,9 @@ public class FileUploadControler {
 			List<MultipartFile> fileList = multipartRequest.getFiles(filename);
 			file = fileList.get(0);
 		}
+		if(file.getBytes()==null||file.getBytes().length==0){
+			return null;
+		}
 
 		if (file.getSize() > maxSize) {
 

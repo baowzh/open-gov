@@ -62,8 +62,8 @@ public class PreNextNewsTag extends TagSupport {
 				"<li id=\"ctrl-btn-1\" class=\"home01 closed\"><a href=\"javascript:void(0)\" class = \"_left_off_icon2\" onclick = \"switchLeftMenu()\"></a></li>\n");
 
 		// 添加首页标签
-		sb.append(
-				"<li id=\"fpage\" class=\"home02 current\"><a onclick=\"return switchframe('div_firstpage',this,false);\" href=\"javascript:void(0)\"><span style=\"font-size: 15px;\">工作台</span></a></li>\n");
+//		sb.append(
+//				"<li id=\"fpage\" class=\"home02 current\"><a onclick=\"return switchframe('div_firstpage',this,false);\" href=\"javascript:void(0)\"><span style=\"font-size: 15px;\">工作台</span></a></li>\n");
 
 		for (int i = 0; i < menus.size(); i++) {
 			UserMenuValue item = menus.get(i);

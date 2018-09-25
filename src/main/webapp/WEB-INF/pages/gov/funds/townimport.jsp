@@ -28,7 +28,7 @@
 
 					<tr height=30>
 						<td align="right" width="120px"><lable>项目数据导入模板文件：</lable></td>
-						<td width="400px"><a href="${ctx}/attached/funds/town.xlsx" download="乡镇导入模板.xlsx">请点击下载</a></td>
+						<td width="400px"><a href="${ctx}/attached/funds/town.xlsx" download="导入到户资金信息_乡镇导入模板.xlsx">请点击下载</a></td>
 
 						<td width="20%"></td>
 

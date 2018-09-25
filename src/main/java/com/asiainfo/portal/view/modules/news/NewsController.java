@@ -94,6 +94,10 @@ public class NewsController extends FileUploadControler {
 			String description = request.getParameter("description");
 			news.setDescription(description);
 			String content = request.getParameter("content");
+			String id = request.getParameter("id");
+			if(!StringUtil.isEmpty(id)){
+				news.setId(Integer.parseInt(id));
+			}
 			news.setContent(content);
 			String imgURl = this.wiredFile(request);
 			news.setThumb(imgURl);

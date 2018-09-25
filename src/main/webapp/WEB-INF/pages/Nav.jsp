@@ -248,9 +248,11 @@
 	<form method="post" action="\portal">
 		<div class="clr"></div>
 		<div class="top">
-			<div class="title">
-				<img align="absmiddle" src="${ctx}/resources/images/unicom.png"
-					width="228" /> ${sysConfig.syscname}
+			<div class="title" style="padding-left :400px;">
+<%-- 				<img align="absmiddle" src="${ctx}/resources/images/unicom.png" --%>
+<!-- 					width="228" /> -->
+					
+					 ${sysConfig.syscname}
 			</div>
 
 			<div id="nicemenu">

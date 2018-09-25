@@ -246,25 +246,28 @@ var doTop = function(top) {
 var del = function(id) {
 	// 调用服务u直接删除	
 	BDialog.confirm('确定要删除吗？', function() {
-		$.ajax({
-			type : "POST",
-			url : 'del.jhtml',
-			data : {
-				id : id
-			},
-			dataType : "json",
-			success : function(data) {
-				if (data.success) {
-					alert('删除成功。');
-					doSearch();
-				} else {
-					alert(data.mess);
+		if(arguments[0]){
+			$.ajax({
+				type : "POST",
+				url : 'del.jhtml',
+				data : {
+					id : id
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data.success) {
+						alert('删除成功。');
+						doSearch();
+					} else {
+						alert(data.mess);
+					}
+				},
+				error : function(info) {
+					console.log("连接异常，请检查！")
 				}
-			},
-			error : function(info) {
-				console.log("连接异常，请检查！")
-			}
-		});
+			});
+		}
+		
 	});
 
 };

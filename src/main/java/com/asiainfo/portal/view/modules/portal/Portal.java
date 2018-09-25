@@ -69,7 +69,7 @@ public class Portal {
 	 * @return
 	 */
 	@RequestMapping("main")
-	public ModelAndView main(ModelMap modelMap, String departId) {
+	public ModelAndView main(ModelMap modelMap, String departId)throws Exception {
 		Depart depart = getDepart(departId);
 		String group = this.getTemplateGroup(depart);
 		String pageName = "main" + group;
