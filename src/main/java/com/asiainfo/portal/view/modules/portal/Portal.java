@@ -117,9 +117,9 @@ public class Portal {
 			params.put("type", depart.getType());
 			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
 			modelMap.put("projectCount", projectCount);
-			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", params);
+			Double projectSum = sqlSession.getDataSingle("statistic.getDepartProjectSum", params);
 			modelMap.put("projectSum", projectSum);
-			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", params);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getDepartFundSum", params);
 			modelMap.put("fundsSum", fundsSum);
 
 		}
@@ -132,9 +132,9 @@ public class Portal {
 			params.put("type", depart.getType());
 			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
 			modelMap.put("projectCount", projectCount);
-			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", params);
+			Double projectSum = sqlSession.getDataSingle("statistic.getDepartProjectSum", params);
 			modelMap.put("projectSum", projectSum);
-			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", params);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getDepartFundSum", params);
 			modelMap.put("fundsSum", fundsSum);
 			List<Depart> departs = this.orgService.getDeparts(depart.getId());
 			modelMap.put("departs", departs);
@@ -145,9 +145,9 @@ public class Portal {
 			params.put("type", depart.getType());
 			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
 			modelMap.put("projectCount", projectCount);
-			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", params);
+			Double projectSum = sqlSession.getDataSingle("statistic.getDepartProjectSum", params);
 			modelMap.put("projectSum", projectSum);
-			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", params);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getDepartFundSum", params);
 			modelMap.put("fundsSum", fundsSum);
 		}
 		// 获取推送消息

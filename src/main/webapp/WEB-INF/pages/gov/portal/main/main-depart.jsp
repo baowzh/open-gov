@@ -97,17 +97,29 @@ body {
 					</a></li>
 					<li><a href="projectFundsGroup.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02iddd.png" /></i><b>民生资金：共<span
-								style="color: red;"> <fmt:formatNumber
+								style="color: red;"> 
+								<c:if test="${projectSum!=null}">
+								<fmt:formatNumber
 										value="${projectSum}" type="CURRENCY">
 									</fmt:formatNumber>
-							</span>亿元
+								</c:if>
+								<c:if test="${projectSum==null}">
+								 0
+								</c:if>
+									
+							</span>万元
 						</b>
 					</a></li>
 					<li><a href="fundsGroup.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02iccc.png" /></i><b>到户资金：共<span
-								style="color: red;"> <fmt:formatNumber
+								style="color: red;"> <c:if test="${fundsSum!=null}">
+								<fmt:formatNumber
 										value="${fundsSum}" type="CURRENCY">
 									</fmt:formatNumber>
+								</c:if>
+								<c:if test="${fundsSum==null}">
+								0
+								</c:if>
 
 
 							</span>亿元

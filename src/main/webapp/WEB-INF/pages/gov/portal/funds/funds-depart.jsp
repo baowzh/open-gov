@@ -56,8 +56,8 @@ body {
 						<td style="width: 60px">序号</td>
 						<td>填报时间</td>
 						<td>部门名称</td>
-						<td>项目名称</td>						
-						<td>项目金额(万元)</td>
+						<td>补贴项目名称</td>						
+						<td>项目金额(元)</td>
 						<td>发放时间</td>
 						<td>备注</td>
 					</tr>

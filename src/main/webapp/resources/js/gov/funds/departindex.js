@@ -32,7 +32,7 @@ $(document).ready(function() {
 		},
 
 		{
-			title : '个人补贴项目名称',
+			title : '补贴项目名称',
 			field : 'name',
 			align : 'left',
 			halign : 'center',

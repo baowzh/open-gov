@@ -97,20 +97,35 @@ body {
 					</a></li>
 					<li><a href="projectFundsGroup.jhtml"> <i><img
 								src="${ctx}/resources/portal/images/02iddd.png" /></i><b>民生资金：共<span
-								style="color: red;"> <fmt:formatNumber
+								style="color: red;"> 
+								<c:if test="${projectSum!=null}">
+								<fmt:formatNumber
 										value="${projectSum}" type="CURRENCY">
 									</fmt:formatNumber>
-							</span>亿元
+								</c:if>
+								<c:if test="${projectSum==null}">
+								 0
+								</c:if>
+								
+							</span>万元
 						</b>
 					</a></li>
 					<li><a href="fundsGroup.jhtml"> <i><img
 								src="${ctx}/resources/portal/images/02iccc.png" /></i><b>到户资金：共<span
-								style="color: red;"> <fmt:formatNumber
+								style="color: red;"> 
+								<c:if test="${fundsSum!=null}">
+								<fmt:formatNumber
 										value="${fundsSum}" type="CURRENCY">
 									</fmt:formatNumber>
+								</c:if>
+								<c:if test="${fundsSum==null}">
+								0
+								</c:if>
+								
+								
 
 
-							</span>亿元
+							</span>万元
 						</b>
 					</a></li>
 				</ul>
@@ -213,7 +228,7 @@ body {
 			<ul>
 				<c:forEach items="${dwgkStatistic}" var="statistic" varStatus="st">
 					<li>${st.index+1}<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name}</a></li>
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name}&nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -224,7 +239,7 @@ body {
 			<ul>
 				<c:forEach items="${zwgkStatistic}" var="statistic" varStatus="st">
 					<li>${st.index+1}<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name}</a></li>
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 
 			</ul>
@@ -236,7 +251,7 @@ body {
 			<ul>
 				<c:forEach items="${cwgkStatistic}" var="statistic" varStatus="st">
 					<li>${st.index+1}<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name}</a></li>
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 			</ul>
 		</div>
