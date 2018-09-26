@@ -3,9 +3,10 @@
 <footer>
 	<div>
 		<a href="http://kzhq.tongliao.gov.cn/kzhq/kzhqzf/shizf.shtml">领导之窗</a>
-		<a href="http://kzhq.tongliao.gov.cn/kzhq/kzhqzf/shizf.shtml">机构职能</a> 
-		  <a href="http://kzhq.tongliao.gov.cn/kzhq/index.shtml">政府网站</a> <a
-			href="http://kzhq.nmgjjjc.gov.cn">纪委监委网站</a>
+		<a href="http://kzhq.tongliao.gov.cn/kzhq/kzhqzf/shizf.shtml">政府机构</a> 
+		<a href="http://www.kzhqzzb.gov.cn/">党建网</a> 
+		<a href="http://kzhq.tongliao.gov.cn/kzhq/index.shtml">政府网站</a>
+		<a href="http://kzhq.nmgjjjc.gov.cn/">纪委监委网站</a>
 			
 	</div>
 </footer>

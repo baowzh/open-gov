@@ -42,7 +42,7 @@
 
 		<div class="lx-nav">
 			<div class="nav1-p t7" style="background-position: 0px 0px;">
-				<a href="http://kzhq.nmgjjjc.gov.cn">监督举报</a>
+				<a href="${ctx}/portal/news/list.jhtml?catId=28&departId=${depart.id}">监督举报</a>
 			</div>
 		</div>
 	</div>

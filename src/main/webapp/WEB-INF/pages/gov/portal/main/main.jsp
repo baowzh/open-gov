@@ -119,8 +119,8 @@ body {
 								src="${ctx}/resources/portal/images/02iccc.png" /></i><b>到户资金：共<span
 								style="color: red;"> 
 								<c:if test="${fundsSum!=null}">
-								<fmt:formatNumber
-										value="${fundsSum}" type="CURRENCY">
+								<fmt:formatNumber pattern="###,###.####"
+										value="${fundsSum}"  type="CURRENCY">
 									</fmt:formatNumber>
 								</c:if>
 								<c:if test="${fundsSum==null}">

@@ -86,7 +86,7 @@ body {
 	left: 0%;
 	width: 100%;
 	height: 100%;
-	background-color: black;
+	background-color: #00000087;
 	z-index: 1001;
 	-moz-opacity: 0.8;
 	opacity: .80;

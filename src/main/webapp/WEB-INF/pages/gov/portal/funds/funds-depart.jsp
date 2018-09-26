@@ -68,7 +68,7 @@ body {
 							<td>${item.orgName}</td>
 							<td>${item.name}</td>
 							
-							<td><fmt:formatNumber
+							<td><fmt:formatNumber 
 										value="${item.amount}" type="CURRENCY">
 									</fmt:formatNumber></td>
 							<td><fmt:formatDate value="${item.release_time}" pattern="yyyy-MM-dd" /></td>

@@ -61,7 +61,17 @@ body {
 						<div
 							style="width: 320px; height: 32px; font-weight: bolder; font-size: 15px; line-height: 32px; margin: 10px; float: left;">
 							${item.name} :<span
-								style="color: red; text-decoration: underline;">${item.sum} </span>&nbsp;万元
+								style="color: red; text-decoration: underline;">
+								
+								<fmt:formatNumber
+										value="${item.sum}" pattern="###,###.####" type="CURRENCY">
+									</fmt:formatNumber>
+								
+								
+								
+								
+								
+								 </span>&nbsp;万元
 							&nbsp;<a
 								href="${ctx}/portal/fundsGroup.jhtml?departId=${item.id}"
 								class="btn btn-success"
@@ -74,7 +84,17 @@ body {
 						<div
 							style="width: 320px; height: 32px; font-weight: bolder; font-size: 15px; line-height: 32px; margin: 10px; float: left;">
 							${item.name} :<span
-								style="color: red; text-decoration: underline;">${ item.sum}</span>&nbsp;万元
+								style="color: red; text-decoration: underline;">
+								
+								
+								
+								<fmt:formatNumber
+										value="${item.sum}" pattern="###,###.####" type="CURRENCY">
+									</fmt:formatNumber>
+								
+								
+								
+								</span>&nbsp;万元
 							&nbsp;<a
 								href="${ctx}/portal/fundsGroup.jhtml?departId=${item.id}"
 								class="btn btn-success"
