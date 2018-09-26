@@ -110,11 +110,11 @@ public class DefaultFundsService implements FundsService {
 			Row row = sheet.getRow(i);
 			if (!this.isEmptyRow(row)) {
 				Cell nameCell = row.getCell(0);
-				Cell areaCell = row.getCell(1);
-				Cell orgCell = row.getCell(2);
-				Cell amountCell = row.getCell(3);
-				Cell releaseTimeCell = row.getCell(4);
-				Cell commCell = row.getCell(5);
+				//Cell areaCell = row.getCell(1);
+				Cell orgCell = row.getCell(1);
+				Cell amountCell = row.getCell(2);
+				Cell releaseTimeCell = row.getCell(3);
+				Cell commCell = row.getCell(4);
 				Funds project = new Funds();
 				Object obj = this.getCellValue(nameCell);
 				if (obj == null) {
@@ -123,13 +123,13 @@ public class DefaultFundsService implements FundsService {
 				String name = String.valueOf(obj);
 				project.setName(name);
 
-				obj = this.getCellValue(areaCell);
-
-				if (obj == null) {
-					throw new Exception("请填写第" + i + "行的区域信息。");
-				}
-				String areaName = String.valueOf(obj);
-				project.setAreaName(areaName);
+//				obj = this.getCellValue(areaCell);
+//
+//				if (obj == null) {
+//					throw new Exception("请填写第" + i + "行的区域信息。");
+//				}
+//				String areaName = String.valueOf(obj);
+//				project.setAreaName(areaName);
 
 				//
 				obj = this.getCellValue(orgCell);

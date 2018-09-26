@@ -15,6 +15,8 @@
 <link rel="icon" type="image/png" sizes="48x48"
 	href="/ui2017/logo-48.png" />
 <link href="${ctx}/resources/portal/css/style.css" rel="stylesheet" />
+<link href="${ctx}/resources/portal/css/extends-style.css" rel="stylesheet" />
+
 
 
 <title>科尓沁左翼后期三务公开-首页</title>
@@ -41,9 +43,11 @@ body {
 					<li data-color="#1abc9c">
 						<div>
 							<span><a href="#"></a></span>
-						</div> <i class="fa fa-image"> <img
+						</div> <i class="fa fa-image"> 
+						<a><img
 							src="${ctx}/resources/portal/images/swgkhy.jpg" width="100%"
 							height="100%">
+							</a>
 					</i>
 					</li>
 
@@ -54,8 +58,9 @@ body {
 						<li data-color="#1abc9c">
 							<div>
 								<span><a href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image"> <img src="${ctx}${newsItem.thumb}"
-								width="100%" height="100%">
+							</div> <i class="fa fa-image"> 
+							<a href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img src="${ctx}${newsItem.thumb}"
+								width="100%" height="100%"></a>
 						</i>
 						</li>
 					</c:forEach>
@@ -227,8 +232,9 @@ body {
 			</h2>
 			<ul>
 				<c:forEach items="${dwgkStatistic}" var="statistic" varStatus="st">
-					<li>${st.index+1}<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name}&nbsp;[${statistic.num} ]</a></li>
+					<li><span style="float:left">${st.index+1}</span>
+					<a
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name}&nbsp;[${statistic.num} ]"</a></li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -238,8 +244,8 @@ body {
 			</h2>
 			<ul>
 				<c:forEach items="${zwgkStatistic}" var="statistic" varStatus="st">
-					<li>${st.index+1}<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+					<li><span style="float:left">${st.index+1}</span><a
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 
 			</ul>
@@ -249,9 +255,9 @@ body {
 				<a href="#">村务排名</a><a href="#">财务排名</a>
 			</h2>
 			<ul>
-				<c:forEach items="${cwgkStatistic}" var="statistic" varStatus="st">
-					<li>${st.index+1}<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+				<c:forEach items="${cunwgkStatistic}" var="statistic" varStatus="st">
+					<li><span style="float:left">${st.index+1}</span><a
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 			</ul>
 		</div>

@@ -43,7 +43,7 @@ public class OrgController extends FileUploadControler {
 	@Autowired
 	private DepartRepository departRepository;
 	@Autowired
-	private DBSqlSession sqlSession;
+	private DBSqlSession sqlSession;	
 
 	@RequestMapping("index")
 	public ModelAndView index(ModelMap modelMap) {
@@ -467,5 +467,6 @@ public class OrgController extends FileUploadControler {
 		}
 		return !nonBlankRowFound;
 	}
+
 
 }

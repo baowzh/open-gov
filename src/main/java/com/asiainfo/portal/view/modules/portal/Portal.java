@@ -53,12 +53,55 @@ public class Portal {
 	}
 
 	@RequestMapping("mszj")
-	public ModelAndView mszj(ModelMap modelMap) {
-		List<Depart> departs = orgService.getDeparts(1);
-		List<Depart> towns = orgService.getDeparts(2);
-		modelMap.put("departs", departs);
-		modelMap.put("towns", towns);
-		return new ModelAndView("gov/portal/index", modelMap);
+	public ModelAndView mszj(ModelMap modelMap, String departId) {
+		Depart depart = getDepart(departId);
+		modelMap.put("depart", depart);
+		String group = this.getTemplateGroup(depart);
+		String pageName = "index" + group;
+		if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_SUPER) {
+			Long projectCount = sqlSession.getDataSingle("statistic.getProjectCountTop", new HashMap<String, Object>());
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getProjectSumTop", new HashMap<String, Object>());
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getFundSumTop", new HashMap<String, Object>());
+			modelMap.put("fundsSum", fundsSum);
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_DEPART) {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("departId", depart.getId());
+			params.put("type", depart.getType());
+			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getDepartProjectSum", params);
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getDepartFundSum", params);
+			modelMap.put("fundsSum", fundsSum);
+
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_TOWN) {
+
+			// 获取嘎查村列表
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("departId", depart.getId());
+			params.put("type", depart.getType());
+			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getDepartProjectSum", params);
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getDepartFundSum", params);
+			modelMap.put("fundsSum", fundsSum);
+
+		} else if (depart.getType() == PortalStaticConstant.DepartType.DEPART_TYPE_HAMLET) {
+			// 获取嘎查村列表
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("departId", depart.getId());
+			params.put("type", depart.getType());
+			Long projectCount = sqlSession.getDataSingle("statistic.getDepartProjectCount", params);
+			modelMap.put("projectCount", projectCount);
+			Double projectSum = sqlSession.getDataSingle("statistic.getDepartProjectSum", params);
+			modelMap.put("projectSum", projectSum);
+			Double fundsSum = sqlSession.getDataSingle("statistic.getDepartFundSum", params);
+			modelMap.put("fundsSum", fundsSum);
+		}
+		return new ModelAndView("gov/portal/msxm/" + pageName, modelMap);
 	}
 
 	/**
@@ -69,7 +112,7 @@ public class Portal {
 	 * @return
 	 */
 	@RequestMapping("main")
-	public ModelAndView main(ModelMap modelMap, String departId)throws Exception {
+	public ModelAndView main(ModelMap modelMap, String departId) throws Exception {
 		Depart depart = getDepart(departId);
 		String group = this.getTemplateGroup(depart);
 		String pageName = "main" + group;
@@ -97,12 +140,16 @@ public class Portal {
 					new HashMap<String, Object>());
 			List<Map<String, Object>> cwgkStatistic = this.sqlSession.getData("statistic.cwgkStatistic",
 					new HashMap<String, Object>());
+			List<Map<String, Object>> cunwgkStatistic = this.sqlSession.getData("statistic.cunwgkStatistic",
+					new HashMap<String, Object>());
+			
 			modelMap.put("dwgkStatistic", dwgkStatistic);
 			modelMap.put("zwgkStatistic", zwgkStatistic);
 			// 获取 党务排名、//政务排名 村务排名 财务排名
 			modelMap.put("cwgkStatistic", cwgkStatistic);
 			// 获取 党务排名、//政务排名 村务排名 财务排名
 			// 获取 党务排名、//政务排名 村务排名 财务排名
+			modelMap.put("cunwgkStatistic", cunwgkStatistic);
 
 			Long projectCount = sqlSession.getDataSingle("statistic.getProjectCountTop", new HashMap<String, Object>());
 			modelMap.put("projectCount", projectCount);

@@ -27,4 +27,6 @@ public class MainController {
 		modelMap.put("sysname", sysConfig.getSyscname());
 		return new ModelAndView("Main", modelMap);
 	}
+	
+	
 }

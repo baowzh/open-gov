@@ -15,6 +15,7 @@
 <link rel="icon" type="image/png" sizes="48x48"
 	href="/ui2017/logo-48.png" />
 <link href="${ctx}/resources/portal/css/style.css" rel="stylesheet" />
+<link href="${ctx}/resources/portal/css/extends-style.css" rel="stylesheet" />
 
 
 <title>科尓沁左翼后期三务公开-首页</title>
@@ -52,8 +53,11 @@ body {
 						<li data-color="#1abc9c">
 							<div>
 								<span><a href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image"> <img src="${newsItem.thumb}"
+							</div> 
+							<i class="fa fa-image"> 
+							<a href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img src="${newsItem.thumb}"
 								width="100%" height="100%">
+								</a>
 						</i>
 						</li>
 					</c:forEach>
@@ -118,7 +122,7 @@ body {
 								</c:if>
 
 
-							</span>亿元
+							</span>万元
 						</b>
 					</a></li>
 				</ul>

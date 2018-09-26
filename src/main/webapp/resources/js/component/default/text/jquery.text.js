@@ -73,6 +73,6 @@ var asiainfoText = $.widget("ui.asiainfoText", jQuery.ui.formComponent, {
 	 */
 	refreshdata : function() {
 		// 邮件组件没有刷新功能
-	},
+	}
 
 });

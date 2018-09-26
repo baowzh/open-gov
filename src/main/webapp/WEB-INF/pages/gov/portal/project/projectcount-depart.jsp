@@ -54,10 +54,10 @@ body {
 					<tr
 						style="background-color: #337ab7; font-size: 18px; font-weight: bolder;">
 						<td style="width: 60px">序号</td>
-						<td>填报时间</td>
-						<td>部门名称</td>
+						<td>填报时间</td>				
 						<td>项目名称</td>
-						<td>项目级别</td>
+						<td>分配到区域名称</td>
+						<td>嘎查村</td>
 						<td>项目金额(万元)</td>
 						<td>发放时间</td>
 						<td>备注</td>
@@ -66,9 +66,9 @@ body {
 						<tr>
 							<td style="text-align: center;">${st.index+1}</td>
 							<td><fmt:formatDate value="${item.inputDate}" pattern="yyyy-MM-dd" /></td>
-							<td>${item.orgName}</td>
 							<td>${item.name}</td>
 							<td>${item.level}</td>
+							<td>${item.hamletName}</td>
 							<td><fmt:formatNumber
 										value="${item.amount}" type="CURRENCY">
 									</fmt:formatNumber></td>

@@ -81,6 +81,6 @@ var asiainfoText = $.widget("ui.asiainfoTextarea",jQuery.ui.formComponent, {
 	 * 由别的组件调用刷新树组件
 	 */
 	refreshdata : function() {
-	},
+	}
 	
 });

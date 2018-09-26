@@ -32,28 +32,30 @@ $(document).ready(function() {
 		},
 
 		{
-			title : '部门名称',
-			field : 'orgName',
+			title : '分配到地区名称',
+			field : 'level',
 			align : 'left',
 			halign : 'center',
 			width : '120',
 			rowspan : 1,
 			colspan : 1
 		},
+		
+		{
+			title : '嘎查村名称',
+			field : 'hamletName',
+			align : 'left',
+			halign : 'center',
+			width : '120',
+			rowspan : 1,
+			colspan : 1
+		},
+		
+		
 
 		{
 			title : '项目名称',
 			field : 'name',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
-
-		{
-			title : '项目级别',
-			field : 'level',
 			align : 'left',
 			halign : 'center',
 			width : '120',

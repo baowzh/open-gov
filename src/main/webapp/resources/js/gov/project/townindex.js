@@ -64,16 +64,6 @@ $(document).ready(function() {
 		},
 
 		{
-			title : '项目级别',
-			field : 'level',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		},
-
-		{
 			title : '项目金额(万元)',
 			field : 'amount',
 			align : 'left',

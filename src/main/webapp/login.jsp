@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>工作流系统 |</title>
+<title>科尔沁左翼后旗-三务公开系统 </title>
 
 <link href="${ctx }/resources/js/portal/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">

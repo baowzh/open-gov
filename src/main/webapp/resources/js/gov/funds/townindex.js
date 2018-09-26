@@ -32,7 +32,7 @@ $(document).ready(function() {
 		},
 
 		{
-			title : '补贴项目名称',
+			title : '到户资金名称',
 			field : 'name',
 			align : 'left',
 			halign : 'center',
@@ -40,17 +40,7 @@ $(document).ready(function() {
 			rowspan : 1,
 			colspan : 1
 		}
-		,
-
-		{
-			title : '区域名称',
-			field : 'areaName',
-			align : 'left',
-			halign : 'center',
-			width : '120',
-			rowspan : 1,
-			colspan : 1
-		}
+		
 		,
 
 		{

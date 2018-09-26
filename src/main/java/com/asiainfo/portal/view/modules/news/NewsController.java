@@ -32,6 +32,11 @@ public class NewsController extends FileUploadControler {
 	public ModelAndView index(ModelMap modelMap) {
 		return new ModelAndView("gov/news/index", modelMap);
 	}
+	
+	@RequestMapping("welcome")
+	public ModelAndView welcome(ModelMap modelMap) {
+		return new ModelAndView("gov/news/index", modelMap);
+	}
 
 	@RequestMapping("edit")
 	public ModelAndView add(ModelMap modelMap, Integer id) {

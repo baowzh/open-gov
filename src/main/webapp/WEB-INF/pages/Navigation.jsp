@@ -17,7 +17,7 @@
 <link  href="${ctx}/resources/styles/styles_all.css"  type="text/css" />
 <script language="JavaScript" type="text/JavaScript">
 	function openFirstFrame() {
-			addNavFrame(self, "${ctx}/test/index.jhtml", "首页");
+			addNavFrame(self, "${ctx}/news/welcome.jhtml?c=c", "首页");
 			holdFirstNavFrame("contentframe", true);
 	}
 </script>

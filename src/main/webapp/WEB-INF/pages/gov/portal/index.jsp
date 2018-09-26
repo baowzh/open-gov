@@ -142,7 +142,7 @@ body {
 		</div>
 	</div>
 	<div class="Nav01">
-		<a href="main.jhtml"><span><img
+		<a href="${ctx}/portal/main.jhtml"><span><img
 				src="${ctx}/resources/portal/images/01ban.png" width="128"
 				height="46" /></span><span>科尓沁左翼后旗</span></a> <a
 			onclick="ShowDiv('MyDiv','fade')"><span><img
@@ -179,7 +179,7 @@ body {
 			<ul>
 				<li style="height: 35px; line-height: 35px; list-style-type: none;">
 					<c:forEach items="${departs}" var="depart">
-						<a href="main.jhtml?departId=${depart.id}"
+						<a href="${ctx}/portal/main.jhtml?departId=${depart.id}"
 							style="width: 120px; float: left;" target="_blank">${depart.name}</a>
 					</c:forEach>
 
@@ -198,7 +198,7 @@ body {
 			<ul>
 				<li style="height: 35px; line-height: 35px; list-style-type: none;">
 					<c:forEach items="${towns}" var="depart">
-						<a href="main.jhtml?departId=${depart.id}"
+						<a href="${ctx}/portal/main.jhtml?departId=${depart.id}"
 							style="width: 120px; float: left;" target="_blank">${depart.name}</a>
 					</c:forEach>
 

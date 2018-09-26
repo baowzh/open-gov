@@ -18,7 +18,7 @@
 <script language="JavaScript" src="${ctx}/resources/js/file.js"></script>
 <script language="JavaScript" src="${ctx}/resources/js/portal/module/navmenu.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Nav Menu</title>
 <link href="${ctx}/resources/styles/styles_all_bss.css" rel="stylesheet" type="text/css" media="screen">
 

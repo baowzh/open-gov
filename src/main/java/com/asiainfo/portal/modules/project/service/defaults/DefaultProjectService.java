@@ -110,12 +110,11 @@ public class DefaultProjectService implements ProjectService {
 			Row row = sheet.getRow(i);
 			if (!this.isEmptyRow(row)) {
 				Cell nameCell = row.getCell(0);
-				Cell levelCell = row.getCell(1);
-				Cell amountCell = row.getCell(2);
-				Cell orgCell = row.getCell(3);
-				Cell hamletCell = row.getCell(4);
-				Cell releaseTimeCell = row.getCell(5);
-				Cell commCell = row.getCell(6);
+				Cell amountCell = row.getCell(1);
+				Cell orgCell = row.getCell(2);
+				Cell hamletCell = row.getCell(3);
+				Cell releaseTimeCell = row.getCell(4);
+				Cell commCell = row.getCell(5);
 				Project project = new Project();
 				Object obj = this.getCellValue(nameCell);
 				if (obj == null) {
@@ -124,13 +123,13 @@ public class DefaultProjectService implements ProjectService {
 				String name = String.valueOf(obj);
 				project.setName(name);
 
-				obj = this.getCellValue(levelCell);
-
-				if (obj == null) {
-					throw new Exception("请填写第" + i + "行的项目级别。");
-				}
-				String level = String.valueOf(obj);
-				project.setLevel(level);
+//				obj = this.getCellValue(levelCell);
+//
+//				if (obj == null) {
+//					throw new Exception("请填写第" + i + "行的项目级别。");
+//				}
+//				String level = String.valueOf(obj);
+//				project.setLevel(level);
 
 				obj = this.getCellValue(amountCell);
 
@@ -236,25 +235,36 @@ public class DefaultProjectService implements ProjectService {
 			Row row = sheet.getRow(i);
 			if (!this.isEmptyRow(row)) {
 				Cell nameCell = row.getCell(0);
-				Cell levelCell = row.getCell(1);
-				Cell amountCell = row.getCell(2);
-				Cell releaseTimeCell = row.getCell(3);
-				Cell commCell = row.getCell(4);
+				Cell orgCell = row.getCell(1);
+				Cell hamletCell = row.getCell(2);
+				Cell amountCell = row.getCell(3);
+				Cell releaseTimeCell = row.getCell(4);
+				Cell commCell = row.getCell(5);
 				Project project = new Project();
 				Object obj = this.getCellValue(nameCell);
 				if (obj == null) {
-					throw new Exception("请填写第" + i + "行的项目名称。");
+					throw new Exception("请填写第" + i + "行的'项目名称'。");
 				}
 				String name = String.valueOf(obj);
 				project.setName(name);
 
-				obj = this.getCellValue(levelCell);
+				obj = this.getCellValue(orgCell);
 
 				if (obj == null) {
-					throw new Exception("请填写第" + i + "行的项目级别。");
+					throw new Exception("请填写第" + i + "行的'分配到地区名称'。");
 				}
 				String level = String.valueOf(obj);
 				project.setLevel(level);
+				//
+
+				obj = this.getCellValue(hamletCell);
+
+				if (obj != null) {
+					String hamletName = String.valueOf(obj);
+					project.setHamletName(hamletName);
+				}
+
+				//
 
 				obj = this.getCellValue(amountCell);
 
