@@ -156,8 +156,7 @@
 	}
 
 	function openmenu(url) {
-		//switchframe("div_contentframe");
-		alert(url);
+
 		url = url.replace("jhtml&", "jhtml?");
 		if (getFrame("contentframe").menuframe == null) {
 			url = "&url=" + url;
@@ -188,34 +187,18 @@
 		if (!window.confirm('确定要退出吗?')) {
 			return false;
 		}
-		window.location.href='${ctx}/login.jsp';
+		window.location.href = '${ctx}/login.jsp';
 		window.sessionStorage.clear();
 	}
 
 	function changeStaffRole() {
 		var rolesModel = document.getElementById('RolesChangeModal');
-		//var rolesModel = window.frames["firstpage"].document.getElementById('RolesChangeModal');
 		$(rolesModel).modal('show');
 		window.sessionStorage.clear();
 	}
 
 	function initRolesChangeModel() {
-		/*
-		var rolesInfo = getElement("cond_ROLES_INFO").value;
-		var jsonData = eval(rolesInfo);
-		if (null != rolesInfo && "" != rolesInfo && jsonData[0].ROLE_NAME) {
-			var rolesList = "";
-			for (var i = 0; i < jsonData.length; i++) {
-				rolesList += "<div class=\"radio\"> <label>";
-				rolesList += "<input type=\"radio\" class=\"flat\" jwcid=\"@wade:Radio\"  name=\"roleCheck\" style=\"margin-right:20px;\" /> <span roleCode=\""
-						+ jsonData[i].ROLE_CODE
-						+ "\" onclick=\"selectStaffRole(this)\">"
-						+ jsonData[i].ROLE_NAME;
-				rolesList += "</span> </label> </div>";
-				//rolesList += "<input type=\"radio\" class=\"flat\" jwcid=\"@wade:Radio\"  name=\"roleCheck\" style=\"margin-right:20px;\" /> <span roleCode=\""+jsonData[i].ROLE_CODE+"\" onclick=\"selectStaffRole(this)\">"+jsonData[i].ROLE_NAME + "</span>";
-			}
-			$('#rolesListInfo').html(rolesList);
-		}*/
+
 	}
 
 	function selectStaffRole(obj) {
@@ -231,15 +214,27 @@
 		$("#firstpage").attr("src", url);
 
 		$("#chanegRoleLogin").click();
-		
+
+	}
+	function openUpdPassWin() {
+		$j('#updPassDiv').show();
+		$j('#fade').show();
+	}
+	function updatePass() {
+		// 修改密码
+
+	}
+	function closeUpdPassWin() {
+		$j('#updPassDiv').hide();
+		$j('#fade').hide();
 	}
 </script>
 
 <script>
 	//升级框架后,高版本浏览器对话框异步回调,设置值方法
 	function setName() {
-		alert(2)
-		
+		//alert(2)
+
 	}
 </script>
 
@@ -248,11 +243,11 @@
 	<form method="post" action="\portal">
 		<div class="clr"></div>
 		<div class="top">
-			<div class="title" style="padding-left :400px;">
-<%-- 				<img align="absmiddle" src="${ctx}/resources/images/unicom.png" --%>
-<!-- 					width="228" /> -->
-					
-					 ${sysConfig.syscname}
+			<div class="title" style="padding-left: 400px;">
+				<%-- 				<img align="absmiddle" src="${ctx}/resources/images/unicom.png" --%>
+				<!-- 					width="228" /> -->
+
+				${sysConfig.syscname}
 			</div>
 
 			<div id="nicemenu">
@@ -269,8 +264,11 @@
 							src="${ctx}/resources/images/login/triagle.png" width="14"
 							height="14" align="top" class="arrow" /></span>
 						<div class="sub_menu" id="sta">
-							<a href="javascript:void(0)">欢迎您，${userInfo.staffname}！ </a>
-							<a target="_top" onclick="logout();isCloseWindow = false;" class="item_line tc" href="javascript:void(0)" style="z-index: 1;">安全退出</a>
+							<a href="javascript:void(0)">欢迎您，${userInfo.staffname}！ </a> <a
+								target="_top" onclick="logout();isCloseWindow = false;"
+								class="item_line tc" href="javascript:void(0)"
+								style="z-index: 1;">安全退出</a> <a
+								href="javascript:openUpdPassWin();" class="item_line tc">修改密码</a>
 
 						</div></li>
 				</ul>
@@ -296,8 +294,6 @@
 				</div>
 			</div>
 		</div>
-
-
 
 		<div id="menu-1" class="_left_nav_menu">
 			<div class="_left_menu_wap">
@@ -334,23 +330,10 @@
 		<div class="nav">
 			<ul class="sy1_ul">
 				<div class="sy2_inside">
-
 					<li id="ctrl-btn-1" class="home01 closed"><a
 						href="javascript:void(0)" class="_left_off_icon2"
 						onclick="switchLeftMenu()"> </a></li>
-
-					<!-- 					<li id="fpage" class="home02 current"> -->
-					<!-- 					<a -->
-					<!-- 						onclick="return switchframe('div_firstpage',this,false);" -->
-					<!-- 						href="javascript:void(0)" -->
-					<!-- 						style="background-color: rgb(255, 252, 237); color: rgb(51, 51, 51);"> -->
-					<!-- 					<span style="font-size: 15px;">工作台</span> -->
-					<!-- 					</a> -->
-					<!-- 					</li> -->
-
 					<asiainfo:topMenu userid=""></asiainfo:topMenu>
-
-
 				</div>
 			</ul>
 
@@ -391,6 +374,30 @@
 			width="100%" height="0px" frameborder="no" src="" scrolling="auto"
 			noresize="noresize"> </iframe>
 	</form>
+	<div
+		style="display: none; background-color: #fff; z-index: 1001; width: 300px; height: 160px; position: fixed; top: 150px; left: calc(50% - 200px); border: 1px solid #d10707; padding: 5px;"
+		id="updPassDiv">
+		<table style="width: 100%; height: 100%;">
+			<tr>
+				<td>当前密码：</td>
+				<td><input type="password" name="oldPass" id="oldPass" /></td>
+			</tr>
+			<tr>
+				<td>新密码：</td>
+				<td><input type="password" name="newPass" id="newPass" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding-left: 90px;"><a
+					style="display: inline-block; float: left; margin-right: 20px;"
+					href="javascript:updatePass();">修改</a> <a
+					style="display: inline-block; float: left"
+					href="javascript:closeUpdPassWin();"> 关闭</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="fade" class="black_overlay"
+		style="display: none; position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color: #00000087; z-index: 1000; -moz-opacity: 0.2; opacity: 0.20;"></div>
 
 </body>
 </html>
