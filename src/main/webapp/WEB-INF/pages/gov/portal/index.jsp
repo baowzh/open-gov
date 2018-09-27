@@ -16,7 +16,7 @@
 <link rel="icon" type="image/png" sizes="48x48"
 	href="/ui2017/logo-48.png">
 <link href="${ctx}/resources/portal/css/style.css" rel="stylesheet">
-<title>科尓沁左翼后期三务公开</title>
+<title>科尓沁左翼后旗三务公开</title>
 <style>
 body {
 	background: url(${ctx}/resources/portal/images/nmqbkg.jpg) no-repeat top;

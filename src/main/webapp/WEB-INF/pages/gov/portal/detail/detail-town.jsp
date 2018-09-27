@@ -16,7 +16,7 @@
 	href="/ui2017/logo-48.png" />
 <link href="${ctx}/resources/portal/css/style.css" rel="stylesheet" />
 <link href="${ctx}/resources/portal/css/extends-style.css" rel="stylesheet" />
-<title>科尓沁左翼后期三务公开-首页</title>
+<title>科尓沁左翼后旗三务公开</title>
 <style>
 body {
 	background: url(${ctx}/resources/portal/images/bg.jpg) #f5f5f5 no-repeat top;

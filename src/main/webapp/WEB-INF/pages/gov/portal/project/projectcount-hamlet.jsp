@@ -22,7 +22,7 @@
 <script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
 <script src="${ctx}/resources/gentelella/js/bootstrap.min.js"></script>
 
-<title>科尓沁左翼后期三务公开-首页</title>
+<title>科尓沁左翼后旗三务公开</title>
 <style>
 body {
 	background: url(${ctx}/resources/portal/images/bg.jpg) #f5f5f5 no-repeat
@@ -67,7 +67,7 @@ body {
 							<td style="text-align: center;">${st.index+1}</td>
 							<td><fmt:formatDate value="${item.inputDate}" pattern="yyyy-MM-dd" /></td>
 							<td>${item.name}</td>	
-							<td>${item.level}</td>
+							<td>${item.orgName}</td>
 							<td>${item.hamletName}</td>						
 							<td><fmt:formatNumber
 										value="${item.amount}" type="CURRENCY">

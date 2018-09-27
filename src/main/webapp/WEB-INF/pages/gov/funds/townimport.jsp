@@ -39,7 +39,7 @@
 					<tr height=30>
 						<td align="right" width="120px"><lable>导入说明：</lable></td>
 						<td width="400px">
-							<div>说明导入操作主要需要注意什么问题</div>
+							<div>请准确完整填写嘎查村名称，否则无法导入。</div>
 						</td>
 
 						<td width="20%"></td>

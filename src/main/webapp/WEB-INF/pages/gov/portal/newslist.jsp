@@ -17,7 +17,7 @@
         />
         <link href="../style/css/style.css" rel="stylesheet" />
         <title>
-            科尓沁左翼后期三务公开-首页
+            科尓沁左翼后旗三务公开
         </title>
         <style>
             body { background: url(../style/images/bg.jpg) #f5f5f5 no-repeat top;
