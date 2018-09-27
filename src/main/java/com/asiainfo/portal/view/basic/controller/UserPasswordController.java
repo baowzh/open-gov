@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("userpass")
+public class UserPasswordController {
 	@ResponseBody
-	@RequestMapping("updpass")
+	@RequestMapping("update")
 	public Map<String, Object> updpass(String oldPassWord, String newPassWord) {
 		return new HashMap<String, Object>();
 	}
