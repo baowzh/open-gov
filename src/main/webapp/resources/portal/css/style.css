@@ -487,6 +487,8 @@ h2 {
 	justify-content: center;
 	align-items: center;
 	vertical-align: middle;
+	min-height:335px;
+	position:relative;
 }
 
 .newslist h2 {
@@ -528,7 +530,7 @@ h2 {
 
 .newslist ul {
 	overflow: hidden;
-	margin: 0 12px 24px;
+	margin: 0 12px 10px;
 	display: block;
 	font-size: 14px;
 }
@@ -554,6 +556,25 @@ h2 {
 
 .newslist a:hover {
 	color: #10568a;
+}
+.newslist .more{
+	text-align: right;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    position:absolute;
+    bottom:0px;
+    right:0px;
+}
+
+.newslist .more a {
+    padding: 5px 7px;
+    border: 1px solid;
+    border-radius: 5px;
+    color: #016fb8;
+    color: ;
+    transition: all 0.5s ease-out;
+    background:none;
+    width:40px;
 }
 
 .linepai {

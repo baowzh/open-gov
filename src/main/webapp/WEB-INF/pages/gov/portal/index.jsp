@@ -142,12 +142,15 @@ body {
 		</div>
 	</div>
 	<div class="Nav01">
-		<a href="${ctx}/portal/main.jhtml"><span><img
+		<a href="${ctx}/portal/main.jhtml" target="_blank"><span><img
 				src="${ctx}/resources/portal/images/01ban.png" width="128"
-				height="46" /></span><span>科尓沁左翼后旗</span></a> <a
-			onclick="ShowDiv('MyDiv','fade')"><span><img
+				height="46" /></span><span>科尓沁左翼后旗</span></a>
+				 <a
+			onclick="ShowDiv('MyDiv','fade')" href="javascript:void(0);"><span><img
 				src="${ctx}/resources/portal/images/02ban.png" width="128"
-				height="46" /></span><span>旗直部门</span></a> <a onclick="ShowDiv('townDiv','fade')"><span><img
+				height="46" /></span><span>旗直部门</span>
+				</a> 
+				<a onclick="ShowDiv('townDiv','fade')" href="javascript:void(0);"><span><img
 				src="${ctx}/resources/portal/images/03ban.png" width="128"
 				height="46" /></span><span>苏木镇场</span></a>
 	</div>

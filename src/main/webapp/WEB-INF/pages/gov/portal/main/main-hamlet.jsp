@@ -149,6 +149,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  dwgk.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${dwgk.category.id}&departId=${depart.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -162,6 +167,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  cunwgk.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${cunwgk.category.id}&departId=${depart.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -175,6 +185,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  caiwgk.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${caiwgk.category.id}&departId=${depart.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 	</div>
 

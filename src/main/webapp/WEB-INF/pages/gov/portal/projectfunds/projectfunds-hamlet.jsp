@@ -67,7 +67,7 @@ body {
 							<td style="text-align: center;">${st.index+1}</td>
 							<td><fmt:formatDate value="${item.inputDate}" pattern="yyyy-MM-dd" /></td>
 							<td>${item.name}</td>
-							<td>${item.level}</td>
+							<td>${item.orgName}</td>
 							
 							<td>${item.hamletName}</td>
 							<td><fmt:formatNumber

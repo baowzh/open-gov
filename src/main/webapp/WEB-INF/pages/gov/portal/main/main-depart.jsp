@@ -150,8 +150,12 @@ body {
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
-
 			</ul>
+			<c:if test="${not empty  dwgk.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${dwgk.category.id}&departId=${depart.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -165,6 +169,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  zwgk.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${zwgk.category.id}&departId=${depart.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -176,8 +185,12 @@ body {
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
-
 			</ul>
+			<c:if test="${not empty  bsyj.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${bsyj.category.id}&departId=${depart.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 	</div>
 

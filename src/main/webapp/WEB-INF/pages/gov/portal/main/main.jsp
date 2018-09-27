@@ -146,6 +146,7 @@ body {
 		<div class="newslist">
 			<h2>
 				<a href="news/list.jhtml?catId=${dwgk.category.id}&">${dwgk.category.name}</a>
+				
 			</h2>
 			<ul>
 				<c:forEach items="${dwgk.news}" var="newItem">
@@ -155,6 +156,12 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  dwgk.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${dwgk.category.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
+			
 		</div>
 		<div class="newslist">
 			<h2>
@@ -168,6 +175,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  zwgk.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${zwgk.category.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -181,6 +193,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  gzdt.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${gzdt.category.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 	</div>
 	<div class="center">
@@ -196,6 +213,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  zcwj.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${zcwj.category.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -209,6 +231,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  jdjl.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${jdjl.category.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -222,6 +249,11 @@ body {
 				</c:forEach>
 
 			</ul>
+			<c:if test="${not empty  gsgg.news}">
+			<div class="more">
+						<a href="news/list.jhtml?catId=${gsgg.category.id}" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 		</div>
 
 	</div>
@@ -237,6 +269,7 @@ body {
 						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name}&nbsp;[${statistic.num} ]"</a></li>
 				</c:forEach>
 			</ul>
+			
 		</div>
 		<div class="newslist">
 			<h2>
@@ -249,6 +282,7 @@ body {
 				</c:forEach>
 
 			</ul>
+			
 		</div>
 		<div class="newslist">
 			<h2>
@@ -260,6 +294,7 @@ body {
 						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 			</ul>
+			
 		</div>
 	</div>
 	<!-- 底部版权信息 -->
