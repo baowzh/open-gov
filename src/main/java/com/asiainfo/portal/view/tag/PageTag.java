@@ -11,17 +11,17 @@ public class PageTag extends TagSupport {
 	private static final long serialVersionUID = 6179314241821348095L;
 
 	private int pageindex = 1;
-	private int pageSize = 10;
+	private int pagesize = 10;
 	private int totalRecord;
 	private String url;
 
 	@Override
 	public int doStartTag() throws JspException {
-		if (pageSize <= 0) {
-			pageSize = 10;
+		if (pagesize <= 0) {
+			pagesize = 10;
 		}
 		// 计算总的页数
-		int pageCount = (totalRecord % pageSize == 0) ? (totalRecord / pageSize) : (totalRecord / pageSize + 1);
+		int pageCount = (totalRecord % pagesize == 0) ? (totalRecord / pagesize) : (totalRecord / pagesize + 1);
 		// 设置最多能显示多少个页数按钮
 		int maxShowButton = 5;
 
@@ -148,12 +148,12 @@ public class PageTag extends TagSupport {
 		this.pageindex = pageindex;
 	}
 
-	public int getPageSize() {
-		return pageSize;
+	public int getPagesize() {
+		return pagesize;
 	}
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
+	public void setPagesize(int pagesize) {
+		this.pagesize = pagesize;
 	}
 
 	public int getTotalRecord() {

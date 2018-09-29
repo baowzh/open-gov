@@ -53,7 +53,7 @@ body {
 
 				</ul>
 			</div>
-			<asiainfo:page pageSize="10" pageindex="${pageindex}"
+			<asiainfo:page pagesize="10" pageindex="${pageindex}"
 				url="${ctx}/portal/news/list.jhtml?catId=${currentCategory.id}&departId=${depart.id}"
 				totalRecord="${totalRecord}" />
 

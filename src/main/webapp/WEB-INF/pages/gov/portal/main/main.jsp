@@ -260,40 +260,56 @@ body {
 	<div class="center">
 		<div class="newslist">
 			<h2>
-				<a href="#">党务信息排名</a>
+				<a href="pagingDwgkStatistic.jhtml">党务信息排名</a>
 			</h2>
 			<ul>
 				<c:forEach items="${dwgkStatistic}" var="statistic" varStatus="st">
 					<li><span style="float:left">${st.index+1}</span>
 					<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name}&nbsp;[${statistic.num} ]"</a></li>
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;">${statistic.name}&nbsp;[${statistic.num} ]"</a></li>
 				</c:forEach>
 			</ul>
+			<c:if test="${not empty  dwgkStatistic}">
+			<div class="more">
+						<a href="pagingDwgkStatistic.jhtml" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 			
 		</div>
 		<div class="newslist">
 			<h2>
-				<a href="#">政务信息排名</a>
+				<a href="pagingZwgkStatistic.jhtml">政务信息排名</a>
 			</h2>
 			<ul>
 				<c:forEach items="${zwgkStatistic}" var="statistic" varStatus="st">
 					<li><span style="float:left">${st.index+1}</span><a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 
 			</ul>
 			
+			<c:if test="${not empty  zwgkStatistic}">
+			<div class="more">
+						<a href="pagingZwgkStatistic.jhtml" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
+			
 		</div>
 		<div class="newslist">
 			<h2>
-				<a href="#">村务排名</a><a href="#">财务排名</a>
+				<a href="pagingCunwgkStatistic.jhtml">村务排名</a><a href="pagingCunwgkStatistic.jhtml">财务排名</a>
 			</h2>
 			<ul>
 				<c:forEach items="${cunwgkStatistic}" var="statistic" varStatus="st">
 					<li><span style="float:left">${st.index+1}</span><a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 			</ul>
+			<c:if test="${not empty  cunwgkStatistic}">
+			<div class="more">
+						<a href="pagingCunwgkStatistic.jhtml" title="" target="_self">更多</a>
+		    </div>
+		    </c:if>
 			
 		</div>
 	</div>

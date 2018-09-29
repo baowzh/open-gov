@@ -484,7 +484,7 @@
         </attribute>
         <attribute>
             <!-- 每页展示的条数 -->
-            <name>pageSize</name>
+            <name>pagesize</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
             <type>int</type>

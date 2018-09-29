@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.asiainfo.eframe.sqlsession.DBSqlSession;
 import com.asiainfo.eframe.sqlsession.model.DBPageValue;
+import com.asiainfo.eframe.sqlsession.model.DBPagingPrams;
 import com.asiainfo.eframe.util.StringUtil;
 import com.asiainfo.portal.form.NewsPagingForm;
 import com.asiainfo.portal.modules.category.CategoryRepository;
@@ -23,6 +24,7 @@ import com.asiainfo.portal.modules.depart.model.Depart;
 import com.asiainfo.portal.modules.depart.service.OrgService;
 import com.asiainfo.portal.modules.news.model.News;
 import com.asiainfo.portal.modules.news.service.NewsService;
+import com.asiainfo.portal.modules.statistic.StatisticRepository;
 import com.asiainfo.portal.util.PortalStaticConstant;
 
 @Controller
@@ -38,6 +40,8 @@ public class Portal {
 	private DBSqlSession sqlSession;
 	@Autowired
 	private PageCategoryRepository pageCategoryRepository;
+	@Autowired
+	private StatisticRepository statisticRepository;
 
 	/**
 	 * 网站首页
@@ -516,6 +520,39 @@ public class Portal {
 		}
 		Depart depart = orgService.getDepart(departId);
 		return depart;
+	}
+
+	@RequestMapping("pagingCunwgkStatistic")
+	public ModelAndView pagingCunwgkStatistic(ModelMap modelMap, DBPagingPrams pagingParam) {
+		if(pagingParam.getPagesize()==20||pagingParam.getPagesize()==null){
+			pagingParam.setPagesize(10);
+		}
+		DBPageValue<java.util.Map<String, Object>> page = this.statisticRepository.pagingCunwgkStatistic(pagingParam);
+		modelMap.put("page", page);
+		modelMap.put("dest", "pagingCunwgkStatistic.jhtml");
+		return new ModelAndView("gov/portal/statistic/statistic", modelMap);
+	}
+
+	@RequestMapping("pagingDwgkStatistic")
+	public ModelAndView pagingDwgkStatistic(ModelMap modelMap, DBPagingPrams pagingParam) {
+		if(pagingParam.getPagesize()==20||pagingParam.getPagesize()==null){
+			pagingParam.setPagesize(10);
+		}
+		DBPageValue<java.util.Map<String, Object>> page = this.statisticRepository.pagingDwgkStatistic(pagingParam);
+		modelMap.put("page", page);
+		modelMap.put("dest", "pagingDwgkStatistic.jhtml");
+		return new ModelAndView("gov/portal/statistic/statistic", modelMap);
+	}
+
+	@RequestMapping("pagingZwgkStatistic")
+	public ModelAndView pagingZwgkStatistic(ModelMap modelMap, DBPagingPrams pagingParam) {
+		if(pagingParam.getPagesize()==20||pagingParam.getPagesize()==null){
+			pagingParam.setPagesize(10);
+		}
+		DBPageValue<java.util.Map<String, Object>> page = this.statisticRepository.pagingZwgkStatistic(pagingParam);
+		modelMap.put("page", page);
+		modelMap.put("dest", "pagingZwgkStatistic.jhtml");
+		return new ModelAndView("gov/portal/statistic/statistic", modelMap);
 	}
 
 }
