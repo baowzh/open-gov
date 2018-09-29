@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.asiainfo.eframe.sqlsession.DBSqlSession;
+import com.asiainfo.eframe.sqlsession.model.DBPageValue;
 import com.asiainfo.eframe.util.StringUtil;
+import com.asiainfo.portal.form.NewsPagingForm;
 import com.asiainfo.portal.modules.category.CategoryRepository;
 import com.asiainfo.portal.modules.category.PageCategoryRepository;
 import com.asiainfo.portal.modules.category.model.Category;
@@ -142,7 +144,7 @@ public class Portal {
 					new HashMap<String, Object>());
 			List<Map<String, Object>> cunwgkStatistic = this.sqlSession.getData("statistic.cunwgkStatistic",
 					new HashMap<String, Object>());
-			
+
 			modelMap.put("dwgkStatistic", dwgkStatistic);
 			modelMap.put("zwgkStatistic", zwgkStatistic);
 			// 获取 党务排名、//政务排名 村务排名 财务排名
@@ -228,21 +230,27 @@ public class Portal {
 	 * @return
 	 */
 	@RequestMapping("news/list")
-	public ModelAndView newsList(ModelMap modelMap, String departId, String catId) {
-		Depart depart = getDepart(departId);
-		Category category = this.categoryRepository.get(Integer.parseInt(catId));
+	public ModelAndView newsList(ModelMap modelMap, NewsPagingForm pagingForm) {
+		pagingForm.setPagesize(10);
+		Depart depart = getDepart(this.getDepartId(pagingForm));
+		Category category = this.categoryRepository.get(pagingForm.getCatId());
 		List<Category> childs = new ArrayList<Category>();
 		if (category.getParentId() == null) { // 没有上级则
-			childs = this.categoryRepository.getSubCategorys(Integer.parseInt(catId), depart.getType());
+			childs = this.categoryRepository.getSubCategorys(pagingForm.getCatId(), depart.getType());
 			modelMap.put("childs", childs);
 		} else {
 			childs = this.categoryRepository.getSubCategorys(category.getParentId(), depart.getType());
 			modelMap.put("childs", childs);
 		}
 		Category currentCategory = this.getCurrentCateGory(category, depart);
-		List<News> news = this.newsService.topNewsByChannel(depart.getId(), currentCategory.getId(),
-				PortalStaticConstant.LIST_PAGE_CAT_NEWS_COUNT);
-		modelMap.put("news", news);
+		// if (pagingForm.getDepartId() == null) {
+		pagingForm.setDepartId(depart.getId());
+		// }
+		pagingForm.setCatId(currentCategory.getId());
+		DBPageValue<News> newsPage = this.newsService.portalPaging(pagingForm);
+		modelMap.put("news", newsPage.getModels());
+		modelMap.put("totalRecord", newsPage.getiTotalRecords());
+		modelMap.put("pageindex", pagingForm.getPageindex());
 		modelMap.put("depart", depart);
 		modelMap.put("parentCateGory", this.getParentCateGory(category, depart));
 		modelMap.put("currentCategory", currentCategory);
@@ -254,6 +262,13 @@ public class Portal {
 		String group = this.getTemplateGroup(depart);
 		String templatename = "newslist" + group;
 		return new ModelAndView("gov/portal/newslist/" + templatename, modelMap);
+	}
+
+	private String getDepartId(NewsPagingForm pagingForm) {
+		if (pagingForm.getDepartId() != null) {
+			return pagingForm.getDepartId().split(",")[0];
+		}
+		return null;
 	}
 
 	/**

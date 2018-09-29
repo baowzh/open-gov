@@ -20,6 +20,8 @@ public interface NewsService {
 	public List<News> list(Map<String, Object> params);
 
 	public DBPageValue<News> paging(NewsPagingForm pagingForm);
+	
+	public DBPageValue<News> portalPaging(NewsPagingForm pagingForm);
 
 	public void save(News news) throws Exception;
 

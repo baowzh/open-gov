@@ -76,5 +76,7 @@ public interface SystemService {
 	public void updateMenuSort(Menu menu);
 
 	public void deleteMenu(Menu menu);
+	
+	public void updatePass(String oldPass,String newPass) throws Exception;
 
 }

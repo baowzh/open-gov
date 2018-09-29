@@ -47,4 +47,5 @@
           from TD_B_SYSTEMGUIMENU a where a.menu_id=#{_parameter}
         
 	</select>
+
 </mapper>

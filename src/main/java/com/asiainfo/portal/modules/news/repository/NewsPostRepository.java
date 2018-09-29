@@ -15,7 +15,7 @@ public interface NewsPostRepository {
 	public void insert(NewsPost newsPost);
 
 	@Operation(operationType = OperationType.DELETE, namespaceClass = NewsPost.class)
-	public void del(String departId, Integer Id);
+	public void del(@OperParam(name = "departId") String departId, @OperParam(name = "id") Integer Id);
 
 	@Operation(operationType = OperationType.SELECT, namespaceClass = NewsPost.class)
 	public List<News> getPostedNews(@OperParam(name = "departId") String departId,

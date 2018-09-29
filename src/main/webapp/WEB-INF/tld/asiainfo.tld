@@ -456,4 +456,45 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	
+	<tag>
+        <!-- 标签名 -->
+        <name>page</name>
+        <!-- 对应的标签处理类 -->
+        <tag-class>com.asiainfo.portal.view.tag.PageTag</tag-class>
+        <!-- 标签主体类型 -->
+        <body-content>empty</body-content>
+        <!-- 标签属性描述 -->
+        <attribute>
+            <!-- 属性名  当前页数 -->
+            <name>pageindex</name>
+            <!-- 是否是必须的 -->
+            <required>true</required>
+            <!-- 设置属性的值是否可以在jsp编译时动态生成 -->
+            <rtexprvalue>true</rtexprvalue>
+            <!-- 属性的数据类型 -->
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <!-- 总记录条数 -->
+            <name>totalRecord</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <!-- 每页展示的条数 -->
+            <name>pageSize</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <!-- 点击分页链接后跳转的地址 -->
+            <name>url</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>String</type>
+        </attribute>
+    </tag>  
 </taglib>

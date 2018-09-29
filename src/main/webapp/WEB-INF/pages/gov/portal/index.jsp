@@ -183,7 +183,9 @@ body {
 				<li style="height: 35px; line-height: 35px; list-style-type: none;">
 					<c:forEach items="${departs}" var="depart">
 						<a href="${ctx}/portal/main.jhtml?departId=${depart.id}"
-							style="width: 120px; float: left;" target="_blank">${depart.name}</a>
+							style="width: 120px; float: left;ext-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;" target="_blank">${depart.name}</a>
 					</c:forEach>
 
 
@@ -202,7 +204,9 @@ body {
 				<li style="height: 35px; line-height: 35px; list-style-type: none;">
 					<c:forEach items="${towns}" var="depart">
 						<a href="${ctx}/portal/main.jhtml?departId=${depart.id}"
-							style="width: 120px; float: left;" target="_blank">${depart.name}</a>
+							style="width: 120px; float: left;ext-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;" target="_blank">${depart.name}</a>
 					</c:forEach>
 
 

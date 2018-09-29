@@ -11,6 +11,7 @@ public class NewsPagingForm extends DBPagingPrams {
 	private Date startDate;
 	private Date endDate;
 	private String departId;
+	private Integer catId;
 
 	public String getTitle() {
 		return title;
@@ -59,6 +60,13 @@ public class NewsPagingForm extends DBPagingPrams {
 	public void setDepartId(String departId) {
 		this.departId = departId;
 	}
-	
+
+	public Integer getCatId() {
+		return catId;
+	}
+
+	public void setCatId(Integer catId) {
+		this.catId = catId;
+	}
 
 }

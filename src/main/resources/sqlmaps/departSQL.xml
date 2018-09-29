@@ -75,7 +75,7 @@
 	</select>
 	
 	<select id="getDeparts"  parameterType="java.lang.Integer" resultMap="depart">
-	  select * from td_m_depart where visible=1  and type=#{_parameter}
+	  select * from td_m_depart where visible=1  and type=#{_parameter} order by show_order
 	</select>
 	
 	<select id="get"  parameterType="java.lang.String" resultMap="depart">

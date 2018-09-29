@@ -36,8 +36,8 @@ public class DefaultUserManagerDao implements UserManagerDao {
 
 	@Override
 	public int updatePasswordById(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.update("updatePasswordById", user);
 	}
 
 	@Override

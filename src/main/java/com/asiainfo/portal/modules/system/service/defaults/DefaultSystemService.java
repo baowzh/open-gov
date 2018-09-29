@@ -18,6 +18,7 @@ import com.asiainfo.eframe.security.model.RoleInfo;
 import com.asiainfo.eframe.security.model.UserInfo;
 import com.asiainfo.eframe.sqlsession.model.DBPageValue;
 import com.asiainfo.eframe.sqlsession.model.DBPagingPrams;
+import com.asiainfo.eframe.util.Encryptor;
 import com.asiainfo.ewebframe.security.EncryptAndDecrypt;
 import com.asiainfo.portal.basic.dao.IRoleDao;
 import com.asiainfo.portal.modules.system.dao.MenuManagerDao;
@@ -33,6 +34,8 @@ import com.asiainfo.portal.modules.system.service.SystemService;
 import com.asiainfo.portal.util.exception.DeleteRoleException;
 import com.asiainfo.portal.view.modules.system.bean.UserRoleBeen;
 
+import jodd.util.StringUtil;
+
 @Service("systemService")
 public class DefaultSystemService implements SystemService {
 	@Autowired
@@ -45,12 +48,14 @@ public class DefaultSystemService implements SystemService {
 	private EncryptAndDecrypt encryptAndDecrypt;
 	@Autowired
 	private IRoleDao roleDao;
-	
+
 	@Autowired
 	private RoleFuncrightDao roleFuncrightDao;
 
 	@Autowired
 	private StaffFuncrightDao staffFuncrightDao;
+	@Autowired
+	private UserSessionHolderService userSessionHolderService;
 
 	@Override
 	public User getUser(String userId) {
@@ -255,17 +260,16 @@ public class DefaultSystemService implements SystemService {
 			this.getRoleManagerDao().insertRoleMenu(role);
 		}
 	}
-	
+
 	@Override
 	public void forcDeleteRole(Role role) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		
+
 		Map<String, Object> deleteRoleParam = new HashMap<String, Object>();
 		deleteRoleParam.put("roleCode", role.getRightcode());
 		roleFuncrightDao.deleteRoleFuncright(deleteRoleParam);
 
-		
 		params = new HashMap<String, Object>();
 		params.put("rightCode", role.getRightcode());
 		params.put("rightAttr", "1");
@@ -273,34 +277,28 @@ public class DefaultSystemService implements SystemService {
 
 		this.getRoleManagerDao().deleteRole(role);
 	}
-	
-	
-	
-	
+
 	@Override
 	public void deleteRole(Role role) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		
+
 		params.put("rightAttr", "1");
 		params.put("roleCode", role.getRightcode());
 		List<StaffFuncright> staffFuncrights = this.staffFuncrightDao.findStaffFuncrights(params);
 		if (staffFuncrights != null && !staffFuncrights.isEmpty()) {
 			throw new DeleteRoleException("删除失败：已有员工分配了该角色！！");
 		}
-		
-		
+
 		Map<String, Object> deleteRoleParam = new HashMap<String, Object>();
 		deleteRoleParam.put("roleCode", role.getRightcode());
 		roleFuncrightDao.deleteRoleFuncright(deleteRoleParam);
 
-		
 		// params = new HashMap<String, Object>();
 		// params.put("rightCode", role.getRightcode());
 		// params.put("rightAttr", "1");
 		// this.staffFuncrightDao.delStaffFuncright(params);
 		//
-		
 
 		this.getRoleManagerDao().deleteRole(role);
 	}
@@ -441,6 +439,24 @@ public class DefaultSystemService implements SystemService {
 
 		}
 
+	}
+
+	@Override
+	public void updatePass(String oldPass, String newPass) throws Exception {
+		String staffId = userSessionHolderService.getSessionUserInfo().getStaffid();
+		String oldPassword = userSessionHolderService.getSessionUserInfo().getStaffpasswd();
+		String enold = Encryptor.fnEncrypt(oldPass, "00linkage");
+		String ennew = Encryptor.fnEncrypt(newPass, "00linkage");
+		if(StringUtil.isEmpty(oldPass)||StringUtil.isEmpty(newPass)){
+			throw new Exception("请填写当前密码和新的密码。");
+		}
+		if(oldPassword.equalsIgnoreCase(oldPass)){
+			throw new Exception("当前密码不正确。");
+		}
+		User user = new User();
+		user.setStaffid(staffId);
+		user.setStaffpasswd(ennew);
+		userDao.updatePasswordById(user);
 	}
 
 }

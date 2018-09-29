@@ -21,6 +21,8 @@ import com.asiainfo.portal.modules.news.repository.NewsPostRepository;
 import com.asiainfo.portal.modules.news.repository.NewsRepository;
 import com.asiainfo.portal.modules.news.service.NewsService;
 
+import jodd.util.StringUtil;
+
 @Service("newsService")
 public class DefaultNewsService implements NewsService {
 	@Autowired
@@ -41,6 +43,7 @@ public class DefaultNewsService implements NewsService {
 
 	@Override
 	public DBPageValue<News> paging(NewsPagingForm pagingForm) {
+
 		pagingForm.setDepartId(userSessionHolderService.getSessionUserInfo().getDepartid());
 		return newsRepository.paging(pagingForm);
 	}
@@ -105,6 +108,12 @@ public class DefaultNewsService implements NewsService {
 			this.newsPostRepository.del(newsPost.getDepartId(), id);
 		}
 		this.newsRepository.updateTop(top, id);
+	}
+
+	@Override
+	public DBPageValue<News> portalPaging(NewsPagingForm pagingForm) {
+
+		return this.newsRepository.paging(pagingForm);
 	}
 
 }

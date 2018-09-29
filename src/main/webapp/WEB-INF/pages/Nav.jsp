@@ -222,6 +222,27 @@
 	}
 	function updatePass() {
 		// 修改密码
+		$j.ajax({
+		type : "POST",
+		url : '${ctx}/userpass/update.jhtml',
+		data : {
+		 oldPassWord:$j('#oldPass').val(),
+		 newPassWord:$j('#newPass').val()
+		},
+		dataType : "json",
+		success : function(data) {
+			if(data.success){
+				alert('修改成功，请重新登陆。');
+				window.location.href='${ctx}/login.jsp';
+			}else{
+				alert(data.mess);
+			}
+		},
+		error : function(info) {
+			console.log("连接异常，请检查！")
+		}
+	});
+		
 
 	}
 	function closeUpdPassWin() {

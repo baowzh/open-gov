@@ -108,6 +108,10 @@
 	    <if test="endDate!=null">
 	     and  <![CDATA[ a.inputtime <=#{endDate }  ]]>
 	   </if>
+	   <if test="catId!=null">
+	     and ( a.catId=#{catId} or a.typeid=#{catId} )
+	   </if>
+	   
 	   order by a.inputtime desc
 	  
 	</select>

@@ -16,6 +16,8 @@
 <link rel="icon" type="image/png" sizes="48x48"
 	href="/ui2017/logo-48.png" />
 <link href="${ctx}/resources/portal/css/style.css" rel="stylesheet" />
+<link href="${ctx}/resources/portal/css/paging.css" rel="stylesheet" />
+
 <title>科尓沁左翼后旗三务公开</title>
 <style>
 body {
@@ -47,10 +49,12 @@ body {
 									value="${item.inputtime}" pattern="yyyy-MM-dd" />
 						</span></li>
 					</c:forEach>
-
-
 				</ul>
+
 			</div>
+			<asiainfo:page pageSize="10" pageindex="${pageindex}"
+				url="${ctx}/portal/news/list.jhtml?catId=${currentCategory.id}"
+				totalRecord="${totalRecord}" />
 			<script>
 				function tabNav(num) {
 					for (var i = 1; i < 3; i++) {
@@ -71,8 +75,7 @@ body {
 				<ul>
 					<c:forEach items="${childs}" var="item">
 						<li><a href="${ctx}/portal/news/list.jhtml?catId=${item.id}"
-							class="ygzlc">${item.name} <span>
-							 <img
+							class="ygzlc">${item.name} <span> <img
 									src="${ctx}/resources/portal/images/jt.png" width="6"
 									height="12" />
 							</span>
@@ -82,6 +85,7 @@ body {
 					</li>
 
 				</ul>
+
 			</div>
 		</div>
 	</div>

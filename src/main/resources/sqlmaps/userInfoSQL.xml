@@ -279,6 +279,9 @@
 	<select id="getUserName" resultType="String" parameterType="java.util.Map">
 		select * from td_m_staff where td_m_staff.STAFF_id='SUPERUSR'
 	</select>
+	<update id="updatePasswordById" parameterType="com.asiainfo.portal.modules.system.model.User">
+	  update tf_m_staffpasswd set staff_passwd=#{staffpasswd} where staff_id=#{staffid}
+	</update>
 
 
 </mapper>
