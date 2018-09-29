@@ -97,9 +97,9 @@ body {
 	display: none;
 	position: absolute;
 	top: 10%;
-	left: 10%;
-	width: 80%;
-	height: 80%;
+	left: 23%;
+	width: 54%;
+	height: 82%;
 	border: 2px solid lightblue;
 	background-color: white;
 	border-radius: 15px;
@@ -144,13 +144,11 @@ body {
 	<div class="Nav01">
 		<a href="${ctx}/portal/main.jhtml" target="_blank"><span><img
 				src="${ctx}/resources/portal/images/01ban.png" width="128"
-				height="46" /></span><span>科尓沁左翼后旗</span></a>
-				 <a
+				height="46" /></span><span>科尓沁左翼后旗</span></a> <a
 			onclick="ShowDiv('MyDiv','fade')" href="javascript:void(0);"><span><img
 				src="${ctx}/resources/portal/images/02ban.png" width="128"
-				height="46" /></span><span>旗直部门</span>
-				</a> 
-				<a onclick="ShowDiv('townDiv','fade')" href="javascript:void(0);"><span><img
+				height="46" /></span><span>旗直部门</span> </a> <a
+			onclick="ShowDiv('townDiv','fade')" href="javascript:void(0);"><span><img
 				src="${ctx}/resources/portal/images/03ban.png" width="128"
 				height="46" /></span><span>苏木镇场</span></a>
 	</div>
@@ -183,9 +181,8 @@ body {
 				<li style="height: 35px; line-height: 35px; list-style-type: none;">
 					<c:forEach items="${departs}" var="depart">
 						<a href="${ctx}/portal/main.jhtml?departId=${depart.id}"
-							style="width: 120px; float: left;ext-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;" target="_blank">${depart.name}</a>
+							style="width: 180px; float: left; font-size: 18px; ext-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+							target="_blank">${depart.name}</a>
 					</c:forEach>
 
 
@@ -193,8 +190,9 @@ body {
 			</ul>
 		</div>
 	</div>
-	
-	<div id="townDiv" class="white_content">
+
+	<div id="townDiv" class="white_content"
+		style="width: 50%; height: 70%;">
 		<div class="close" id="move">
 			<span class="bottom02" onclick="CloseDiv('townDiv','fade')"><img
 				src="${ctx}/resources/portal/images/close.jpg" /></span>
@@ -204,9 +202,8 @@ body {
 				<li style="height: 35px; line-height: 35px; list-style-type: none;">
 					<c:forEach items="${towns}" var="depart">
 						<a href="${ctx}/portal/main.jhtml?departId=${depart.id}"
-							style="width: 120px; float: left;ext-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;" target="_blank">${depart.name}</a>
+							style="width: 120px; float: left; font-size: 18px; ext-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+							target="_blank">${depart.name}</a>
 					</c:forEach>
 
 
@@ -215,7 +212,10 @@ body {
 		</div>
 	</div>
 	<!-- 弹出层结束 -->
+	 <audio id="music" src="${ctx}/resources/portal/backgrouond-music.mp3" hidden="true" controls="controls" autoplay="autoplay" loop="loop">
+        你的浏览器不支持声音播放
+    </audio>
+	
 </body>
-
 
 </html>

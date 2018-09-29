@@ -24,6 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,6 +43,8 @@ import net.sf.json.JSONObject;
 public class AttachmentController {
 	@Autowired
 	private WebSysConfig config;
+	@Value("${file.maxSize}")
+	private long maxSize;
 
 	/**
 	 * 文件上传
@@ -74,10 +77,6 @@ public class AttachmentController {
 
 		// 附件要上传到的目录
 		extMap.put("attached", config.getFileattached());
-
-		// 最大文件大小
-		long maxSize = 1000000;
-
 		response.setContentType("text/html; charset=UTF-8");
 
 		if (!ServletFileUpload.isMultipartContent(request)) {
