@@ -57,14 +57,31 @@
 		</property>
 	</bean>
 	<!-- 视图 -->
-	<bean id="viewResolver2"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp" />
-		<property name="order" value="3"></property>
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <property name="prefix" value="/WEB-INF/pages/" /> <property name="suffix" 
+		value=".jsp" /> <property name="order" value="3"></property> </bean> -->
+	<bean
+		class="org.springframework.mobile.device.view.LiteDeviceDelegatingViewResolver">
+		<constructor-arg>
+			<bean
+				class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+				<property name="prefix" value="/WEB-INF/pages/" />
+				<property name="suffix" value=".jsp" />
+			</bean>
+		</constructor-arg>
+		<property name="mobilePrefix" value="mobile/" />
+		<!-- <property name="normalPrefix" value="gov/portal/" /> -->
 	</bean>
 	<bean id="globalExceptionResolver"
 		class="com.asiainfo.ewebframe.exception.GlobalExceptionResolver" />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/portal/**" />
+			<bean
+				class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor">
+			</bean>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
 </beans>

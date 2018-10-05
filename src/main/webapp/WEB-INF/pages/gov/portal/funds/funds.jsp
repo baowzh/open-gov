@@ -35,7 +35,7 @@ body {
 <body>
 	<%@include file="../head/head.jsp"%>
 	<div class="new_tb" style="width: 1180px;">
-		<a href="${ctx}/portal/index.jhtml"> 首页 </a> > > <a href="#"> 项目列表
+		<a href="${ctx}/portal/index.jhtml"> 首页 </a> > > <a href="#"> 到户资金
 		</a>
 	</div>
 	<div class="new_li" style="width: 1180px;">

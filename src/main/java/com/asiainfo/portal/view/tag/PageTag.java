@@ -14,6 +14,7 @@ public class PageTag extends TagSupport {
 	private int pagesize = 10;
 	private int totalRecord;
 	private String url;
+	private boolean mobile;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -117,8 +118,10 @@ public class PageTag extends TagSupport {
 
 			sb.append("<a href=\"javascript:turnOverPage(").append(pageCount).append(")\">末页</a>\r\n");
 			// 拼接总记录条数和总页数
-			sb.append("共<strong>").append(this.totalRecord).append("</strong>条,").append("共<strong>").append(pageCount)
-					.append("</strong>页");
+			if (this.isMobile()) {
+				sb.append("共<strong>").append(this.totalRecord).append("</strong>条,").append("共<strong>")
+						.append(pageCount).append("</strong>页");
+			}
 
 			sb.append("<script type=\"text/javascript\">\r\n");
 			sb.append("function turnOverPage(no){\r\n");
@@ -171,4 +174,13 @@ public class PageTag extends TagSupport {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public boolean isMobile() {
+		return mobile;
+	}
+
+	public void setMobile(boolean mobile) {
+		this.mobile = mobile;
+	}
+
 }
