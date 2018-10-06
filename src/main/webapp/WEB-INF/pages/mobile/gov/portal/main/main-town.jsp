@@ -191,13 +191,13 @@ body {
 	</div>
 	
 	<div class="center">
-		<div class="newslist">
+		<div class="newslist" style="min-height:650px;">
 			<h2>
 				<a href="#">嘎查村（社区）</a>
 			</h2>
 			<div class="linepai">
 				<c:forEach items="${departs}" var="item">
-					<a href="main.jhtml?departId=${item.id}">${item.name}</a>
+					<a href="main.jhtml?departId=${item.id}" style="width:42%;">${item.name}</a>
 				</c:forEach>
 			</div>
 		</div>

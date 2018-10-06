@@ -31,7 +31,7 @@ body {
 
 	<%@include file="../head/head-town.jsp"%>
 	<div class="new_tb">
-		<a href="${ctx}/portal/index.jhtml"> 首页 </a> > <a
+		<a href="${ctx}/portal/index.jhtml?departId=${depart.id}"> 首页 </a> > <a
 			href="${ctx}/portal/news/list.jhtml?catId=${parentCateGory.id}&departId=${depart.id}">
 			${parentCateGory.name} </a> > <span> ${currentCategory.name} </span>
 	</div>

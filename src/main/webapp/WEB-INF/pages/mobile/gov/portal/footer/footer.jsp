@@ -14,3 +14,5 @@
 	</div>
 </footer>
 <div class="foot">科尓沁左翼后旗三务公开系统平台 版权所有 主办单位：科尓沁左翼后旗三务公开领导小组办公室</div>
+
+<script src="${ctx}/resources/portal/js/menu.js"></script>

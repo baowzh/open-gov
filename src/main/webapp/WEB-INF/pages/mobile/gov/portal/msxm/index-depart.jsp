@@ -8,15 +8,10 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<link rel="icon" type="image/png" sizes="16x16"
-	href="/ui2017/logo-16.png" />
-<link rel="icon" type="image/png" sizes="32x32"
-	href="/ui2017/logo-32.png" />
-<link rel="icon" type="image/png" sizes="48x48"
-	href="/ui2017/logo-48.png" />
-<link href="${ctx}/resources/portal/css/style.css" rel="stylesheet" />
-<link href="${ctx}/resources/gentelella/css/bootstrap.min.css"
-	rel="stylesheet" />
+<link href="${ctx}/resources/portal/mobile/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="${ctx}/resources/portal/mobile/css/style.css"
+	rel="stylesheet" type="text/css">
 <title>科尓沁左翼后旗三务公开</title>
 <style>
 body {
@@ -29,9 +24,9 @@ body {
 <body>
 
 	<%@include file="../head/head-depart.jsp"%>
-	<div id="wrapper">
+	<div id="wrapper row">
 
-		<div class="col-md-4" style="height: 400px;">
+		<div class="col-md-4" >
 			<div
 				style="margin-top: 5px; font-size: 20px; height: 50px; line-height: 50px; font-weight: bolder; text-align: center; vertical-align: middle; background-color: rgb(1, 111, 184); color: #fff;">
 				<span class="glyphicon glyphicon-tasks" style="font-size: 20px;"></span>
@@ -39,7 +34,7 @@ body {
 			</div>
 			<a href="${ctx}/portal/projectGroup.jhtml?departId=${depart.id}"
 				target="_blank"> <img
-				style="width: 100%; height: 200px; margin-top: 10px; margin-bottom: 20px; border: 5px solid #BEBEBE;"
+				style="width: 100%; height: 200px; margin-top: 10px; margin-bottom: 10px; border: 5px solid #BEBEBE;"
 				src="${ctx}/resources/portal/images/msxm.jpg" alt="">
 			</a>
 			<div style="text-align: center;">
@@ -51,7 +46,7 @@ body {
 			</div>
 		</div>
 
-		<div class="col-md-4" style="height: 400px;">
+		<div class="col-md-4" >
 			<div
 				style="margin-top: 5px; font-size: 20px; height: 50px; line-height: 50px; font-weight: bolder; text-align: center; vertical-align: middle; background-color: rgb(1, 111, 184); color: #fff;">
 				<span class="glyphicon glyphicon-th-large" style="font-size: 20px;"></span>
@@ -60,7 +55,7 @@ body {
 
 			<a href="${ctx}/portal/projectFundsGroup.jhtml?departId=${depart.id}"
 				target="_blank"> <img
-				style="width: 100%; height: 200px; margin-top: 10px; margin-bottom: 20px; border: 5px solid #BEBEBE;"
+				style="width: 100%; height: 200px; margin-top: 10px; margin-bottom: 10px; border: 5px solid #BEBEBE;"
 				src="${ctx}/resources/portal/images/mszj.jpg" alt="">
 			</a>
 			<div style="text-align: center;">
@@ -79,7 +74,7 @@ body {
 				</span>
 			</div>
 		</div>
-		<div class="col-md-4" style="height: 400px;">
+		<div class="col-md-4" >
 			<div
 				style="margin-top: 5px; font-size: 20px; height: 50px; line-height: 50px; font-weight: bolder; text-align: center; vertical-align: middle; background-color: rgb(1, 111, 184); color: #fff;">
 				<span class="glyphicon glyphicon-check" style="font-size: 20px;"></span>
@@ -88,7 +83,7 @@ body {
 
 			<a href="fundsGroup.jhtml?departId=${depart.id}" target="_blank">
 				<img
-				style="width: 100%; height: 200px; margin-top: 10px; margin-bottom: 20px; border: 5px solid #BEBEBE;"
+				style="width: 100%; height: 200px; margin-top: 10px; margin-bottom: 10px; border: 5px solid #BEBEBE;"
 				src="${ctx}/resources/portal/images/dhzj.jpg" alt="">
 			</a>
 			<div style="text-align: center;">

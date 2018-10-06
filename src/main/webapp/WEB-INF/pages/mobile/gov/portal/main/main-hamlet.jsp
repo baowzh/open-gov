@@ -25,7 +25,7 @@ body {
 </style>
 </head>
 <body>
-	<%@include file="../head/head.jsp"%>
+	<%@include file="../head/head-hamlet.jsp"%>
 	<!-- 图片轮播效果 -->
 	<div id="wrapper">
 		<!-- 左边 -->

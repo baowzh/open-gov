@@ -40,8 +40,8 @@ body {
 			${parentCateGory.name} </a> > <span> ${currentCategory.name} </span>
 	</div>
 	<c:if test="${not empty childs}">
-	<div class="middle-c row">
-		<div class="ysqg-box-left col-sm-12 col-xs-12">
+	<div class="middle-c public_width">
+		<div class="ysqg-box-left" >
 			<div class="yleft-a1">
 				<span> ${parentCateGory.name} </span>
 			</div>
@@ -66,7 +66,7 @@ body {
 	</c:if>
 	
 
-	<div class="middle-c row">
+	<div class="middle-c public_width">
 		<div class="main-content-left1">
 			<div class="zfbm-bt">
 				<span> ${currentCategory.name} </span>
@@ -82,7 +82,7 @@ body {
 				</ul>
 
 			</div>
-			<asiainfo:page pagesize="10" pageindex="${pageindex}" mobile="false"
+			<asiainfo:page pagesize="10" pageindex="${pageindex}" mobile="true"
 				url="${ctx}/portal/news/list.jhtml?catId=${currentCategory.id}"
 				totalRecord="${totalRecord}" />
 			<script>

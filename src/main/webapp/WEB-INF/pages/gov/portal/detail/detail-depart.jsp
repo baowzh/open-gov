@@ -8,12 +8,6 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<link rel="icon" type="image/png" sizes="16x16"
-	href="/ui2017/logo-16.png" />
-<link rel="icon" type="image/png" sizes="32x32"
-	href="/ui2017/logo-32.png" />
-<link rel="icon" type="image/png" sizes="48x48"
-	href="/ui2017/logo-48.png" />
 <link href="${ctx}/resources/portal/css/style.css" rel="stylesheet" />
 <link href="${ctx}/resources/portal/css/extends-style.css" rel="stylesheet" />
 

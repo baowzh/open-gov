@@ -118,7 +118,7 @@ public class PageTag extends TagSupport {
 
 			sb.append("<a href=\"javascript:turnOverPage(").append(pageCount).append(")\">末页</a>\r\n");
 			// 拼接总记录条数和总页数
-			if (this.isMobile()) {
+			if (!this.isMobile()) {
 				sb.append("共<strong>").append(this.totalRecord).append("</strong>条,").append("共<strong>")
 						.append(pageCount).append("</strong>页");
 			}
