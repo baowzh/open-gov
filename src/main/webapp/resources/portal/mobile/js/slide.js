@@ -14,6 +14,7 @@ $(document).ready(function(){
 	*****************/
 	//set width to be 'x' times the number of slides
 	$('#slider-wrap ul#slider').width(sliderWidth*totalSlides);
+//	$('#slider-wrap ul#slider').css({'width':'100%'});
 	
     //next slide 	
 	$('#next').click(function(){
@@ -103,4 +104,5 @@ function countSlides(){
 function pagination(){
 	$('#pagination-wrap ul li').removeClass('active');
 	$('#pagination-wrap ul li:eq('+pos+')').addClass('active');
+	
 }

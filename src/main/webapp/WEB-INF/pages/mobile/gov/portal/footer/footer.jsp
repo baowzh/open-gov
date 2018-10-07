@@ -7,9 +7,7 @@
 		<a href="http://www.kzhqzzb.gov.cn/">党建网</a> 
 		<a href="http://kzhq.tongliao.gov.cn/kzhq/index.shtml">人民政府网</a>
 		<a href="http://kzhq.nmgjjjc.gov.cn/">纪委监委网</a>
-		<a href="${ctx}/main/index.jhtml" target="_blank">
-		  <img src="${ctx}/resources/portal/images/login.png" style="width:18px;height:18px;padding:0px;">
-		</a>
+		
 			
 	</div>
 </footer>

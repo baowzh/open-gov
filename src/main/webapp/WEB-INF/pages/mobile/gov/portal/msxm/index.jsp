@@ -12,6 +12,9 @@
 	rel="stylesheet" type="text/css">
 <link href="${ctx}/resources/portal/mobile/css/style.css"
 	rel="stylesheet" type="text/css">
+<script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript"
+		src="${ctx}/resources/portal/mobile/js/slide.js"></script>
 <title>科尓沁左翼后旗三务公开</title>
 <style>
 body {

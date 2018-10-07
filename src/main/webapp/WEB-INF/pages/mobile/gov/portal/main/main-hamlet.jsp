@@ -51,7 +51,7 @@ body {
 							<div>
 								<span><a
 									href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image"> <a
+							</div> <i class="fa fa-image" > <a
 								href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img
 									src="${ctx}${newsItem.thumb}" width="100%" height="100%"></a>
 						</i>
@@ -114,10 +114,6 @@ body {
 									</c:if> <c:if test="${fundsSum==null}">
 								0
 								</c:if>
-
-
-
-
 							</span>万元
 						</b>
 					</a></li>
@@ -128,7 +124,7 @@ body {
 	</div>
 	<script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript"
-		src="${ctx}/resources/portal/js/slide.js"></script>
+		src="${ctx}/resources/portal/mobile/js/slide.js"></script>
 	<!-- 内容栏目 -->
 	<div class="center">
 		<div class="newslist">

@@ -12,6 +12,9 @@
 	rel="stylesheet" type="text/css">
 <link href="${ctx}/resources/portal/mobile/css/style.css"
 	rel="stylesheet" type="text/css">
+<script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript"
+	src="${ctx}/resources/portal/mobile/js/slide.js"></script>
 <title>科尓沁左翼后旗三务公开</title>
 <style>
 body {
@@ -41,6 +44,7 @@ body {
 				<span style="font-size: 18px; font-weight: bolder; color: #2a333c">旗级项目：共
 					<a href="${ctx}/portal/projectGroup.jhtml?departId=${depart.id}">
 						<span style="margin-left: 5px; margin-right: 5px; color: red;">${projectCount }</span>项
+
 
 				
 				</span> </a>

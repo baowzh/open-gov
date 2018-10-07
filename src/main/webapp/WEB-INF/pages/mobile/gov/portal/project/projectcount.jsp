@@ -32,7 +32,7 @@ body {
 <body>
 	<%@include file="../head/head.jsp"%>
 	<div class="new_tb">
-		<a href="${ctx}/portal/index.jhtml"> 首页 </a> >> <a href="#"> 项目列表
+		<a href="${ctx}/portal/main.jhtml?departId=${depart.id}"> 首页 </a> >> <a href="#"> 项目列表
 		</a>
 	</div>
 	<div class="new_li">

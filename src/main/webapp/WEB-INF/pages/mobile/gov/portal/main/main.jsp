@@ -34,10 +34,11 @@ body {
 			<ul id="slider">
 				<c:if test="${empty hotNews}">
 
-					<li data-color="#1abc9c">
+					<li data-color="#1abc9c" >
 						<div>
 							<span><a href="#"></a></span>
-						</div> <i class="fa fa-image"> <a><img
+						</div> 
+						<i class="fa fa-image" style="width:300px"> <a><img
 								src="${ctx}/resources/portal/images/swgkhy.jpg" width="100%"
 								height="100%"> </a>
 					</i>
@@ -51,7 +52,7 @@ body {
 							<div>
 								<span><a
 									href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image"> <a
+							</div> <i class="fa fa-image" > <a
 								href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img
 									src="${ctx}${newsItem.thumb}" width="100%" height="100%"></a>
 						</i>
@@ -115,9 +116,6 @@ body {
 								0
 								</c:if>
 
-
-
-
 							</span>万元
 						</b>
 					</a></li>
@@ -128,7 +126,7 @@ body {
 	</div>
 	<script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript"
-		src="${ctx}/resources/portal/js/slide.js"></script>
+		src="${ctx}/resources/portal/mobile/js/slide.js"></script>
 	<!-- 内容栏目 -->
 	<div class="center">
 		<div class="newslist">
@@ -243,15 +241,15 @@ body {
 		</div>
 	</div>
 	<div class="center">
-		<div class="newslist">
+		<div class="newslist" style="min-height: 460px;">
 			<h2>
 				<a href="pagingDwgkStatistic.jhtml">党务信息排名</a>
 			</h2>
 			<ul>
 				<c:forEach items="${dwgkStatistic}" var="statistic" varStatus="st">
-					<li><span style="float:left">${st.index+1}</span>
+					<li><span style="float:left;width:5%;">${st.index+1}</span>
 					<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;">${statistic.name}&nbsp;[${statistic.num} ]"</a></li>
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;width:85%;">${statistic.name}&nbsp;[${statistic.num} ]"</a></li>
 				</c:forEach>
 			</ul>
 			<c:if test="${not empty  dwgkStatistic}">
@@ -261,14 +259,14 @@ body {
 		    </c:if>
 			
 		</div>
-		<div class="newslist">
+		<div class="newslist" style="min-height: 460px;">
 			<h2>
 				<a href="pagingZwgkStatistic.jhtml">政务信息排名</a>
 			</h2>
 			<ul>
 				<c:forEach items="${zwgkStatistic}" var="statistic" varStatus="st">
-					<li><span style="float:left">${st.index+1}</span><a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+					<li><span style="float:left;width:5%;">${st.index+1}</span><a
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;width:85%;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 
 			</ul>
@@ -280,14 +278,14 @@ body {
 		    </c:if>
 			
 		</div>
-		<div class="newslist">
+		<div class="newslist" style="min-height: 460px;">
 			<h2>
 				<a href="pagingCunwgkStatistic.jhtml">村务排名</a><a href="pagingCunwgkStatistic.jhtml">财务排名</a>
 			</h2>
 			<ul>
 				<c:forEach items="${cunwgkStatistic}" var="statistic" varStatus="st">
-					<li><span style="float:left">${st.index+1}</span><a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+					<li><span style="float:left;width:5%;">${st.index+1}</span><a
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;width:85%;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 			</ul>
 			<c:if test="${not empty  cunwgkStatistic}">

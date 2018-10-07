@@ -145,8 +145,8 @@ width: 100%;
 }
 
 .bottom02 {
-	width: 10px;
-	height: 10px;
+	width: 20px;
+	height: 20px;
 /* 	padding: 8px; */
 	text-align: center;
 	color: #5c656e;
@@ -193,8 +193,12 @@ width: 100%;
 	<div id="fade" class="black_overlay"></div>
 	<div id="MyDiv" class="white_content">
 		<div class="close" id="move">
-			<span class="bottom02" onclick="CloseDiv('MyDiv','fade')"><img
-				src="${ctx}/resources/portal/mobile/images/close.jpg" /></span>
+			<span class="bottom02" onclick="CloseDiv('MyDiv','fade')">
+			 <a style="font-size:26px;margin-left:0px;" href="#">X</a>
+<!-- 			<img -->
+<%-- 				src="${ctx}/resources/portal/mobile/images/close.jpg" /> --%>
+				
+				</span>
 		</div>
 		<div style="height: 100%; overflow: scroll; margin: 0 0 10px 10px;">
 			<ul>
@@ -214,8 +218,13 @@ width: 100%;
 	<div id="townDiv" class="white_content"
 		>
 		<div class="close" id="move">
-			<span class="bottom02" onclick="CloseDiv('townDiv','fade')"><img
-				src="${ctx}/resources/portal/mobile/images/close.jpg" /></span>
+			<span class="bottom02" onclick="CloseDiv('townDiv','fade')">
+			<a style="font-size:26px;margin-left:0px;" href="#">X</a>
+			<!--  
+			<img
+				src="${ctx}/resources/portal/mobile/images/close.jpg" />
+				-->
+				</span>
 		</div>
 		<div style="height: 100%; overflow: scroll; margin: 0 0 10px 10px;">
 			<ul>

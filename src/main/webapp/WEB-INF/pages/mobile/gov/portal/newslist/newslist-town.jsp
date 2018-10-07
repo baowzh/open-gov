@@ -48,9 +48,11 @@ body {
 				<div class="yleft-a2">
 					<ul>
 						<c:forEach items="${childs}" var="item">
-							<li><a
+							<li><a style="
+    float: left;"
 								href="${ctx}/portal/news/list.jhtml?catId=${item.id}&departId=${depart.id}"
-								class="ygzlc">${item.name} <span> <img
+								class="ygzlc">${item.name} <span style="margin-top: 15px;
+    float: right;padding-left:0px;"> <img
 										src="${ctx}/resources/portal/images/jt.png" width="6"
 										height="12" />
 								</span>
@@ -75,9 +77,9 @@ body {
 			<div class="new_x">
 				<ul>
 					<c:forEach items="${news}" var="item">
-						<li><a
+						<li><a style="width:65%;padding-left: 10px;"
 							href="${ctx}/portal/news/detail.jhtml?id=${item.id}&departId=${depart.id}">
-								${item.title} </a> <span> <fmt:formatDate
+								${item.title} </a> <span style="width:30%"> <fmt:formatDate
 									value="${item.inputtime}" pattern="yyyy-MM-dd" />
 						</span></li>
 					</c:forEach>

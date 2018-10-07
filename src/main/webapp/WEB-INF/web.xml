@@ -96,7 +96,7 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 	<welcome-file-list>
-		<welcome-file>login/tologin.jhtml</welcome-file>
+		<welcome-file>portal/index.jhtml</welcome-file>
 	</welcome-file-list>
 	<mime-mapping>
 		<extension>js</extension>

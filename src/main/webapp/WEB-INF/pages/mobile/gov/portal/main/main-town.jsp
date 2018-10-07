@@ -37,7 +37,7 @@ body {
 					<li data-color="#1abc9c">
 						<div>
 							<span><a href="#"></a></span>
-						</div> <i class="fa fa-image"> <a><img
+						</div> <i class="fa fa-image" style="width:300px"> <a><img
 								src="${ctx}/resources/portal/images/fy.jpg" width="100%"
 								height="100%"> </a>
 					</i>
@@ -51,7 +51,7 @@ body {
 							<div>
 								<span><a
 									href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image"> <a
+							</div> <i class="fa fa-image" > <a
 								href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img
 									src="${ctx}${newsItem.thumb}" width="100%" height="100%"></a>
 						</i>
@@ -88,12 +88,12 @@ body {
 						<img style="width: 100%; height: 130px"
 							src="${ctx}/resources/portal/images/peit.jpg" />
 					</div>
-					<li><a href="projectGroup.jhtml"> <i><img
+					<li><a href="projectGroup.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02ico.png" /></i><b>民生项目：共<span
 								style="color: red;">${projectCount}</span>项
 						</b>
 					</a></li>
-					<li><a href="projectFundsGroup.jhtml"> <i><img
+					<li><a href="projectFundsGroup.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02iddd.png" /></i><b>民生资金：共<span
 								style="color: red;"> <c:if test="${projectSum!=null}">
 										<fmt:formatNumber value="${projectSum}" type="CURRENCY">
@@ -105,7 +105,7 @@ body {
 							</span>万元
 						</b>
 					</a></li>
-					<li><a href="fundsGroup.jhtml"> <i><img
+					<li><a href="fundsGroup.jhtml?departId=${depart.id}"> <i><img
 								src="${ctx}/resources/portal/images/02iccc.png" /></i><b>到户资金：共<span
 								style="color: red;"> <c:if test="${fundsSum!=null}">
 										<fmt:formatNumber pattern="###,###.####" value="${fundsSum}"
@@ -114,9 +114,6 @@ body {
 									</c:if> <c:if test="${fundsSum==null}">
 								0
 								</c:if>
-
-
-
 
 							</span>万元
 						</b>
@@ -128,16 +125,16 @@ body {
 	</div>
 	<script src="${ctx}/resources/portal/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript"
-		src="${ctx}/resources/portal/js/slide.js"></script>
+		src="${ctx}/resources/portal/mobile/js/slide.js"></script>
 	<!-- 内容栏目 -->
 	<div class="center">
 		<div class="newslist">
 			<h2>
-				<a href="news/list.jhtml?catId=${dwgk.category.id}&">${dwgk.category.name}</a>
+				<a href="news/list.jhtml?catId=${dwgk.category.id}&departId=${depart.id}">${dwgk.category.name}</a>
 			</h2>
 			<ul>
 				<c:forEach items="${dwgk.news}" var="newItem">
-					<li><a href="news/detail.jhtml?id=${newItem.id}">${newItem.title}</a><span>
+					<li><a href="news/detail.jhtml?id=${newItem.id}&departId=${depart.id}">${newItem.title}</a><span>
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
@@ -145,18 +142,18 @@ body {
 			</ul>
 			<c:if test="${not empty  dwgk.news}">
 				<div class="more">
-					<a href="news/list.jhtml?catId=${dwgk.category.id}" title=""
+					<a href="news/list.jhtml?catId=${dwgk.category.id}&departId=${depart.id}" title=""
 						target="_self">更多</a>
 				</div>
 			</c:if>
 		</div>
 		<div class="newslist">
 			<h2>
-				<a href="news/list.jhtml?catId=${zwgk.category.id}&">${zwgk.category.name}</a>
+				<a href="news/list.jhtml?catId=${zwgk.category.id}&departId=${depart.id}">${zwgk.category.name}</a>
 			</h2>
 			<ul>
 				<c:forEach items="${zwgk.news}" var="newItem">
-					<li><a href="news/detail.jhtml?id=${newItem.id}">${newItem.title}</a><span>
+					<li><a href="news/detail.jhtml?id=${newItem.id}&departId=${depart.id}">${newItem.title}</a><span>
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
@@ -164,18 +161,18 @@ body {
 			</ul>
 			<c:if test="${not empty  zwgk.news}">
 				<div class="more">
-					<a href="news/list.jhtml?catId=${zwgk.category.id}" title=""
+					<a href="news/list.jhtml?catId=${zwgk.category.id}&departId=${depart.id}" title=""
 						target="_self">更多</a>
 				</div>
 			</c:if>
 		</div>
 		<div class="newslist">
 			<h2>
-				<a href="news/list.jhtml?catId=${bsyj.category.id}&">${bsyj.category.name}</a>
+				<a href="news/list.jhtml?catId=${bsyj.category.id}&departId=${depart.id}">${bsyj.category.name}</a>
 			</h2>
 			<ul>
 				<c:forEach items="${bsyj.news}" var="newItem">
-					<li><a href="news/detail.jhtml?id=${newItem.id}">${newItem.title}</a><span>
+					<li><a href="news/detail.jhtml?id=${newItem.id}&departId=${depart.id}">${newItem.title}</a><span>
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
@@ -183,7 +180,7 @@ body {
 			</ul>
 			<c:if test="${not empty  bsyj.news}">
 				<div class="more">
-					<a href="news/list.jhtml?catId=${bsyj.category.id}" title=""
+					<a href="news/list.jhtml?catId=${bsyj.category.id}&departId=${depart.id}" title=""
 						target="_self">更多</a>
 				</div>
 			</c:if>
