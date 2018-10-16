@@ -72,8 +72,7 @@
 	<!-- 登录失败 -->
 	<bean id="authenticationFailerHandler"
 		class="com.asiainfo.ewebframe.security.auth.AuthenticationFailerHandler">
-		<property name="defaultFailureUrl" value="/login.jsp?error=true" />
-		<property name="memberLoginFailureUrl" value="/member/loginsys.jhtml?error=true" />
+		<property name="defaultFailureUrl" value="/login.jsp?error=true" />		
 	</bean>
 
 	<!-- 管理员用户认证服务 -->

@@ -15,6 +15,17 @@
 	rel="stylesheet" type="text/css">
 <link href="${ctx}/resources/portal/mobile/css/extends-style.css"
 	rel="stylesheet" />
+<link href="${ctx}/resources/portal/mobile/PhotoSwipe/photoswipe.css"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="${ctx}/resources/portal/mobile/PhotoSwipe/default-skin/default-skin.css">
+
+<script src="${ctx}/resources/portal/mobile/PhotoSwipe/photoswipe.js"></script>
+<script
+	src="${ctx}/resources/portal/mobile/PhotoSwipe/photoswipe-ui-default.js"></script>
+<link href="${ctx}/resources/portal/mobile/swiper/swiper.min.css"
+	rel="stylesheet" />
+<script src="${ctx}/resources/portal/mobile/swiper/swiper.min.js"></script>
 <title>科尓沁左翼后期三务公开-首页</title>
 <style>
 body {
@@ -22,6 +33,8 @@ body {
 		no-repeat top;
 	background-size: 100%;
 }
+
+
 </style>
 </head>
 <body>
@@ -30,50 +43,38 @@ body {
 	<div id="wrapper">
 		<!-- 左边 -->
 
-		<div id="slider-wrap">
-			<ul id="slider">
-				<c:if test="${empty hotNews}">
-
-					<li data-color="#1abc9c" >
-						<div>
-							<span><a href="#"></a></span>
-						</div> 
-						<i class="fa fa-image" style="width:300px"> <a><img
-								src="${ctx}/resources/portal/images/swgkhy.jpg" width="100%"
-								height="100%"> </a>
-					</i>
-					</li>
-
-
-				</c:if>
-				<c:if test="${not empty hotNews}">
+		<div id="slider-wrap" style="height: 320px;">
+			<!--  -->
+			<div
+				class="swiper-container swiper-container-horizontal swiper-container-android">
+				<div class="swiper-wrapper"
+					style="transition-duration: 0ms; transform: translate3d(-2760px, 0px, 0px);">
 					<c:forEach items="${hotNews}" var="newsItem">
-						<li data-color="#1abc9c">
-							<div>
-								<span><a
-									href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image" > <a
+					<div class="swiper-slide" style="width: 100%;">
+					  <li data-color="#1abc9c" style="height:270px;">
+							
+							 <i class="fa fa-image"  > <a
 								href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img
 									src="${ctx}${newsItem.thumb}" width="100%" height="100%"></a>
 						</i>
+						<div style="width: 100%;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;margin-top: 12px;">
+								<span><a
+									href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
+							</div>
 						</li>
+					</div>
 					</c:forEach>
-				</c:if>
-			</ul>
-
-			<div class="btns" id="next">
-				<i class="fa fa-arrow-right"></i>
+					
+				</div>
+				<span class="swiper-notification" aria-live="assertive"
+					aria-atomic="true"></span>
 			</div>
-			<div class="btns" id="previous">
-				<i class="fa fa-arrow-left"></i>
-			</div>
-			<div id="counter"></div>
-			<div id="pagination-wrap">
-				<ul>
-				</ul>
-			</div>
+			<!--  -->
 
 		</div>
+		<script>
+			var swiper = new Swiper('.swiper-container');
+		</script>
 
 
 		<!-- 右侧新闻 -->
@@ -139,15 +140,16 @@ body {
 							<fmt:formatDate value="${newItem.inputtime}" pattern="yyyy-MM-dd" />
 					</span></li>
 				</c:forEach>
-				
+
 			</ul>
 			<c:if test="${not empty  dwgk.news}">
-			<div class="more">
-						<a href="news/list.jhtml?catId=${dwgk.category.id}" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
+				<div class="more">
+					<a href="news/list.jhtml?catId=${dwgk.category.id}" title=""
+						target="_self">更多</a>
+				</div>
+			</c:if>
 		</div>
-			<div class="newslist">
+		<div class="newslist">
 			<h2>
 				<a href="news/list.jhtml?catId=${zwgk.category.id}&">${zwgk.category.name}</a>
 			</h2>
@@ -160,10 +162,11 @@ body {
 
 			</ul>
 			<c:if test="${not empty  zwgk.news}">
-			<div class="more">
-						<a href="news/list.jhtml?catId=${zwgk.category.id}" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
+				<div class="more">
+					<a href="news/list.jhtml?catId=${zwgk.category.id}" title=""
+						target="_self">更多</a>
+				</div>
+			</c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -178,10 +181,11 @@ body {
 
 			</ul>
 			<c:if test="${not empty  gzdt.news}">
-			<div class="more">
-						<a href="news/list.jhtml?catId=${gzdt.category.id}" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
+				<div class="more">
+					<a href="news/list.jhtml?catId=${gzdt.category.id}" title=""
+						target="_self">更多</a>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<div class="center">
@@ -198,10 +202,11 @@ body {
 
 			</ul>
 			<c:if test="${not empty  zcwj.news}">
-			<div class="more">
-						<a href="news/list.jhtml?catId=${zcwj.category.id}" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
+				<div class="more">
+					<a href="news/list.jhtml?catId=${zcwj.category.id}" title=""
+						target="_self">更多</a>
+				</div>
+			</c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -216,10 +221,11 @@ body {
 
 			</ul>
 			<c:if test="${not empty  jdjl.news}">
-			<div class="more">
-						<a href="news/list.jhtml?catId=${jdjl.category.id}" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
+				<div class="more">
+					<a href="news/list.jhtml?catId=${jdjl.category.id}" title=""
+						target="_self">更多</a>
+				</div>
+			</c:if>
 		</div>
 		<div class="newslist">
 			<h2>
@@ -234,10 +240,11 @@ body {
 
 			</ul>
 			<c:if test="${not empty  gsgg.news}">
-			<div class="more">
-						<a href="news/list.jhtml?catId=${gsgg.category.id}" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
+				<div class="more">
+					<a href="news/list.jhtml?catId=${gsgg.category.id}" title=""
+						target="_self">更多</a>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<div class="center">
@@ -247,17 +254,18 @@ body {
 			</h2>
 			<ul>
 				<c:forEach items="${dwgkStatistic}" var="statistic" varStatus="st">
-					<li><span style="float:left;width:5%;">${st.index+1}</span>
-					<a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;width:85%;">${statistic.name}&nbsp;[${statistic.num} ]"</a></li>
+					<li><span style="float: left; width: 5%;">${st.index+1}</span>
+						<a href="${ctx}/portal/main.jhtml?departId=${statistic.id}"
+						style="float: left; background: unset; width: 85%;">${statistic.name}&nbsp;[${statistic.num}
+							]"</a></li>
 				</c:forEach>
 			</ul>
 			<c:if test="${not empty  dwgkStatistic}">
-			<div class="more">
-						<a href="pagingDwgkStatistic.jhtml" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
-			
+				<div class="more">
+					<a href="pagingDwgkStatistic.jhtml" title="" target="_self">更多</a>
+				</div>
+			</c:if>
+
 		</div>
 		<div class="newslist" style="min-height: 460px;">
 			<h2>
@@ -265,35 +273,40 @@ body {
 			</h2>
 			<ul>
 				<c:forEach items="${zwgkStatistic}" var="statistic" varStatus="st">
-					<li><span style="float:left;width:5%;">${st.index+1}</span><a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;width:85%;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+					<li><span style="float: left; width: 5%;">${st.index+1}</span><a
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}"
+						style="float: left; background: unset; width: 85%;">${statistic.name}
+							&nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 
 			</ul>
-			
+
 			<c:if test="${not empty  zwgkStatistic}">
-			<div class="more">
-						<a href="pagingZwgkStatistic.jhtml" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
-			
+				<div class="more">
+					<a href="pagingZwgkStatistic.jhtml" title="" target="_self">更多</a>
+				</div>
+			</c:if>
+
 		</div>
 		<div class="newslist" style="min-height: 460px;">
 			<h2>
-				<a href="pagingCunwgkStatistic.jhtml">村务排名</a><a href="pagingCunwgkStatistic.jhtml">财务排名</a>
+				<a href="pagingCunwgkStatistic.jhtml">村务排名</a><a
+					href="pagingCunwgkStatistic.jhtml">财务排名</a>
 			</h2>
 			<ul>
 				<c:forEach items="${cunwgkStatistic}" var="statistic" varStatus="st">
-					<li><span style="float:left;width:5%;">${st.index+1}</span><a
-						href="${ctx}/portal/main.jhtml?departId=${statistic.id}" style="float:left;background: unset;width:85%;">${statistic.name} &nbsp;[${statistic.num} ]</a></li>
+					<li><span style="float: left; width: 5%;">${st.index+1}</span><a
+						href="${ctx}/portal/main.jhtml?departId=${statistic.id}"
+						style="float: left; background: unset; width: 85%;">${statistic.name}
+							&nbsp;[${statistic.num} ]</a></li>
 				</c:forEach>
 			</ul>
 			<c:if test="${not empty  cunwgkStatistic}">
-			<div class="more">
-						<a href="pagingCunwgkStatistic.jhtml" title="" target="_self">更多</a>
-		    </div>
-		    </c:if>
-			
+				<div class="more">
+					<a href="pagingCunwgkStatistic.jhtml" title="" target="_self">更多</a>
+				</div>
+			</c:if>
+
 		</div>
 	</div>
 	<%@include file="../footer/footer.jsp"%>

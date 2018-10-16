@@ -15,6 +15,16 @@
 	rel="stylesheet" type="text/css">
 <link href="${ctx}/resources/portal/mobile/css/extends-style.css"
 	rel="stylesheet" />
+<link href="${ctx}/resources/portal/mobile/PhotoSwipe/photoswipe.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="${ctx}/resources/portal/mobile/PhotoSwipe/default-skin/default-skin.css"> 
+<script src="${ctx}/resources/portal/mobile/PhotoSwipe/photoswipe.js"></script> 
+<script src="${ctx}/resources/portal/mobile/PhotoSwipe/photoswipe-ui-default.js"></script> 
+
+<link href="${ctx}/resources/portal/mobile/swiper/swiper.min.css"
+	rel="stylesheet" />
+<script src="${ctx}/resources/portal/mobile/swiper/swiper.min.js"></script>
+
 <title>科尓沁左翼后期三务公开-首页</title>
 <style>
 body {
@@ -30,49 +40,61 @@ body {
 	<div id="wrapper">
 		<!-- 左边 -->
 
-		<div id="slider-wrap">
-			<ul id="slider">
+		
+		<div id="slider-wrap" style="height: 320px;">
+			<!--  -->
+			<div
+				class="swiper-container swiper-container-horizontal swiper-container-android">
+				<div class="swiper-wrapper"
+					style="transition-duration: 0ms; transform: translate3d(-2760px, 0px, 0px);">
 				<c:if test="${empty hotNews}">
 
-					<li data-color="#1abc9c">
-						<div>
-							<span><a href="#"></a></span>
-						</div> <i class="fa fa-image" style="width:300px"> <a><img
-								src="${ctx}/resources/portal/images/fy.jpg" width="100%"
-								height="100%"> </a>
-					</i>
-					</li>
-
-
+					
+					
+					<div class="swiper-slide" style="width: 100%;">
+					  <li data-color="#1abc9c" style="height: 270; ">
+							
+							 <i class="fa fa-image"  > <a
+								href="#"><img
+									src="${ctx}/resources/portal/images/fy.jpg" width="100%" height="100%"></a>
+						</i>
+						<div style="width: 100%;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;margin-top: 12px;">
+								<span><a
+									href="#"></a></span>
+							</div>
+						</li>
+					</div>
+					
+					
 				</c:if>
 				<c:if test="${not empty hotNews}">
 					<c:forEach items="${hotNews}" var="newsItem">
-						<li data-color="#1abc9c">
-							<div>
+					<div class="swiper-slide" style="width: 100%;">
+					  <li data-color="#1abc9c" style="height: 270; ">
+							
+							 <i class="fa fa-image"  > <a
+								href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img
+									src="${ctx}${newsItem.thumb}" width="98%" height="100%"></a>
+						</i>
+						<div style="width: 100%;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;margin-top:12px;">
 								<span><a
 									href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}">${newsItem.title}</a></span>
-							</div> <i class="fa fa-image" > <a
-								href="news/detail.jhtml?id=${newsItem.id}&departId=${depart.id}"><img
-									src="${ctx}${newsItem.thumb}" width="100%" height="100%"></a>
-						</i>
+							</div>
 						</li>
+					</div>
 					</c:forEach>
-				</c:if>
-			</ul>
-
-			<div class="btns" id="next">
-				<i class="fa fa-arrow-right"></i>
+					</c:if>
+					
+				</div>
+				<span class="swiper-notification" aria-live="assertive"
+					aria-atomic="true"></span>
 			</div>
-			<div class="btns" id="previous">
-				<i class="fa fa-arrow-left"></i>
-			</div>
-			<div id="counter"></div>
-			<div id="pagination-wrap">
-				<ul>
-				</ul>
-			</div>
+			<!--  -->
 
 		</div>
+		<script>
+			var swiper = new Swiper('.swiper-container');
+		</script>
 
 
 		<!-- 右侧新闻 -->
@@ -187,12 +209,12 @@ body {
 		</div>
 	</div>
 	
-	<div class="center">
-		<div class="newslist" style="min-height:650px;">
+	<div class="center" >
+		<div class="newslist" style="min-height:920px;">
 			<h2>
 				<a href="#">嘎查村（社区）</a>
 			</h2>
-			<div class="linepai">
+			<div class="linepai" style="height: auto;">
 				<c:forEach items="${departs}" var="item">
 					<a href="main.jhtml?departId=${item.id}" style="width:42%;">${item.name}</a>
 				</c:forEach>
