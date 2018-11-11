@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
@@ -447,16 +448,32 @@ public class DefaultSystemService implements SystemService {
 		String oldPassword = userSessionHolderService.getSessionUserInfo().getStaffpasswd();
 		String enold = Encryptor.fnEncrypt(oldPass, "00linkage");
 		String ennew = Encryptor.fnEncrypt(newPass, "00linkage");
-		if(StringUtil.isEmpty(oldPass)||StringUtil.isEmpty(newPass)){
+		if (StringUtil.isEmpty(oldPass) || StringUtil.isEmpty(newPass)) {
 			throw new Exception("请填写当前密码和新的密码。");
 		}
-		if(oldPassword.equalsIgnoreCase(oldPass)){
+		if (oldPassword.equalsIgnoreCase(oldPass)) {
 			throw new Exception("当前密码不正确。");
 		}
 		User user = new User();
 		user.setStaffid(staffId);
 		user.setStaffpasswd(ennew);
 		userDao.updatePasswordById(user);
+	}
+
+	@Override
+	public String resetPassword(String staffId) throws Exception {
+		Integer baseElement[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+		String randomPass = "";
+		Random random = new Random();
+		for (int i = 0; i < 6; i++) {
+			randomPass = randomPass + baseElement[random.nextInt(9)];
+		}
+		String ennew = Encryptor.fnEncrypt(randomPass, "00linkage");
+		User user = new User();
+		user.setStaffid(staffId);
+		user.setStaffpasswd(ennew);
+		userDao.updatePasswordById(user);
+		return randomPass;
 	}
 
 }

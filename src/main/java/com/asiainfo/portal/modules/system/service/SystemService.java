@@ -45,30 +45,31 @@ public interface SystemService {
 
 	public Role getRoleByEnname(String enname);
 
-	public List<Role> findRole(Role role,String staffid);
-	
-	public DBPageValue<Role> findRole(DBPagingPrams page);
+	public List<Role> findRole(Role role, String staffid);
 
+	public DBPageValue<Role> findRole(DBPagingPrams page);
 
 	public List<Role> findAllRole();
 
 	public void saveRole(Role role);
 
 	public void deleteRole(Role role);
-	
+
 	public void forcDeleteRole(Role role);
 
 	public Boolean outUserInRole(Role role, User user);
 
 	public User assignUserToRole(Role role, User user);
-	
-	public void saveUserRole(UserRoleBeen userRoleBeen,UserInfo userInfo);
+
+	public void saveUserRole(UserRoleBeen userRoleBeen, UserInfo userInfo);
 
 	public Menu getMenu(String id);
-    /**
-     * 获取当前用户的所有菜单
-     * @return
-     */
+
+	/**
+	 * 获取当前用户的所有菜单
+	 * 
+	 * @return
+	 */
 	public List<Menu> findAllMenu();
 
 	public void saveMenu(Menu menu);
@@ -76,7 +77,9 @@ public interface SystemService {
 	public void updateMenuSort(Menu menu);
 
 	public void deleteMenu(Menu menu);
-	
-	public void updatePass(String oldPass,String newPass) throws Exception;
+
+	public void updatePass(String oldPass, String newPass) throws Exception;
+
+	public String resetPassword(String staffId) throws Exception;
 
 }

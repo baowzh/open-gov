@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>用户管理</title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/easyUI/themes/bootstrap/easyui.css">
+	href="${pageContext.request.contextPath}/resources/easyUI/themes/bootstrap/easyui.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/easyUI/themes/icon.css">
+	href="${pageContext.request.contextPath}/resources/easyUI/themes/icon.css" />
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/easyUI/jquery.min.js"></script>
 <script type="text/javascript"
@@ -18,11 +18,7 @@
 	src="${pageContext.request.contextPath}/resources/easyUI/locale/easyui-lang-zh_CN.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-
-	});
-
-
+	
 	function editUserRole() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
@@ -41,7 +37,7 @@
 					"height=500,width=850,status=yes,toolbar=no,menubar=no,location=no,top="
 							+ top + ",left=" + left);
 		} else {
-			alert("请选择需要修改的功能")
+			alert("请选择需要授权的用户")
 		}
 
 	}
@@ -55,112 +51,116 @@
 		return '<a href="#" class="easyui-linkbutton"  iconCls="icon-edit" text="修改" plain="true" onclick="editFunc(this)">修改</a>';
 	}
 
-
 	function sexformatOper(val, row, index) {
-		if(val == '0'){
+		if (val == '0') {
 			return '男';
-		}else if(val == '1'){
+		} else if (val == '1') {
 			return '女';
-		}else{
+		} else {
 			return val;
 		}
 	}
-	
+
 	function dismissionformatOper(val, row, index) {
-		if(val == '0'){
+		if (val == '0') {
 			return '有效';
-		}else if(val == '1'){
+		} else if (val == '1') {
 			return '失效';
-		}else{
+		} else {
 			return val;
 		}
 	}
 	function custManagerformatOper(val, row, index) {
-		if(val == '0'){
+		if (val == '0') {
 			return '客户经理';
-		}else if(val == '1'){
+		} else if (val == '1') {
 			return '商家客户经理';
-		}else if(val == '2'){
+		} else if (val == '2') {
 			return '集团客户经理';
-		}else{
+		} else {
 			return val;
 		}
 	}
-	
+
 	function doSearch(value, name) {
 		$('#dg').datagrid('load', {
-			'staffname': value
+			'staffname' : value
 		});
 
 	}
 	
 	
-	function qq(value, name) {
-		alert(value + ":" + name)
+	var resetPass=function(){
+	 var row = $('#dg').datagrid('getSelected');
+	 if (row) {
+		 $.ajax({
+	      "dataType": 'json',
+	      "type": "POST",
+	      "url": 'resetPassword.jhtml',
+	      "data": {
+	      staffId:row.staffid
+	      
+	      },
+	      "success": function(json) {
+		       if(json.success){
+		         alert('重置密码成功,新密码为'+json.newPass);
+		       }else{
+		        alert(json.message);
+		       }
+	      },
+	     "error": function(XMLHttpRequest, textStatus, errorThrown) {
+		     
+	     }
+       });
+		}else{
+		
+		 alert('请选择需要重置密码的用户。');
+		}
 	}
+
+	
 </script>
 
-</head'
+</head>
 <body>
-	<div style="margin: 20px 0;">
-	
-	</div>
-	
+	<div style="margin: 20px 0;"></div>
+
 	<table id="dg" class="easyui-datagrid" title="员工列表"
 		style="width: 100%; height: 450px" toolbar="#tb"
-		data-options="rownumbers:true,method:'get',singleSelect:true,
+		data-options="rownumbers:true,method:'post',singleSelect:true,
 			url:'infoList.jhtml',
 				pagination:true,
 				autoRowHeight:true,
 				pageSize:10	">
-			
+
 		<thead>
 			<tr id="dg-tr">
-				<th field="staffid" width="100"  halign="center" align="left"  >员工编码</th>
-				<th field="staffname" width="140"  halign="center" align="left"  >员工姓名</th>
-				<th field="departName" width="100"   halign="center" align="left"  >部门名称</th>
-				<th field="jobCode" width="60"   halign="center" align="left"  >岗位编码</th>
-				<th field="managerInfo" width="140"  halign="center" align="left"  >职务说明</th>
-				<th field="sex" width="80"  halign="center" align="left"  formatter=sexformatOper>性别</th>
-				<th field="email" width="100"   halign="center" align="left" >电子邮件</th>
-				<th field="userPid" width="140"  halign="center" align="left"  >身份证号码</th>
-				<th field="serialNumber" width="100"   halign="center" align="left" >服务号码</th>
-				<th field="dimissionTag" width="60"  halign="center" align="left"  formatter=dismissionformatOper>失效标志</th>
-				<th field="birthday" width="80"   halign="center" align="left"  >生日</th>
-				<th field="staffGroupId" width="80"  halign="center" align="left" >员工班组</th>
-				<th field="managerStaffId" width="140"   halign="center" align="left" >员工管理者</th>
-				<th field="receiveTypeCode" width="60"   halign="center" align="left" >收银类型</th>
-				<th field="loginFlag" width="60"  halign="center" align="left"  >登陆标志</th>
-				<th field="custManagerFlag" width="100"   halign="center" align="left"  formatter=custManagerformatOper >客户经理类型</th>
-				<th field="cityName" width="80"   halign="center" align="left"  >城市</th>
-				<th field="remark" width="140"   halign="center" align="left" >备注</th>
-				<th field="updateTime" width="120"   halign="center" align="left"  >更新时间</th>
-				<th field="updateStaffId" width="120" halign="center" align="left"  >更新员工</th>
-				<th field="updateDepartName" width="120"  halign="center" align="left" >更新部门</th>
-				<th field="linkPhone" width="60"   halign="center" align="left" >联系电话</th>
-				<th field="oasystemAcct" width="80"  halign="center" align="left" >OA系统账号</th>
+				<th field="staffid" width="100" halign="center" align="left">员工编码</th>
+				<th field="staffname" width="140" halign="center" align="left">员工姓名</th>
+				<th field="departName" width="100" halign="center" align="left">部门名称</th>
+				<th field="email" width="100" halign="center" align="left">电子邮件</th>
+				<th field="linkPhone" width="60" halign="center" align="left">联系电话</th>
+
 			</tr>
 
 		</thead>
 	</table>
-	<div id="tb" style="height:auto">
-	
-	<input id="ss" class="easyui-searchbox" style="width:300px"
-    data-options="searcher:doSearch, prompt:'请输入需要查找用户名',menu:'#mm'"></input>
-	<div id="mm" style="width:120px">
-    	<div data-options="name:'staffname'">员工名称</div>
+	<div id="tb" style="height: auto">
+
+		<input id="ss" class="easyui-searchbox" style="width: 300px"
+			data-options="searcher:doSearch, prompt:'请输入需要查找用户名',menu:'#mm'"></input>
+		<div id="mm" style="width: 120px">
+			<div data-options="name:'staffname'">员工名称</div>
+		</div>
+
+		<a href="javascript:void(0)" onclick="editUserRole()"
+			class="easyui-linkbutton" style="float: right" iconCls="icon-more">分配用户角色</a>
+		<a href="javascript:void(0)" onclick="resetPass();"
+			class="easyui-linkbutton" style="float: right" iconCls="icon-more">重置密码</a>
+
 	</div>
-	
-	<a href="javascript:void(0)" onclick="editUserRole()" class="easyui-linkbutton" style="float:right " iconCls="icon-more"  >分配用户角色</a>
-	
-	
-	
-	</div>
-	
+
+
 </body>
-
-
-
-
 
 </html>

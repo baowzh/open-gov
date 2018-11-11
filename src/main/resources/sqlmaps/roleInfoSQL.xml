@@ -20,15 +20,15 @@
 
 	<!-- 获取展会信息 -->
 	<select id="getRoles" resultMap="roleInfoMap" parameterType="java.util.Map">
-		SELECT B.* ,d.DEPART_NAME
+		SELECT B.* 
 		FROM
 
 		<if test="staffid != null and staffid !=''">
 			TF_M_STAFFFUNCRIGHT A,
 		</if>
-		TD_M_ROLE B ,TD_M_DEPART d
+		TD_M_ROLE B 
 
-		where b.UPDATE_DEPART_ID = d.DEPART_ID
+		where 1=1
 
 		<if test="staffid != null and staffid !=''">
 			and A.RIGHT_CODE = B.ROLE_CODE and A.RIGHT_ATTR='1'
@@ -61,11 +61,11 @@
 
 	<select id="pagingQueryRole" resultMap="roleInfoMap"
 		parameterType="com.asiainfo.portal.view.modules.system.bean.RoleDBPagingPrams">
-		SELECT B.*,d.DEPART_NAME
+		SELECT B.*
 		FROM
 
-		TD_M_ROLE B ,TD_M_DEPART d
-		where b.UPDATE_DEPART_ID = d.DEPART_ID
+		TD_M_ROLE B 
+		where 1=1
 		<if test="rightcode != null and rightcode !=''">
 			and B.ROLE_CODE = #{rightcode}
 		</if>

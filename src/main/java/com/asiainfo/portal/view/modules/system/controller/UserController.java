@@ -1,6 +1,8 @@
 package com.asiainfo.portal.view.modules.system.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +27,7 @@ import com.google.common.base.Objects;
 @Controller
 @RequestMapping(value = "system/user")
 public class UserController {
-	
+
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
@@ -33,7 +35,6 @@ public class UserController {
 
 	@Autowired
 	private UserSessionHolderService contextHolderService;
-
 
 	@RequestMapping("index")
 	public ModelAndView systemUser(ModelMap modelMap) {
@@ -76,7 +77,6 @@ public class UserController {
 		List<Role> allRoles = systemService.findAllRole();
 		List<Role> assignedRoles = systemService.findRole(null, staffid);
 
-
 		if (allRoles != null && assignedRoles != null) {
 			for (Role roleInfo : allRoles) {
 				for (Role assignedRole : assignedRoles) {
@@ -99,7 +99,7 @@ public class UserController {
 
 		try {
 			if (userRoleBeen != null) {
-				systemService.saveUserRole(userRoleBeen,userInfo);
+				systemService.saveUserRole(userRoleBeen, userInfo);
 
 				saveUserRest.setSuccess(true);
 				saveUserRest.setMessage("保存成功");
@@ -109,14 +109,29 @@ public class UserController {
 			}
 
 		} catch (RuntimeException e) {
-			logger.error("saveUserRole error:",e);			
-			
+			logger.error("saveUserRole error:", e);
+
 			saveUserRest.setSuccess(false);
 			saveUserRest.setMessage("保存失败:" + e.getMessage());
 		}
 
 		return saveUserRest;
 
+	}
+
+	@RequestMapping("resetPassword")
+	@ResponseBody
+	public Map<String, Object> resetPassword(String staffId) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		try {
+			String newPass = this.systemService.resetPassword(staffId);
+			result.put("success", true);
+			result.put("newPass", newPass);
+		} catch (Exception ex) {
+			result.put("success", false);
+			result.put("mess", ex.getMessage());
+		}
+		return result;
 	}
 
 	public static class UserList4Page {

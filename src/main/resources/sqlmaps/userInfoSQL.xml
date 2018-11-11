@@ -94,19 +94,14 @@
 	<select id="getUsers" resultMap="userInfoMap"
 		parameterType="com.asiainfo.portal.modules.system.model.User">
 		SELECT A.* ,
-		B.STAFF_PASSWD,
-		C.DEPART_NAME,
-		AREA.AREA_NAME
-		FROM TD_M_STAFF A
-		,
+		C.DEPART_NAME
+		FROM TD_M_STAFF A,
 		TF_M_STAFFPASSWD B ,
-		TD_M_DEPART C , AREA  where
+		TD_M_DEPART C  where
 		A.DEPART_ID = C.DEPART_ID
-		and
-		A.STAFF_ID = B.STAFF_ID
-		and A.CITY_CODE = AREA.AREA_CODE
+		and A.STAFF_ID = B.STAFF_ID
 		<if test="staffname != null and staffname !=''">
-			AND A.STAFF_NAME Like '%'||#{staffname}||'%'
+			AND A.STAFF_NAME Like  concat('%',#{staffname},'%') 
 		</if>
 	</select>
 
@@ -114,20 +109,15 @@
 		parameterType="com.asiainfo.portal.view.modules.system.bean.UserDBPagingPrams">
 		SELECT A.* ,
 		B.STAFF_PASSWD,
-		C.DEPART_NAME,
-		AREA.AREA_NAME,
-    	d.DEPART_NAME UPDATE_DEPART_NAME
-		FROM TD_M_STAFF A
-		,
+		C.DEPART_NAME
+		FROM TD_M_STAFF A,
 		TF_M_STAFFPASSWD B ,
-		TD_M_DEPART C , AREA  ,TD_M_DEPART d where
-		A.DEPART_ID = C.DEPART_ID
-		and
-		A.STAFF_ID = B.STAFF_ID
-		and A.CITY_CODE = AREA.AREA_CODE
-   		and a.UPDATE_DEPART_ID = d.DEPART_ID
+		TD_M_DEPART C   
+		 where
+		A.DEPART_ID = C.DEPART_ID and
+		A.STAFF_ID = B.STAFF_ID 
 		<if test="staffname != null and staffname !=''">
-			AND A.STAFF_NAME Like '%'||#{staffname}||'%'
+			AND A.STAFF_NAME Like concat('%',#{staffname},'%')
 		</if>
 
 	</select>

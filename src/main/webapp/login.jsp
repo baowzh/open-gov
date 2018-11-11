@@ -43,7 +43,7 @@
 						</c:choose>
 					</c:when>
 				</c:choose> <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
-				<form name='f' action="${ctx }/login/login.jhtml" method='POST'
+				<form name='f' action="${ctx }/login.jhtml" method='POST'
 					id="loginform">
 					<h1>欢迎您登录系统</h1>
 					<div>

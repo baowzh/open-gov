@@ -65,7 +65,7 @@ body {
 						<tr>
 							<td style="text-align: center;">${st.index+1}</td>
 							<td><fmt:formatDate value="${item.input_time}" pattern="yyyy-MM-dd" /></td>
-							<td>${item.orgName}</td>
+							<td>${item.areaName}</td>
 							<td>${item.name}</td>
 							
 							<td><fmt:formatNumber 

@@ -135,7 +135,7 @@
 				</td>
 				<td width="400px">
 				  <textarea
-					 id="content" name="content" style="width:100%;height:300px;" rows=100 cols=300 >
+					 id="content" name="content" style="width:100%;height:270px;" rows=90 cols=300 >
 					 ${news.data.content}
 					</textarea>
 				</td>

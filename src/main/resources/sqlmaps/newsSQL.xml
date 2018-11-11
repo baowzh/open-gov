@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.asiainfo.portal.modules.news.model.News">
+<mapper namespace="com.asiainfo.portal.modules.news.repository.NewsRepository">
 	<resultMap id="newsMap" type="com.asiainfo.portal.modules.news.model.News">
 		<result column="id" property="id"  />
 		<result column="catid" property="catId"  />
@@ -55,6 +55,39 @@
 		)
 
 	</insert>
+	<insert id="insertList" parameterType="com.asiainfo.portal.modules.news.model.News" >
+     Insert into
+		td_f_news
+		(
+          catid ,
+          typeid,
+          title ,
+          thumb ,
+          keywords,
+          description,
+          url,
+          username,
+          inputtime,
+          updatetime,
+          depart_id
+		)
+    VALUES
+    <foreach collection="news" item="model" separator=","> 
+        (           
+            #{model.catId,jdbcType=INTEGER} ,
+          #{model.typeId,jdbcType=INTEGER},
+          #{model.title,jdbcType=VARCHAR} ,
+          #{model.thumb,jdbcType=VARCHAR} ,
+          #{model.keywords,jdbcType=VARCHAR},
+          #{model.description,jdbcType=VARCHAR},
+          #{model.url,jdbcType=VARCHAR},
+          #{model.username,jdbcType=VARCHAR},
+          #{model.inputtime,jdbcType=DATE},
+          #{model.updatetime,jdbcType=DATE},
+          #{model.departId,jdbcType=VARCHAR}    
+        )
+    </foreach>
+</insert>
 	<update id="update" parameterType="com.asiainfo.portal.modules.news.model.News">
 	 update td_f_news 
 	 set id=#{id}

@@ -1,5 +1,6 @@
 package com.asiainfo.portal.modules.news.service.defaults;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,6 @@ import com.asiainfo.portal.modules.news.repository.NewsDataRepository;
 import com.asiainfo.portal.modules.news.repository.NewsPostRepository;
 import com.asiainfo.portal.modules.news.repository.NewsRepository;
 import com.asiainfo.portal.modules.news.service.NewsService;
-
-import jodd.util.StringUtil;
 
 @Service("newsService")
 public class DefaultNewsService implements NewsService {
@@ -61,6 +60,7 @@ public class DefaultNewsService implements NewsService {
 			news.setUsername(userInfo.getStaffid());
 			this.newsRepository.insert(news);
 			newsData.setId(news.getId());
+
 			this.newsDataRepository.insert(newsData);
 		} else {
 			news.setUpdatetime(new Date());

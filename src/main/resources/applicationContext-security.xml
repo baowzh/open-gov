@@ -13,7 +13,6 @@
 	<security:http pattern="/favicon.ico" security="none" />
 	<security:http pattern="/login.jsp" security="none" />
 	<security:http pattern="/login/getvalidcode.*" security="none" />
-	<security:http pattern="/login/tologin.*" security="none" />
 	<security:http pattern="/jsconfig/**" security="none" />
 	<security:http pattern="/ws/**" security="none" />
 	<security:global-method-security pre-post-annotations="enabled" />
@@ -57,7 +56,7 @@
 	<bean id="adminUserAuthenticationEntryPoint"
 		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 		<constructor-arg>
-			<value>/login/tologin.jhtml</value>
+			<value>/login.jhtml</value>
 		</constructor-arg>
 	</bean>
 	<!-- 管理员登录验证 -->
@@ -66,7 +65,7 @@
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="authenticationFailureHandler" ref="authenticationFailerHandler" />
 		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
-		<property name="filterProcessesUrl" value="/login/login.jhtml" />
+		<property name="filterProcessesUrl" value="/login.jhtml" />
 	</bean>
 
 	<!-- 登录失败 -->
