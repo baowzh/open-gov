@@ -21,7 +21,6 @@ public interface NewsRepository {
 
 	public void insert(News news) throws Exception;
 
-	
 	public void update(News news) throws Exception;
 
 	public void del(Integer id);
